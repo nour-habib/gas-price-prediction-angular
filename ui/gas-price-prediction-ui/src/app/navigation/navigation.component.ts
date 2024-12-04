@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ViewChild } from '@angular/core';
+import { Component, inject, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
@@ -33,6 +33,7 @@ export class NavigationComponent {
   sidenav!: MatSidenav;
   isMobile = true;
   isCollapsed = true;
+  routerLink = inject(RouterOutlet);
 
   constructor(private observer: BreakpointObserver) {}
 

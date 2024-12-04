@@ -7,15 +7,19 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterOutlet } from '@angular/router';
+import { RouterModule, RouterOutlet } from '@angular/router';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { MatSidenav } from '@angular/material/sidenav';
+import { DataSetExplorationComponent } from '../data-set-exploration/data-set-exploration.component';
+import { ResultsComponent } from '../results/results.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navigation',
   standalone: true,
   imports: [
     RouterOutlet,
+    RouterModule,
     CommonModule,
     MatSlideToggleModule,
     MatIconModule,
@@ -23,7 +27,9 @@ import { MatSidenav } from '@angular/material/sidenav';
     MatToolbarModule,
     MatSidenavModule,
     MatListModule,
-    NavigationComponent
+    NavigationComponent,
+    DataSetExplorationComponent,
+    ResultsComponent
   ],
   templateUrl: './navigation.component.html',
   styleUrl: './navigation.component.scss'
@@ -33,7 +39,7 @@ export class NavigationComponent {
   sidenav!: MatSidenav;
   isMobile = true;
   isCollapsed = true;
-  routerLink = inject(RouterOutlet);
+  router = inject(Router);
 
   constructor(private observer: BreakpointObserver) {}
 

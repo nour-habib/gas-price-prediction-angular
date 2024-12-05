@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class DataService {
   http = inject(HttpClient);
-  api = 'http://localhost:3000/';
+  api = 'http://localhost:3000/data/';
   constructor() { }
 
   getCPI() {

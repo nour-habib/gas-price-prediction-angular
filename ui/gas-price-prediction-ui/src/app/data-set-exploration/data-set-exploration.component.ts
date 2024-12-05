@@ -15,7 +15,7 @@ export class DataSetExplorationComponent {
   oilProduction = new Array<any>();
   crudeOilPrice = new Array<any>();
   gasPrice = new Array<any>();
-  correlationMatrix = new Array<any>;
+  correlationMatrix = new Array<any>();
 
   ngOnInit(): void
   {

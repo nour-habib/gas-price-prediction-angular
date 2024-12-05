@@ -10,6 +10,14 @@ export class DataService {
   api = 'http://localhost:3000/data/';
   constructor() { }
 
+  getModel() {
+    const url = this.api + `model`;
+  
+    return this.http.get(
+      `${url}`,
+    );
+  }
+
   getCPI() {
     const url = this.api + `cpi`;
   
@@ -65,6 +73,15 @@ export class DataService {
       `${url}`,
     );
   }
+
+  getError() {
+    const url = this.api + `errorAnalysis`;
+  
+    return this.http.get(
+      `${url}`,
+    );
+  }
+
 }
 
 

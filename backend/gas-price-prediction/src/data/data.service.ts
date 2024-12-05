@@ -7,6 +7,34 @@ import { Model } from 'mongoose';
 export class DataService {
   constructor(@InjectModel(Data.name) private dataModel: Model<Data>) {}
 
+  async addData(
+    country: string,
+    model: string,
+    cpi: Array<number>,
+    crudeOil: Array<number>,
+    oilProd: Array<number>,
+    gasPrice: Array<number>,
+    matrix: Array<number>,
+    modelTrain: Array<number>,
+    modelTest: Array<number>,
+    error: Array<number>,
+  ) {
+    const newData = new this.dataModel({
+      country,
+      model,
+      cpi,
+      crudeOil,
+      oilProd,
+      gasPrice,
+      matrix,
+      modelTrain,
+      modelTest,
+      error,
+    });
+    await newData.save();
+    return newData;
+  }
+
   findAll() {
     return this.dataModel.find().exec();
   }

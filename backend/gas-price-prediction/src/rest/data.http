@@ -7,3 +7,20 @@ GET http://localhost:3000/data/country HTTP/1.1
 ###
 
 GET http://localhost:3000/data/modelResultsTrain HTTP/1.1
+
+###
+
+POST http://localhost:3000/data/create HTTP/1.1
+content-type: application/json
+{
+    "country": "USA",
+    "model": "Multi-variable regression",
+    "consumerPriceIndex": "",
+    "crudeOilPrice": "",
+    "oilProduction": "",
+    "gasPrice": "",
+    "correlationMatrix": "",
+    "modelResultsTraining": "",
+    "modelResultsTesting": "",
+    "errorResults": "",
+}

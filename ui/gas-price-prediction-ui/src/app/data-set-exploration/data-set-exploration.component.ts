@@ -1,11 +1,14 @@
 import { Component, inject } from '@angular/core';
 import { RouterOutlet, RouterModule } from '@angular/router';
 import { DataService } from '../../service/data.service';
+import { Chart } from 'chart.js/dist';
+import ScatterController from 'chart.js/dist';
+import {MatTabsModule} from '@angular/material/tabs'
 
 @Component({
   selector: 'app-data-set-exploration',
   standalone: true,
-  imports: [RouterOutlet, RouterModule],
+  imports: [RouterOutlet, RouterModule, MatTabsModule],
   templateUrl: './data-set-exploration.component.html',
   styleUrl: './data-set-exploration.component.scss'
 })

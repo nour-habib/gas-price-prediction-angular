@@ -1,5 +1,7 @@
-import { Controller, Get } from '@nestjs/common';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { Controller, Get, Post, Body } from '@nestjs/common';
 import { DataService } from './data.service';
+import { Data } from 'src/schemas/data.schema';
 
 @Controller('data')
 export class DataController {
@@ -43,6 +45,37 @@ export class DataController {
   @Get('/modelResultsTest')
   getModelResultsTesting() {
     return this.dataService.getModelResultsTesting();
+  }
+
+  @Post('/create')
+  async create(
+    @Body('country') country: string,
+    @Body('model') model: string,
+    @Body('consumerPriceIndex') cpi: Array<number>,
+    @Body('crudeOilPrice') crudeOil: Array<number>,
+    @Body('oilProduction') oilProd: Array<number>,
+    @Body('gasPrice') gasPrice: Array<number>,
+    @Body('matrix') correlationMatrix: Array<number>,
+    @Body('modelResultsTraining') modelResultsTraining: Array<number>,
+    @Body('modelResultsTesting') modelResultsTesting: Array<number>,
+    @Body('errorResults') errorResults: Array<number>,
+  ) {
+    const result = await this.dataService.addData(
+      country,
+      model,
+      cpi,
+      crudeOil,
+      oilProd,
+      gasPrice,
+      correlationMatrix,
+      modelResultsTraining,
+      modelResultsTesting,
+      errorResults,
+    );
+    return {
+      msg: 'Data successfully added',
+      dataId: result.id,
+    };
   }
 
   @Get()

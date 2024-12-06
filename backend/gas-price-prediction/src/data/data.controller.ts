@@ -60,6 +60,7 @@ export class DataController {
     @Body('modelResultsTesting') modelResultsTesting: Array<number>,
     @Body('errorResults') errorResults: Array<number>,
   ) {
+    console.log('create()');
     const result = await this.dataService.addData(
       country,
       model,

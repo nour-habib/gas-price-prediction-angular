@@ -5,7 +5,7 @@ import { Model } from 'mongoose';
 
 @Injectable()
 export class DataService {
-  constructor(@InjectModel(Data.name) private dataModel: Model<Data>) {}
+  constructor(@InjectModel('data') private dataModel: Model<Data>) {}
 
   async addData(
     country: string,

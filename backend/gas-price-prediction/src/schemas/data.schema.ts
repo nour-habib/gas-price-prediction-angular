@@ -6,12 +6,6 @@ export type DataDocument = HydratedDocument<Data>;
 @Schema()
 export class Data {
   @Prop()
-  country: string;
-
-  @Prop()
-  modelType: string;
-
-  @Prop()
   consumerPriceIndex: Array<number>;
 
   @Prop()
@@ -22,18 +16,6 @@ export class Data {
 
   @Prop()
   gasPrice: Array<number>;
-
-  @Prop()
-  correlationMatrix: Array<number>;
-
-  @Prop()
-  modelResultsTraining: Array<number>;
-
-  @Prop()
-  modelResultsTesting: Array<number>;
-
-  @Prop()
-  errorResults: Array<number>;
 }
 
 // eslint-disable-next-line prettier/prettier

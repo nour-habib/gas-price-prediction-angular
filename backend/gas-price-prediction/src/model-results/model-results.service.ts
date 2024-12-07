@@ -10,9 +10,27 @@ export class ModelResultsService {
     private modelResultsModel: Model<ModelResults>,
   ) {}
 
-  getTraining() {}
+  getTraining() {
+    return this.modelResultsModel.find({}, { training: 1 });
+  }
 
-  getTesting() {}
+  getTrainingY() {
+    return this.modelResultsModel.find({}, { training_y: 1 });
+  }
 
-  getError() {}
+  getTesting() {
+    return this.modelResultsModel.find({}, { testing: 1 });
+  }
+
+  getTestingY() {
+    return this.modelResultsModel.find({}, { testing_y: 1 });
+  }
+
+  getErrorTrain() {
+    return this.modelResultsModel.find({}, { errorTrain: 1 });
+  }
+
+  getErrorTest() {
+    return this.modelResultsModel.find({}, { errorTest: 1 });
+  }
 }

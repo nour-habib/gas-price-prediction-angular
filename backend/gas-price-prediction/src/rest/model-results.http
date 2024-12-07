@@ -1,1 +1,21 @@
-GET http://localhost:3000/modelResults/training HTTP/1.1
+GET http://localhost:3000/model-results/training HTTP/1.1
+
+###
+
+GET http://localhost:3000/model-results/testing HTTP/1.1
+
+###
+
+GET http://localhost:3000/model-results/testing_y HTTP/1.1
+
+###
+
+GET http://localhost:3000/model-results/training_y HTTP/1.1
+
+###
+
+GET http://localhost:3000/model-results/errorTrain HTTP/1.1
+
+###
+
+GET http://localhost:3000/model-results/errorTest HTTP/1.1

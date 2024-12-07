@@ -9,10 +9,19 @@ export class ModelResults {
   training: Array<number>;
 
   @Prop()
+  training_y: Array<number>;
+
+  @Prop()
   testing: Array<number>;
 
   @Prop()
-  error: Array<number>;
+  testing_y: Array<number>;
+
+  @Prop()
+  errorTrain: Array<number>;
+
+  @Prop()
+  errorTest: Array<number>;
 }
 
 // eslint-disable-next-line prettier/prettier

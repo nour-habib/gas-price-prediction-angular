@@ -26,7 +26,6 @@ export class DataSetExplorationComponent {
     this.getOilProd();
     this.getCrudeOil();
     this.getGasPrices();
-    this.getCorrelationMatrix();
   }
 
   getConsumerPriceIndex() {
@@ -56,15 +55,4 @@ export class DataSetExplorationComponent {
       console.log("gasPrice: ", this.gasPrice);
     });
   }
-
-  getCorrelationMatrix() {
-    this.dataService.getMatrix().subscribe((arr) => {
-      this.correlationMatrix.push(arr);
-      console.log("correlationMatrix: ", this.correlationMatrix);
-    });
-  }
-
-
-
-
 }

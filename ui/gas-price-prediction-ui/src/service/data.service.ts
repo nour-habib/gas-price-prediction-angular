@@ -1,5 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { ModelResults } from '../model/model-results.interface';
 
 
 @Injectable({
@@ -7,19 +8,12 @@ import { HttpClient } from '@angular/common/http';
 })
 export class DataService {
   http = inject(HttpClient);
-  api = 'http://localhost:3000/data/';
+  dataAPI = 'http://localhost:3000/data/';
+  modelURL = 'http://localhost:3000/model-results';
   constructor() { }
 
-  getModel() {
-    const url = this.api + `model`;
-  
-    return this.http.get(
-      `${url}`,
-    );
-  }
-
   getCPI() {
-    const url = this.api + `cpi`;
+    const url = this.dataAPI + `cpi`;
   
     return this.http.get(
       `${url}`,
@@ -27,7 +21,7 @@ export class DataService {
   }
 
   getOilProduction() {
-    const url = this.api + `oilProduction`;
+    const url = this.dataAPI + `oilProduction`;
   
     return this.http.get(
       `${url}`,
@@ -35,7 +29,7 @@ export class DataService {
   }
 
   getCrudeOil() {
-    const url = this.api + `crudeOilPrice`;
+    const url = this.dataAPI + `crudeOilPrice`;
   
     return this.http.get(
       `${url}`,
@@ -43,15 +37,24 @@ export class DataService {
   }
 
   getGasPrice() {
-    const url = this.api + `gasPrice`;
+    const url = this.dataAPI + `gasPrice`;
   
     return this.http.get(
       `${url}`,
     );
   }
 
-  getMatrix() {
-    const url = this.api + `correlationMatrix`;
+  getModelResults() {
+    const url = this.modelURL;
+  
+    return this.http.get<ModelResults>(
+      `${url}`,
+    );
+  }
+
+
+  getError() {
+    const url = this.dataAPI + `/errorTest`;
   
     return this.http.get(
       `${url}`,
@@ -59,7 +62,7 @@ export class DataService {
   }
 
   getModelResultsTraining() {
-    const url = this.api + `modelResultsTrain`;
+    const url = this.modelURL + `/training`;
   
     return this.http.get(
       `${url}`,
@@ -67,15 +70,7 @@ export class DataService {
   }
 
   getModelResultsTesting() {
-    const url = this.api + `modelResultsTest`;
-  
-    return this.http.get(
-      `${url}`,
-    );
-  }
-
-  getError() {
-    const url = this.api + `errorAnalysis`;
+    const url = this.modelURL + `/testing`;
   
     return this.http.get(
       `${url}`,

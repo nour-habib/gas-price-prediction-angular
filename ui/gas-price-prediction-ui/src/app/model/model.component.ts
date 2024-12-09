@@ -12,13 +12,7 @@ export class ModelComponent {
   model!: string;
 
   ngOnInit(): void {
-    this.getModel();
-  }
-
-  getModel() {
-    this.dataService.getModel().subscribe((res) => {
-      console.log("model res: ", res);
-    })
+  
   }
 
 }

@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { DataService } from '../../service/data.service';
+import { ModelResults } from '../../model/model-results.interface';
 
 @Component({
   selector: 'app-results',
@@ -13,11 +14,22 @@ export class ResultsComponent {
   dataService = inject(DataService);
   trainingResults = new Array<any>();
   testingResults = new Array<any>();
+  modelResults = new Array<any>();
 
   ngOnInit(): void {
-    this.getTrainingResults();
-    this.getTestingResults();
+    // this.getTrainingResults();
+    // this.getTestingResults();
+    this.getAllResults();
+
 }
+
+  getAllResults() {
+    this.dataService.getModelResults().subscribe((arr) => {
+      this.modelResults.push(arr);
+      console.log("modelResults: ", this.modelResults);
+      console.log("arr: ", arr);
+    });
+  }
 
   getTrainingResults() {
     this.dataService.getModelResultsTraining().subscribe((arr) => {

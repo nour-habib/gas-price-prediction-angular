@@ -5,6 +5,11 @@ import { ModelResultsService } from './model-results.service';
 export class ModelResultsController {
   constructor(private readonly modelResultsService: ModelResultsService) {}
 
+  @Get()
+  getAllModelResults() {
+    return this.modelResultsService.findAll();
+  }
+
   @Get('/training')
   getTraining() {
     console.log('getTraining()');

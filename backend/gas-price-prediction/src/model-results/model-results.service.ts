@@ -33,4 +33,8 @@ export class ModelResultsService {
   getErrorTest() {
     return this.modelResultsModel.find({}, { errorTest: 1 });
   }
+
+  findAll() {
+    return this.modelResultsModel.find().exec();
+  }
 }

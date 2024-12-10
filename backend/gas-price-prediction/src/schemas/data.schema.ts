@@ -6,16 +6,16 @@ export type DataDocument = HydratedDocument<Data>;
 @Schema()
 export class Data {
   @Prop()
-  consumerPriceIndex: Array<number>;
+  consumerPriceIndex: number;
 
   @Prop()
-  crudeOilPrice: Array<number>;
+  crudeOilPrice: number;
 
   @Prop()
-  oilProduction: Array<number>;
+  oilProduction: number;
 
   @Prop()
-  gasPrice: Array<number>;
+  gasPrice: number;
 }
 
 // eslint-disable-next-line prettier/prettier

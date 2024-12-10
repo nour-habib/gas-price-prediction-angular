@@ -1,19 +1,25 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ModelResults } from '../model/model-results.interface';
-
+import { Data } from '../model/data.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
   http = inject(HttpClient);
-  dataAPI = 'http://localhost:3000/data/';
+  dataAPI = 'http://localhost:3000/data';
   modelURL = 'http://localhost:3000/model-results';
   constructor() { }
 
+  getData() {
+    return this.http.get<Data[]>(
+      `${this.dataAPI}`,
+    );
+  }
+
   getCPI() {
-    const url = this.dataAPI + `cpi`;
+    const url = this.dataAPI + `/cpi`;
   
     return this.http.get(
       `${url}`,
@@ -21,7 +27,7 @@ export class DataService {
   }
 
   getOilProduction() {
-    const url = this.dataAPI + `oilProduction`;
+    const url = this.dataAPI + `/oilProduction`;
   
     return this.http.get(
       `${url}`,
@@ -29,7 +35,7 @@ export class DataService {
   }
 
   getCrudeOil() {
-    const url = this.dataAPI + `crudeOilPrice`;
+    const url = this.dataAPI + `/crudeOilPrice`;
   
     return this.http.get(
       `${url}`,
@@ -37,7 +43,7 @@ export class DataService {
   }
 
   getGasPrice() {
-    const url = this.dataAPI + `gasPrice`;
+    const url = this.dataAPI + `/gasPrice`;
   
     return this.http.get(
       `${url}`,

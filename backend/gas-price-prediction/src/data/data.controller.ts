@@ -7,6 +7,11 @@ import { Data } from 'src/schemas/data.schema';
 export class DataController {
   constructor(private readonly dataService: DataService) {}
 
+  @Get()
+  getData() {
+    return this.dataService.findAll();
+  }
+
   @Get('/cpi')
   getCPI() {
     return this.dataService.getCPI();

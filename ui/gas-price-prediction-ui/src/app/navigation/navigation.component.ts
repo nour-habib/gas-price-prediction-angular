@@ -29,7 +29,7 @@ import { Router } from '@angular/router';
     MatListModule,
     NavigationComponent,
     DataSetExplorationComponent,
-    ResultsComponent
+    ResultsComponent,
   ],
   templateUrl: './navigation.component.html',
   styleUrl: './navigation.component.scss'

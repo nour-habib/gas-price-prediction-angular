@@ -1,8 +1,7 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, ViewChild } from '@angular/core';
 import { RouterOutlet, RouterModule } from '@angular/router';
 import { DataService } from '../../service/data.service';
 import { Chart } from 'chart.js/auto';
-// import ScatterController from 'chart.js/dist';
 import {MatTabsModule} from '@angular/material/tabs'
 import { Data } from '../../model/data.interface';
 
@@ -25,16 +24,24 @@ export class DataSetExplorationComponent {
   gasPriceGraph: any = [];
   cpiGraph: any = [];
 
+  constructor() { }
+
   ngOnInit(): void
   {
     this.getDataSet();
     this.initializeGasPriceGraph();
     this.initializeCPIgraph();
+
     
   }
 
   initializeGasPriceGraph() {
-    this.gasPriceGraph = new Chart('canvas', {
+    //console.log("ggas: ", this.gasPrice);
+    this.date = this.dataSet.map(data => data.Date);
+   // Array.from(Array(80).keys())
+   console.log("this.date: ", this.date);
+
+    this.gasPriceGraph = new Chart('gasPrice', {
       type: 'scatter',
       data: {
         labels: this.date,
@@ -64,8 +71,9 @@ export class DataSetExplorationComponent {
   }
 
   initializeCPIgraph() {
+   // this.gasPriceGraph.destroy();
 
-    this.cpiGraph = new Chart('canvas', {
+    this.cpiGraph = new Chart('cpi', {
       type: 'scatter',
       data: {
         labels: this.dataSet.map(data => data.consumerPriceIndex),
@@ -97,11 +105,13 @@ export class DataSetExplorationComponent {
   getDataSet() {
     this.dataService.getData().subscribe((data) => {
         this.dataSet = data;
-        console.log("Data: ", this.dataSet);
-        console.log("Data length: ", this.dataSet.length);
         this.cpi = this.dataSet.map(data => data.consumerPriceIndex);
         this.gasPrice = this.dataSet.map(data => data.gasPrice);
-        this.date = this.dataSet.map(data => data.date);
+        this.oilProduction = this.dataSet.map(data => data.oilProduction);
+        this.date = this.dataSet.map(data => data.Date);
+        //console.log("oilProd: ", this.oilProduction);
+       // console.log("d: ", this.dataSet.map(data => data.Date));
+      // console.log("dataSet: ", this.dataSet);
     });
   }
 }

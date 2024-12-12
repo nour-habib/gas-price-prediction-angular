@@ -10,6 +10,11 @@ export class DataService {
   http = inject(HttpClient);
   dataAPI = 'http://localhost:3000/data';
   modelURL = 'http://localhost:3000/model-results';
+  correlationMatrix = [[1, 0.3853, 0.7775, 0.09609],
+                        [0.3853, 1, 0.6038, 0.4235], 
+                        [0.775, 0.6038, 1, 0.8479], 
+                        [0.9609, 0.4235,0.8479, 1]];
+
   constructor() { }
 
   getData() {

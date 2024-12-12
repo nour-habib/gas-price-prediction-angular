@@ -1,14 +1,24 @@
-<!-- <mat-tab-group> -->
-    <!-- <mat-tab label="First"> Content 1 </mat-tab>
-    <mat-tab label="Second"> Content 2 </mat-tab>
-    <mat-tab label="Third"> Content 3 </mat-tab>
-  </mat-tab-group> -->
+<h2>{{ title }}</h2>
 
-  <div id="graphs"> <!--start graphs-->
-    <div class="graphContainer" style="position: relative; height:40vh; width: 80vw">
-      <canvas width="40" height="20" id="gasPrice">{{  gasPriceGraph }}</canvas>
-     </div>
-    <div class="graphContainer" style="position: relative; height:40vh; width: 80vw">
-     <canvas width="40" height="20" id="cpi">{{  cpiGraph }}</canvas>
-    </div>
-  </div> <!--end graphs-->
+<mat-tab-group>
+    <mat-tab label="Features">
+      <mat-grid-list cols="2" rowHeight="3:1">
+        <mat-grid-tile>
+          <canvas width="40" height="20" id="gasPrice">{{  gasPriceGraph }}</canvas>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <canvas width="40" height="20" id="cpi">{{  cpiGraph }}</canvas>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <canvas width="40" height="20" id="oilProd">{{  oilProdGraph }}</canvas>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <canvas width="40" height="20" id="crudeOil">{{  crudeOilGraph }}</canvas>
+        </mat-grid-tile>
+      </mat-grid-list>
+
+
+    </mat-tab>
+    <mat-tab label="Correlation Matrix"> Content 2 </mat-tab>
+    <mat-tab label="Outliers"> Content 3 </mat-tab>
+  </mat-tab-group>

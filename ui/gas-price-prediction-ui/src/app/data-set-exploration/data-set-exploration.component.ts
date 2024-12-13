@@ -2,9 +2,11 @@ import { Component, inject, ViewChild } from '@angular/core';
 import { RouterOutlet, RouterModule } from '@angular/router';
 import { DataService } from '../../service/data.service';
 import { Chart } from 'chart.js/auto';
-import {MatTabsModule} from '@angular/material/tabs'
+// import { Chart } from 'chart.js/dist';
+import { MatTabsModule } from '@angular/material/tabs'
 import { Data } from '../../model/data.interface';
-import {MatGridListModule} from '@angular/material/grid-list'
+import { MatGridListModule } from '@angular/material/grid-list';
+import 'chartjs-chart-matrix';
 
 @Component({
   selector: 'app-data-set-exploration',
@@ -26,21 +28,8 @@ export class DataSetExplorationComponent {
   cpiGraph: any = [];
   oilProdGraph: any = [];
   crudeOilGraph: any = [];
+  matrix: any = [];
   title = 'Data Set Exploration';
-
-  // chartAreaBorder = {
-  //   id: 'chartAreaBorder',
-  //   beforeDraw(chart: { ctx: any; chartArea: { left: any; top: any; width: any; height: any; }; }, args: any, options: { borderColor: any; borderWidth: any; borderDash: any; borderDashOffset: any; }) {
-  //     const {ctx, chartArea: {left, top, width, height}} = chart;
-  //     ctx.save();
-  //     ctx.strokeStyle = options.borderColor;
-  //     ctx.lineWidth = options.borderWidth;
-  //     ctx.setLineDash(options.borderDash || []);
-  //     ctx.lineDashOffset = options.borderDashOffset;
-  //     ctx.strokeRect(left, top, width, height);
-  //     ctx.restore();
-  //   }
-  // };
 
   constructor() { }
 
@@ -51,7 +40,7 @@ export class DataSetExplorationComponent {
     this.initializeCPIgraph();
     this.initializeOilProdGraph();
     this.initializeCrudeOilGraph();
-    
+    this.initializeMatrix();
   }
 
   getDataSet() {
@@ -71,7 +60,7 @@ export class DataSetExplorationComponent {
    console.log("this.date: ", this.date);
 
     this.gasPriceGraph = new Chart('gasPrice', {
-      type: 'scatter',
+      type: 'line',
       data: {
         labels:Array.from(Array(80).keys()),
         datasets: [
@@ -189,4 +178,38 @@ export class DataSetExplorationComponent {
     });
   }
 
+  initializeMatrix() {
+
+    const matrixData = this.dataService.getMatrix();
+
+    this.matrix = new Chart('matrix', {
+      type: 'matrix',
+      data: {
+        datasets: [{
+          label: 'Basic matrix',
+          data: [{x: 1, y: 1}, {x: 2, y: 1}, {x: 1, y: 2}, {x: 2, y: 2}],
+          borderWidth: 1,
+          borderColor: 'rgba(0,0,0,0.5)',
+          backgroundColor: 'rgba(200,200,0,0.3)',
+          // width: ({chart}) => (chart.chartArea || {}).width / 2 - 1,
+          // height: ({chart}) => (chart.chartArea || {}).height / 2 - 1,
+        }],
+      },
+      options: {
+        scales: {
+          x: {
+            display: false,
+            min: 0.5,
+            max: 2.5,
+            offset: false
+          },
+          y: {
+            display: false,
+            min: 0.5,
+            max: 2.5
+          }
+        }
+      }
+    });
+  }
 }

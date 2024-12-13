@@ -58,7 +58,7 @@ export class DataService {
   getModelResults() {
     const url = this.modelURL;
   
-    return this.http.get<ModelResults>(
+    return this.http.get<ModelResults[]>(
       `${url}`,
     );
   }
@@ -86,6 +86,10 @@ export class DataService {
     return this.http.get(
       `${url}`,
     );
+  }
+
+  getMatrix() {
+    return this.correlationMatrix;
   }
 
 }

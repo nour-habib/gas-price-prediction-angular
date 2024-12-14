@@ -45,10 +45,16 @@ export class ErrorAnalysisComponent {
     this.trainGraph = new Chart('train', {
       type: 'line',
       data: {
-        labels: this.errorTrain,
+        labels: Array.from(Array(80).keys()),
         datasets: [
           {
             data: this.train_y,
+            borderColor: 'black',
+            label: 'Absolute Error on Training Data',
+            backgroundColor: 'blue',
+          },
+          {
+            data: this.errorTrain,
             borderColor: 'black',
             label: 'Absolute Error on Training Data',
             backgroundColor: 'blue',
@@ -76,14 +82,20 @@ export class ErrorAnalysisComponent {
     this.testGraph = new Chart('test', {
       type: 'line',
       data: {
-        labels: this.errorTest,
+        labels:  Array.from(Array(80).keys()),
         datasets: [
           {
             data: this.test_y,
-            borderColor: 'black',
+            borderColor: 'blue',
             label: 'Absolute Error on Test Data',
             backgroundColor: 'blue',
-          }
+          },
+          {
+            data: this.errorTest,
+            borderColor: 'grey',
+            label: 'Absolute Error on Test Data',
+            backgroundColor: 'grey',
+          },
         ]
       },
       options: {

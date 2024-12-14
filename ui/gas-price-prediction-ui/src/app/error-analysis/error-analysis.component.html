@@ -1,18 +1,22 @@
 <mat-grid-list cols="2" rowHeight="2:1">
     <mat-grid-tile>
         <mat-card appearance="outlined">
+            <mat-card-header>Header</mat-card-header>
             <mat-card-content>
-                    <canvas width="40" height="20" id="train">{{  trainGraph }}</canvas>
+                <canvas id="train">{{  trainGraph }}></canvas>
             </mat-card-content>
+            <mat-card-footer>Stuff to write</mat-card-footer>
         </mat-card>
     </mat-grid-tile>    
 
     <mat-grid-tile>
         <mat-card appearance="outlined">
+            <mat-card-header>Header</mat-card-header>
             <mat-card-content>
-                <canvas width="40" height="20" id="test">{{  testGraph }}</canvas>
+                <canvas id="test">{{  testGraph }}</canvas>
             </mat-card-content>
+            <mat-card-footer>Stuff to write</mat-card-footer>
         </mat-card>
     </mat-grid-tile>  
-    
+
 </mat-grid-list>

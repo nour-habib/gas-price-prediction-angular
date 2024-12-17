@@ -22,6 +22,7 @@ export class ResultsComponent {
   ngOnInit(): void {
     this.getAllResults();
     this.initializeTrainGraph();
+    this.initializeTestGraph();
 }
 
   getAllResults() {
@@ -37,13 +38,21 @@ export class ResultsComponent {
     this.trainingGraph = new Chart('training', {
       type: 'line',
       data: {
-        labels: Array.from(Array(80).keys()),
+        labels: Array.from(Array(60).keys()),
         datasets: [
           {
             data: this.trainingResults,
             borderColor: 'black',
-            label: 'Training Data ',
+            label:'Model Results',
+            backgroundColor: 'green',
+            borderDash: [5,5],
+          },
+          {
+            data: this.modelResults[0].training_y,
+            borderColor: 'black',
+            label: 'Actual Data ',
             backgroundColor: 'red',
+            showLine: false,
           },
         ]
       },
@@ -57,6 +66,44 @@ export class ResultsComponent {
           title: {
             display: true,
             text: 'Model Results on Training Data'
+          },
+        }
+      }
+    });
+  }
+
+  initializeTestGraph() {
+    this.testingGraph = new Chart('testing', {
+      type: 'line',
+      data: {
+        labels: Array.from(Array(20).keys()),
+        datasets: [
+          {
+            data: this.testingResults,
+            borderColor: 'orange',
+            label: 'Model Results ',
+            backgroundColor: 'yellow',
+            borderDash: [5,5],
+          },
+          {
+            data: this.modelResults[0].testing_y,
+            borderColor: 'purple',
+            label: 'Actual Data',
+            backgroundColor: 'red',
+            showLine: false,
+          },
+        ]
+      },
+      options: {
+        maintainAspectRatio: true,
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'right',
+          },
+          title: {
+            display: true,
+            text: 'Model Results on Test Data'
           },
         }
       }

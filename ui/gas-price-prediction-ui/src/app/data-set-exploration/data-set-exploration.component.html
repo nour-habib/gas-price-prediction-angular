@@ -3,18 +3,24 @@
 <mat-tab-group>
     <mat-tab label="Features">
       <mat-grid-list cols="2" rowHeight="3:1">
+
         <mat-grid-tile>
           <canvas width="40" height="20" id="gasPrice">{{  gasPriceGraph }}</canvas>
+          <div id="hiddenContent">Graph Explanation</div>
         </mat-grid-tile>
+
         <mat-grid-tile>
           <canvas width="40" height="20" id="cpi">{{  cpiGraph }}</canvas>
-        </mat-grid-tile>s
+        </mat-grid-tile>
+
         <mat-grid-tile>
           <canvas width="40" height="20" id="oilProd">{{  oilProdGraph }}</canvas>
         </mat-grid-tile>
+
         <mat-grid-tile>
           <canvas width="40" height="20" id="crudeOil">{{  crudeOilGraph }}</canvas>
         </mat-grid-tile>
+
       </mat-grid-list>
 
 

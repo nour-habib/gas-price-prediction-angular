@@ -9,15 +9,13 @@ import { MatGridListModule } from '@angular/material/grid-list';
 //import 'chartjs-chart-matrix';
 // import { ChartConfiguration } from 'chart.js/auto';
 import { Legend } from 'chart.js/auto';
-import { HighchartsChartModule } from 'highcharts-angular';
-import * as Highcharts from 'highcharts/highstock';
 import { BoxPlotController, BoxAndWiskers, BoxPlotDataPoint } from '@sgratzl/chartjs-chart-boxplot';
 
 
 @Component({
   selector: 'app-data-set-exploration',
   standalone: true,
-  imports: [RouterOutlet, RouterModule, MatTabsModule, MatGridListModule, HighchartsChartModule],
+  imports: [RouterOutlet, RouterModule, MatTabsModule, MatGridListModule],
   templateUrl: './data-set-exploration.component.html',
   styleUrl: './data-set-exploration.component.scss'
 })
@@ -37,7 +35,6 @@ export class DataSetExplorationComponent {
   matrix: any = [];
   boxplot: any = [];
   title = 'Data Set Exploration';
-  Highcharts: typeof Highcharts = Highcharts;
 
   constructor() { }
 
@@ -50,15 +47,6 @@ export class DataSetExplorationComponent {
     this.initializeCrudeOilGraph();
     //this.initializeMatrix();
     this.initializeBoxplot();
-
-   
-  chartOptions: Highcharts.setOptions({
-    title: {
-      style: {
-        color: 'orange'
-      }
-    }
-  });
   }
 
   getDataSet() {
@@ -240,12 +228,12 @@ export class DataSetExplorationComponent {
     Chart.register(BoxPlotController, BoxAndWiskers, LinearScale, CategoryScale);
     
 
-    this.boxplot = new Chart('boxplot', {
-      type: 'boxplot',
-      data: {
-        //datasets: this.gasPrice,
-      },
-    })
+    // this.boxplot = new Chart('boxplot', {
+    //   type: 'boxplot',
+    //   data: {
+    //     //datasets: this.gasPrice,
+    //   },
+    // })
   
 
 

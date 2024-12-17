@@ -1,17 +1,23 @@
 import { Component, inject, ViewChild } from '@angular/core';
 import { RouterOutlet, RouterModule } from '@angular/router';
 import { DataService } from '../../service/data.service';
-import { Chart } from 'chart.js/auto';
+import { Chart, LinearScale, CategoryScale } from 'chart.js';
 // import { Chart } from 'chart.js/dist';
 import { MatTabsModule } from '@angular/material/tabs'
 import { Data } from '../../model/data.interface';
 import { MatGridListModule } from '@angular/material/grid-list';
-import 'chartjs-chart-matrix';
+//import 'chartjs-chart-matrix';
+// import { ChartConfiguration } from 'chart.js/auto';
+import { Legend } from 'chart.js/auto';
+import { HighchartsChartModule } from 'highcharts-angular';
+import * as Highcharts from 'highcharts/highstock';
+import { BoxPlotController, BoxAndWiskers, BoxPlotDataPoint } from '@sgratzl/chartjs-chart-boxplot';
+
 
 @Component({
   selector: 'app-data-set-exploration',
   standalone: true,
-  imports: [RouterOutlet, RouterModule, MatTabsModule, MatGridListModule],
+  imports: [RouterOutlet, RouterModule, MatTabsModule, MatGridListModule, HighchartsChartModule],
   templateUrl: './data-set-exploration.component.html',
   styleUrl: './data-set-exploration.component.scss'
 })
@@ -29,7 +35,9 @@ export class DataSetExplorationComponent {
   oilProdGraph: any = [];
   crudeOilGraph: any = [];
   matrix: any = [];
+  boxplot: any = [];
   title = 'Data Set Exploration';
+  Highcharts: typeof Highcharts = Highcharts;
 
   constructor() { }
 
@@ -40,7 +48,17 @@ export class DataSetExplorationComponent {
     this.initializeCPIgraph();
     this.initializeOilProdGraph();
     this.initializeCrudeOilGraph();
-    this.initializeMatrix();
+    //this.initializeMatrix();
+    this.initializeBoxplot();
+
+   
+  chartOptions: Highcharts.setOptions({
+    title: {
+      style: {
+        color: 'orange'
+      }
+    }
+  });
   }
 
   getDataSet() {
@@ -178,38 +196,60 @@ export class DataSetExplorationComponent {
     });
   }
 
-  initializeMatrix() {
+  // initializeMatrix() {
 
-    const matrixData = this.dataService.getMatrix();
+  //   const matrixData = this.dataService.getMatrix();
 
-    this.matrix = new Chart('matrix', {
-      type: 'matrix',
+  //   this.matrix = new Chart('matrix', {
+  //     type: 'matrix',
+  //     data: {
+  //       datasets: [{
+  //         label: 'Basic matrix',
+  //         data: [{x: 1, y: 1}, {x: 2, y: 1}, {x: 1, y: 2}, {x: 2, y: 2}],
+  //         borderWidth: 1,
+  //         borderColor: 'rgba(0,0,0,0.5)',
+  //         backgroundColor: 'rgba(200,200,0,0.3)',
+  //         // width: ({chart}) => (chart.chartArea || {}).width / 2 - 1,
+  //         // height: ({chart}) => (chart.chartArea || {}).height / 2 - 1,
+  //       }],
+  //     },
+  //     options: {
+  //       scales: {
+  //         x: {
+  //           display: false,
+  //           min: 0.5,
+  //           max: 2.5,
+  //           offset: false
+  //         },
+  //         y: {
+  //           display: false,
+  //           min: 0.5,
+  //           max: 2.5
+  //         }
+  //       }
+  //     }
+  //   });
+  // }
+
+  randomValues(count: number, min:number, max:number) {
+    const delta = max - min;
+    return Array.from({length: count}).map(() => Math.random() * delta + min);
+  }
+
+  initializeBoxplot() {
+    Chart.register(BoxPlotController, BoxAndWiskers, LinearScale, CategoryScale);
+    
+
+    this.boxplot = new Chart('boxplot', {
+      type: 'boxplot',
       data: {
-        datasets: [{
-          label: 'Basic matrix',
-          data: [{x: 1, y: 1}, {x: 2, y: 1}, {x: 1, y: 2}, {x: 2, y: 2}],
-          borderWidth: 1,
-          borderColor: 'rgba(0,0,0,0.5)',
-          backgroundColor: 'rgba(200,200,0,0.3)',
-          // width: ({chart}) => (chart.chartArea || {}).width / 2 - 1,
-          // height: ({chart}) => (chart.chartArea || {}).height / 2 - 1,
-        }],
+        //datasets: this.gasPrice,
       },
-      options: {
-        scales: {
-          x: {
-            display: false,
-            min: 0.5,
-            max: 2.5,
-            offset: false
-          },
-          y: {
-            display: false,
-            min: 0.5,
-            max: 2.5
-          }
-        }
-      }
-    });
+    })
+  
+
+
+
+
   }
 }

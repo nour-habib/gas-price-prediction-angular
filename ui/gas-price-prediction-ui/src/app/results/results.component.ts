@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { DataService } from '../../service/data.service';
 import { ModelResults } from '../../model/model-results.interface';
+import { Chart } from 'chart.js/auto';
 
 @Component({
   selector: 'app-results',
@@ -12,37 +13,53 @@ import { ModelResults } from '../../model/model-results.interface';
 })
 export class ResultsComponent {
   dataService = inject(DataService);
+  modelResults = new Array<ModelResults>;
   trainingResults = new Array<any>();
   testingResults = new Array<any>();
-  modelResults = new Array<any>();
+  trainingGraph: any = [];
+  testingGraph: any = [];
 
   ngOnInit(): void {
-    // this.getTrainingResults();
-    // this.getTestingResults();
     this.getAllResults();
-
+    this.initializeTrainGraph();
 }
 
   getAllResults() {
-    this.dataService.getModelResults().subscribe((arr) => {
-      this.modelResults.push(arr);
+    this.dataService.getModelResults().subscribe((results) => {
+      this.modelResults = results;
       console.log("modelResults: ", this.modelResults);
-      console.log("arr: ", arr);
+      this.trainingResults = this.modelResults[0].training;
+      this.testingResults = this.modelResults[0].testing;
     });
   }
 
-  getTrainingResults() {
-    this.dataService.getModelResultsTraining().subscribe((arr) => {
-      this.trainingResults.push(arr);
-      console.log("training: ", this.trainingResults);
-      console.log("arr: ", arr);
-    });
-  }
-
-  getTestingResults() {
-    this.dataService.getModelResultsTesting().subscribe((arr) => {
-      this.testingResults.push(arr);
-      console.log("testing: ", this.testingResults);
+  initializeTrainGraph() {
+    this.trainingGraph = new Chart('training', {
+      type: 'line',
+      data: {
+        labels: Array.from(Array(80).keys()),
+        datasets: [
+          {
+            data: this.trainingResults,
+            borderColor: 'black',
+            label: 'Training Data ',
+            backgroundColor: 'red',
+          },
+        ]
+      },
+      options: {
+        maintainAspectRatio: true,
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'right',
+          },
+          title: {
+            display: true,
+            text: 'Model Results on Training Data'
+          },
+        }
+      }
     });
   }
 }

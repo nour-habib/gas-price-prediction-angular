@@ -41,7 +41,6 @@ export class ErrorAnalysisComponent {
   }
 
   initializeTrainGraph() {
-
     this.trainGraph = new Chart('train', {
       type: 'line',
       data: {
@@ -51,7 +50,7 @@ export class ErrorAnalysisComponent {
             data: this.train_y,
             borderColor: 'black',
             label: 'Absolute Error on Training Data',
-            backgroundColor: 'blue',
+            backgroundColor: 'red',
           },
           {
             data: this.errorTrain,

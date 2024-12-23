@@ -3,4 +3,15 @@
 @tailwind utilities;
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { 
+    margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; 
+}
+
+canvas{
+    background-color: #222;
+    border-radius: 30px;
+}
+
+.mat-grid-tile{
+    background-color: #393838;
+}

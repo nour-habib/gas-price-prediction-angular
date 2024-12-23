@@ -1,3 +1,16 @@
-<canvas id="training">{{  trainingGraph }}</canvas>
 
-<canvas id="testing">{{  testingGraph }}</canvas>
+<mat-grid-list cols="1" rowHeight="3:1">
+
+    <mat-grid-tile>
+        <canvas id="training">{{  trainingGraph }}</canvas>
+        <button (click)="toggleExpandedTraining()">></button>
+        <section id="trainingSection" *ngIf="isClickedTraining()">Training graph write up</section>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+        <canvas id="testing">{{  testingGraph }}</canvas>
+        <button (click)="toggleExpandedTesting()">></button>
+        <section id="testingSection" *ngIf="isClickedTesting()">Training graph write up</section>
+    </mat-grid-tile>
+
+  </mat-grid-list>

@@ -1,13 +1,15 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { DataService } from '../../service/data.service';
 import { ModelResults } from '../../model/model-results.interface';
 import { Chart } from 'chart.js/auto';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-results',
   standalone: true,
-  imports: [RouterOutlet, RouterModule],
+  imports: [RouterOutlet, RouterModule, MatGridListModule, CommonModule],
   templateUrl: './results.component.html',
   styleUrl: './results.component.scss'
 })
@@ -18,11 +20,15 @@ export class ResultsComponent {
   testingResults = new Array<any>();
   trainingGraph: any = [];
   testingGraph: any = [];
+  isClickedTraining = signal(false);
+  isClickedTesting = signal(false);
+
 
   ngOnInit(): void {
     this.getAllResults();
     this.initializeTrainGraph();
     this.initializeTestGraph();
+    Chart.defaults.color = '#fff';
 }
 
   getAllResults() {
@@ -34,6 +40,14 @@ export class ResultsComponent {
     });
   }
 
+  toggleExpandedTraining() {
+    this.isClickedTraining.set(!this.isClickedTraining);
+  }
+
+  toggleExpandedTesting() {
+    this.isClickedTesting.set(!this.isClickedTesting);
+  }
+
   initializeTrainGraph() {
     this.trainingGraph = new Chart('training', {
       type: 'line',
@@ -42,22 +56,28 @@ export class ResultsComponent {
         datasets: [
           {
             data: this.trainingResults,
-            borderColor: 'black',
+            borderColor: 'white',
             label:'Model Results',
-            backgroundColor: 'green',
-            borderDash: [5,5],
+            backgroundColor: '	#68c4af',
+            borderDash: [1,1],
+            
           },
           {
             data: this.modelResults[0].training_y,
-            borderColor: 'black',
+            borderColor: '#b497e7',
             label: 'Actual Data ',
-            backgroundColor: 'red',
+            backgroundColor: '#b497e7',
             showLine: false,
           },
         ]
       },
       options: {
         maintainAspectRatio: true,
+        scales: {
+          x: {
+            
+          },
+        },
         responsive: true,
         plugins: {
           legend: {
@@ -89,7 +109,7 @@ export class ResultsComponent {
             data: this.modelResults[0].testing_y,
             borderColor: 'purple',
             label: 'Actual Data',
-            backgroundColor: 'red',
+            backgroundColor: 'purple',
             showLine: false,
           },
         ]

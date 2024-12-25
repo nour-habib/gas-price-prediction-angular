@@ -1,16 +1,33 @@
 
-<mat-grid-list cols="1" rowHeight="3:1">
+<div className="grid grid-cols-1 grid-rows-2 gap-4 content-center">
 
-    <mat-grid-tile>
-        <canvas id="training">{{  trainingGraph }}</canvas>
-        <button (click)="toggleExpandedTraining()">></button>
-        <section id="trainingSection" *ngIf="isClickedTraining()">Training graph write up</section>
-    </mat-grid-tile>
+    <div>  <h2>Training Data Results</h2>
+       <div id="training"><canvas id="trainingG">{{  trainingGraph }}</canvas></div><!--close training-->
+            <div className="box-content border-3 p-4">
+                <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                sed do eiusmod tempor incididunt ut labore et dolore magna 
+                aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
+                laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor 
+                in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla 
+                pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa 
+                qui officia deserunt mollit anim id est laborum."
+                </p>
+            </div><!--close pagraph-->
+    </div> <!--close content-->
 
-    <mat-grid-tile>
-        <canvas id="testing">{{  testingGraph }}</canvas>
-        <button (click)="toggleExpandedTesting()">></button>
-        <section id="testingSection" *ngIf="isClickedTesting()">Training graph write up</section>
-    </mat-grid-tile>
+    <div className="row-start-2 overflow-visible">
+        <div className="overflow-visible"><h2>Test Data Results</h2>
+            <div id="testing"><canvas id="testingG">{{  testingGraph }}</canvas></div>
+            <div className="overflow-visible overflow-y-auto box-content"><p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+            sed do eiusmod tempor incididunt ut labore et dolore magna 
+            aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
+            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor 
+            in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla 
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa 
+            qui officia deserunt mollit anim id est laborum."
+            </p></div><!--close paragraph div-->
+        </div><!--close content div-->
+    </div><!--close row div-->
 
-  </mat-grid-list>
+</div><!--close grid-->
+    

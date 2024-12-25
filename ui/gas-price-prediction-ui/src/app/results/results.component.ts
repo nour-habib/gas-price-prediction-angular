@@ -1,17 +1,19 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, signal, ViewEncapsulation } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { DataService } from '../../service/data.service';
 import { ModelResults } from '../../model/model-results.interface';
 import { Chart } from 'chart.js/auto';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { CommonModule } from '@angular/common';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-results',
   standalone: true,
-  imports: [RouterOutlet, RouterModule, MatGridListModule, CommonModule],
+  imports: [RouterOutlet, RouterModule, MatGridListModule, CommonModule, MatCardModule],
   templateUrl: './results.component.html',
-  styleUrl: './results.component.scss'
+  styleUrl: './results.component.scss',
+  encapsulation: ViewEncapsulation.None,
 })
 export class ResultsComponent {
   dataService = inject(DataService);
@@ -49,7 +51,7 @@ export class ResultsComponent {
   }
 
   initializeTrainGraph() {
-    this.trainingGraph = new Chart('training', {
+    this.trainingGraph = new Chart('trainingG', {
       type: 'line',
       data: {
         labels: Array.from(Array(60).keys()),
@@ -75,7 +77,14 @@ export class ResultsComponent {
         maintainAspectRatio: true,
         scales: {
           x: {
-            
+            grid: {
+              color: '#333',
+            },
+          },
+          y: {
+            grid: {
+              color: '#333',
+            },
           },
         },
         responsive: true,
@@ -93,23 +102,23 @@ export class ResultsComponent {
   }
 
   initializeTestGraph() {
-    this.testingGraph = new Chart('testing', {
+    this.testingGraph = new Chart('testingG', {
       type: 'line',
       data: {
         labels: Array.from(Array(20).keys()),
         datasets: [
           {
             data: this.testingResults,
-            borderColor: 'orange',
+            borderColor: '#96ead7',
             label: 'Model Results ',
-            backgroundColor: 'yellow',
-            borderDash: [5,5],
+            backgroundColor: '#96ead7',
+            borderDash: [1,1],
           },
           {
             data: this.modelResults[0].testing_y,
-            borderColor: 'purple',
+            borderColor: '#b497e7',
             label: 'Actual Data',
-            backgroundColor: 'purple',
+            backgroundColor: '#b497e7',
             showLine: false,
           },
         ]
@@ -117,6 +126,18 @@ export class ResultsComponent {
       options: {
         maintainAspectRatio: true,
         responsive: true,
+        scales: {
+          x: {
+            grid: {
+              color: '#333',
+            },
+          },
+          y: {
+            grid: {
+              color: '#333',
+            },
+          },
+        },
         plugins: {
           legend: {
             position: 'right',

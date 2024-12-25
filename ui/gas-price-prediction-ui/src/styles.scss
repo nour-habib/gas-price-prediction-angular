@@ -2,16 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body { height: 100%; }
+html, body { height: 100%;}
 body { 
     margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; 
+    background-color: black !important;
 }
 
 canvas{
     background-color: #222;
     border-radius: 30px;
+    border-color: red;
 }
 
-.mat-grid-tile{
-    background-color: #393838;
+p{
+    color: grey;
 }

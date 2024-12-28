@@ -1,11 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { DataService } from '../../service/data.service';
 import { Data } from '@angular/router';
+import { CalculatorComponent } from '../calculator/calculator.component';
 
 @Component({
   selector: 'app-search',
   standalone: true,
-  imports: [],
+  imports: [CalculatorComponent],
   templateUrl: './search.component.html',
   styleUrl: './search.component.scss'
 })

@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import {ReactiveFormsModule, FormControl, FormGroup} from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-calculator',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './calculator.component.html',
   styleUrl: './calculator.component.scss'
 })
@@ -18,18 +19,23 @@ export class CalculatorComponent {
   a = 1;
   b = 1;
   c = 1;
+  result = signal(0);
   
   calculate() {
-     let  answer = 0;
-     console.warn(this.equation.value);
-     let cpi = this.equation.value.cpi;
-     let crudeOil = this.equation.value.crudeOilPrice;
-     let oilProd = this.equation.value.crudeOilPrice;
      
-    //  let result = a*(cpi) + 
+     console.warn(this.equation.value);
+     var cpi: number = 0;
+     var crudeOil: number = 0;
+     var oilProd: number = 0;
 
+     if(this.equation.value.cpi?.valueOf() && this.equation.value.crudeOilPrice && this.equation.value.oilProd)
+     {
+       cpi = Number(this.equation.value.cpi.valueOf());
+       crudeOil = Number(this.equation.value.crudeOilPrice.valueOf());
+       oilProd = Number(this.equation.value.oilProd.valueOf());
+     } 
 
-      return answer;
+     this.result.set((cpi*this.a) + (crudeOil*this.b) + (oilProd*this.c));
   }
 
 

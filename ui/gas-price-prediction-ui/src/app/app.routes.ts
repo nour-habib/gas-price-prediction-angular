@@ -4,12 +4,17 @@ import { DataSetExplorationComponent } from './data-set-exploration/data-set-exp
 import { ErrorAnalysisComponent } from './error-analysis/error-analysis.component';
 import { ModelComponent } from './model/model.component';
 import { SearchComponent } from './search/search.component';
+import { MainComponent } from './main/main.component';
 
 export const routes: Routes = [
     {
         path: '',
-        component: SearchComponent,
+        component: MainComponent,
     }, 
+    {
+        path: 'search',
+        component: SearchComponent,
+    },
     {
         path: 'results',
         component: ResultsComponent,

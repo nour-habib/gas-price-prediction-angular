@@ -21,7 +21,10 @@ export class SearchComponent {
   years = ["2016", "2017", "2018", "2019", "2020", "2021", "2022"];
 
   searchForm = new FormGroup({
-    features: new FormControl(''),
+    gasPrice: new FormControl(''),
+    cpi: new FormControl(''),
+    crudeOilPrice: new FormControl(''),
+    oilProd: new FormControl(''),
     fromMonth: new FormControl(''),
     fromYear: new FormControl(''),
     toMonth: new FormControl(''),

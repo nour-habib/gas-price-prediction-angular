@@ -35,8 +35,11 @@ export class SearchComponent {
 
   constructor(){}
 
+  ngOnInit(): void{
+    console.log("search component: ngOnInit()");
+  }
+
   search() {
-      //make call to dataService and return requested datas
       console.warn(this.searchForm.value);
 
       var fyear = '';

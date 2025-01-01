@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { DataService } from '../../service/data.service';
 import { Data } from '@angular/router';
 import { CalculatorComponent } from '../calculator/calculator.component';
@@ -15,11 +15,12 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 export class SearchComponent {
   dataService = inject(DataService);
   dataSet = new Array<Data>;
-  filteredData = new Array<Data>();
+  filteredData = signal({});
   months = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
   ];
   years = ["2016", "2017", "2018", "2019", "2020", "2021", "2022"];
+  invalidDateMsg = signal('');
 
   searchForm = new FormGroup({
     gasPrice: new FormControl(''),
@@ -58,39 +59,58 @@ export class SearchComponent {
         fMonth = this.searchForm.value.fromMonth;
        }
    
-      
-    //verify that fromYear < toYear
-    if(this.validateDate(fyear, tyear, fMonth, tMonth))
+    if(!this.validateDate(fyear, tyear, fMonth, tMonth))
     {
+      this.invalidDateMsg.set('Invalid dates. Try again.');
+    }
+    
+    var dict = new Map();
+    var cpi;
+    if(this.searchForm.value.cpi){
+      
+      this.dataService.getCPI().subscribe((data) => {
+          cpi = data;
+          console.log("searchComp: cpi: ", cpi);
+      });
+
+      // if(cpi)
+      // {
+      //   cpiFiltered = cpi.
+      // }
+
+      dict.set("cpi", cpi);
+
+
+
 
     }
-    //cheeck which features are checked
-    //filter dataSet with required information
-    //m
+
+
 
   }
 
   validateDate(fYear: string, tYear: string, fMonth: string, tMonth: string): boolean {
-      let fromYear = Number(fYear);
-      let toYear = Number(tYear);
-      
+    let fromYear = Number(fYear);
+    let toYear = Number(tYear);
+
     if(fromYear > toYear)
       {
          return false;
       }
-      else if(fromYear == toYear)
+    else if(fromYear == toYear)
+    {
+      let indexF = this.months.findIndex((element) => element==fMonth);
+      let indexT = this.months.findIndex((element) => element==tMonth);
+      console.log("indexF: ", indexF);
+      console.log("indexT: ", indexT);
+      if(indexF > indexT)
       {
-        let indexF = this.months.findIndex((element) => element==fMonth);
-        let indexT = this.months.findIndex((element) => element==tMonth);
-        console.log("indexF: ", indexF);
-        console.log("indexT: ", indexT);
-        if(indexF > indexT)
-        {
-          return false;
-        }
+        return false;
       }
+    }
       return true;
   }
+
 
 
 }

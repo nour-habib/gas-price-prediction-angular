@@ -12,8 +12,8 @@
           <ul class="p-3 space-y-3 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownCheckboxButton">
             <li>
               <div class="flex items-center">
-                <input formControlName="gasPrice" id="gasPrice" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                <label for="gasPrice" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Gas Price</label>
+                <input formControlName="gasPrice" id="checkbox-item-11" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                <label for="checkbox-item-11" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Gas Price</label>
               </div>
             </li>
             <li>
@@ -40,12 +40,12 @@
     <label>From</label>
 
   <select formControlName="fromMonth" class="text-white bg-blue-700
-  hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 
-  text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-          <option selected disabled>Month</option>
+  hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 
+  text-center inline-flex items-center">
+          <option value="" selected disabled>Month</option>
             @for(item of months; track item)
             {
-                <option value="{{ item }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{ item }}</option>
+                <option value="" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{ item }}</option>
             }
   </select>
 
@@ -53,10 +53,10 @@
     <select formControlName="fromYear" class="text-white bg-blue-700
   hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 
   text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-            <option selected disabled>Year</option>
+            <option value="" selected disabled>Year</option>
               @for(year of years; track year)
               {
-                  <option value="{{ year }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{ year }}</option>
+                  <option value="" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{ year }}</option>
               }
     </select>
 
@@ -66,10 +66,10 @@
   <select formControlName="toMonth" class="text-white bg-blue-700
   hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 
   text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-          <option selected disabled>Month</option>
+          <option value="" selected disabled>Month</option>
             @for(item of months; track item)
             {
-                <option value="{{ item }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{ item }}</option>
+                <option value="" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{ item }}</option>
             }
   </select>
 
@@ -77,10 +77,10 @@
     <select formControlName="toYear" class="text-white bg-blue-700
   hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 
   text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-      <option selected disabled>Year</option>
+      <option value="" selected disabled>Year</option>
         @for(year of years; track year)
         {
-            <option value="{{ year }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{ year }}</option>
+            <option value="" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{ year }}</option>
         }
     </select>
 

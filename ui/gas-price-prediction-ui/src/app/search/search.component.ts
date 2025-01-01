@@ -14,7 +14,6 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 })
 export class SearchComponent {
   dataService = inject(DataService);
-  dataSet = new Array<Data>;
   filteredData = signal({});
   months = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
@@ -27,11 +26,13 @@ export class SearchComponent {
     cpi: new FormControl(''),
     crudeOilPrice: new FormControl(''),
     oilProd: new FormControl(''),
-    fromMonth: new FormControl('', Validators.required),
+    fromMonth: new FormControl(''),
     fromYear: new FormControl('', Validators.required),
     toMonth: new FormControl('', Validators.required),
     toYear: new FormControl('', Validators.required),
   });
+
+  constructor(){}
 
   search() {
       //make call to dataService and return requested datas
@@ -63,6 +64,8 @@ export class SearchComponent {
     {
       this.invalidDateMsg.set('Invalid dates. Try again.');
     }
+
+
     
     var dict = new Map();
     var cpi;

@@ -15,6 +15,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 export class SearchComponent {
   dataService = inject(DataService);
   filteredData = signal({});
+  dataSet = new Array<Data>;
   months = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
   ];
@@ -27,9 +28,9 @@ export class SearchComponent {
     crudeOilPrice: new FormControl(''),
     oilProd: new FormControl(''),
     fromMonth: new FormControl(''),
-    fromYear: new FormControl('', Validators.required),
-    toMonth: new FormControl('', Validators.required),
-    toYear: new FormControl('', Validators.required),
+    fromYear: new FormControl(''),
+    toMonth: new FormControl(''),
+    toYear: new FormControl(''),
   });
 
   constructor(){}
@@ -71,10 +72,10 @@ export class SearchComponent {
     var cpi;
     if(this.searchForm.value.cpi){
       
-      this.dataService.getCPI().subscribe((data) => {
-          cpi = data;
-          console.log("searchComp: cpi: ", cpi);
-      });
+      this.dataService.getData().subscribe((data) => {
+        this.dataSet = data;
+        console.log("success");
+    });
 
       // if(cpi)
       // {
@@ -112,6 +113,12 @@ export class SearchComponent {
       }
     }
       return true;
+  }
+
+  getDataSet() {
+    this.dataService.getData().subscribe((data) => {
+        this.dataSet = data;
+    });
   }
 
 

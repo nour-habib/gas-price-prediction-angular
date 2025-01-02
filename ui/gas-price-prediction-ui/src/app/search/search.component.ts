@@ -37,6 +37,7 @@ export class SearchComponent {
 
   ngOnInit(): void{
     console.log("search component: ngOnInit()");
+    this.getDataSet();
   }
 
   search() {
@@ -69,26 +70,26 @@ export class SearchComponent {
       this.invalidDateMsg.set('Invalid dates. Try again.');
     }
 
+    //Filter by date first
+    let indexF = this.months.findIndex((element) => element==fMonth);
+    let indexT = this.months.findIndex((element) => element==tMonth);
 
-    
+    var startDate = new Date(indexF, Number(fyear));
+    var endDate = new Date(indexT, Number(tyear));
+
+    var filteredbyDate = this.dataSet.filter(a => {
+    var date = new Date(a['Date']);
+    return (date >= startDate && date <= endDate);
+      });
+
+
     var dict = new Map();
     var cpi;
     if(this.searchForm.value.cpi){
       
-      this.dataService.getData().subscribe((data) => {
-        this.dataSet = data;
-        console.log("success");
-    });
-
-      // if(cpi)
-      // {
-      //   cpiFiltered = cpi.
-      // }
-
+      cpi = this.dataSet.map(data => data['consumerPriceIndex']);
+      console.log("cpi: ", cpi);
       dict.set("cpi", cpi);
-
-
-
 
     }
 
@@ -121,6 +122,7 @@ export class SearchComponent {
   getDataSet() {
     this.dataService.getData().subscribe((data) => {
         this.dataSet = data;
+        console.log("search component: dataSet: ", this.dataSet); 
     });
   }
 

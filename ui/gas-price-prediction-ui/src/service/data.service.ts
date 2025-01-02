@@ -18,12 +18,11 @@ export class DataService {
   constructor() { }
 
   getData() {
-    const headers = new HttpHeaders().set('content-type', 'application/json')
-    .set('Access-Control-Allow-Origin', '*');
+    // const headers = new HttpHeaders().set('content-type', 'application/json')
+    // .set('Access-Control-Allow-Origin', '*');
 
     return this.http.get<Data[]>(
       `${this.dataAPI}`,
-      {'headers': headers }
     );
   }
 

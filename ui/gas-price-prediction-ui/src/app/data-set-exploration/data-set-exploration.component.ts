@@ -40,6 +40,7 @@ export class DataSetExplorationComponent {
 
   ngOnInit(): void
   {
+    console.log("dataSetExploration component: ngOnInit()");
     this.getDataSet();
     this.initializeGasPriceGraph();
     this.initializeCPIgraph();

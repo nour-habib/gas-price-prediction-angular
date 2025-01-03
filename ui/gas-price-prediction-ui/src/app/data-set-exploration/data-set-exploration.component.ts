@@ -50,8 +50,8 @@ export class DataSetExplorationComponent {
     this.initializeBoxplot();
   }
 
-  getDataSet() {
-    this.dataService.getData().subscribe((data) => {
+  async getDataSet() {
+    (await this.dataService.getData()).subscribe((data) => {
         this.dataSet = data;
         this.cpi = this.dataSet.map(data => data.consumerPriceIndex);
         this.gasPrice = this.dataSet.map(data => data.gasPrice);

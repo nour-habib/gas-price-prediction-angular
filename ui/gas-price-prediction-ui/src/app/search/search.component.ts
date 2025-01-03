@@ -38,6 +38,7 @@ export class SearchComponent {
   ngOnInit(): void{
     console.log("search component: ngOnInit()");
     this.getDataSet();
+    //this.dataService.fetchData();
   }
 
   search() {
@@ -71,27 +72,57 @@ export class SearchComponent {
     }
 
     //Filter by date first
-    let indexF = this.months.findIndex((element) => element==fMonth);
-    let indexT = this.months.findIndex((element) => element==tMonth);
+    var indexF = this.months.findIndex((element) => element==fMonth);
+    var indexT = this.months.findIndex((element) => element==tMonth);
+    
+    console.log("indexF: ", indexF);
+    console.log("indexT: ", indexT);
 
-    var startDate = new Date(indexF, Number(fyear));
-    var endDate = new Date(indexT, Number(tyear));
+    console.log("fyear: ", Number(fyear));
+    console.log("tyear: ", Number(tyear));
+
+
+    var startDate = new Date(Number(fyear), indexF+1);
+    var endDate = new Date(Number(tyear), indexT+1);
+
+    console.log("startDate: ", startDate);
+    console.log("eendDate: ", endDate);
 
     var filteredbyDate = this.dataSet.filter(a => {
     var date = new Date(a['Date']);
     return (date >= startDate && date <= endDate);
       });
 
+      console.log("filteredByDate: ", filteredbyDate);
+
 
     var dict = new Map();
-    var cpi;
+    
     if(this.searchForm.value.cpi){
       
-      cpi = this.dataSet.map(data => data['consumerPriceIndex']);
+      var cpi = filteredbyDate.map(data => data['consumerPriceIndex']);
       console.log("cpi: ", cpi);
       dict.set("cpi", cpi);
-
     }
+    if(this.searchForm.value.gasPrice){
+      var gas = filteredbyDate.map(data => data['gasPrice']);
+      console.log("gas: ", gas);
+      dict.set("gasPrice", gas);
+    }
+    if(this.searchForm.value.crudeOilPrice){
+      
+      var crudeOil = filteredbyDate.map(data => data['crudeOilPrice']);
+      console.log("crudeOilPrice: ", crudeOil);
+      dict.set("crudeOilPrice", crudeOil);
+    }
+    if(this.searchForm.value.oilProd){
+      
+      var oilProd = filteredbyDate.map(data => data['oilProduction']);
+      console.log("oilProd: ", oilProd);
+      dict.set("oilProd", oilProd);
+    }
+
+    console.log("dic: ", dict);
 
 
 
@@ -119,8 +150,8 @@ export class SearchComponent {
       return true;
   }
 
-  getDataSet() {
-    this.dataService.getData().subscribe((data) => {
+  async getDataSet() {
+    (await this.dataService.getData()).subscribe((data) => {
         this.dataSet = data;
         console.log("search component: dataSet: ", this.dataSet); 
     });

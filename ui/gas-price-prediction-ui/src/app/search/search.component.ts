@@ -97,6 +97,11 @@ export class SearchComponent {
 
 
     var dict = new Map();
+
+    var dates = filteredbyDate.map(data => data['Date']);
+    console.log("dates: ", dates);
+
+    dict.set("dates", dates);
     
     if(this.searchForm.value.cpi){
       

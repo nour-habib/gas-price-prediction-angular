@@ -5,6 +5,7 @@ import { CalculatorComponent } from '../calculator/calculator.component';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
+
 @Component({
   selector: 'app-search',
   standalone: true,
@@ -12,6 +13,8 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
   templateUrl: './search.component.html',
   styleUrl: './search.component.scss'
 })
+
+
 export class SearchComponent {
   dataService = inject(DataService);
   dict = signal(new Map<String, Array<String>>);
@@ -20,6 +23,7 @@ export class SearchComponent {
   gasPrice = signal<String[]>([]);
   crudeOilPrice = signal<String[]>([]);
   oilProd = signal<String[]>([]);
+  searchData = signal<Map<String, []>[]>([]);
   dataSet = new Array<Data>;
   months = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
@@ -104,30 +108,52 @@ export class SearchComponent {
     var dates = filteredbyDate.map(data => data['Date']);
     this.dates.set(dates);
     console.log("new dates: ", dates);
+
+    var datesObj = {"dates": dates};
+
+    var dateMap = new Map();
+    dateMap.set("dates", dates);
+  
+    var searchArr = [];
+    searchArr[0] = dateMap;
     
     if(this.searchForm.value.cpi){
       
       var cpi = filteredbyDate.map(data => data['consumerPriceIndex']);
       console.log("cpi: ", cpi);
       this.cpi.set(cpi);
+      var cpiMap = new Map();
+      cpiMap.set("cpi", cpi);
+      searchArr[1] = cpiMap;
     }
     if(this.searchForm.value.gasPrice){
       var gas = filteredbyDate.map(data => data['gasPrice']);
       console.log("gas: ", gas);
       this.gasPrice.set(gas);
+      var gasMap = new Map();
+      searchArr[2] = gasMap;
+   
     }
     if(this.searchForm.value.crudeOilPrice){
       
       var crudeOil = filteredbyDate.map(data => data['crudeOilPrice']);
       console.log("crudeOilPrice: ", crudeOil);
       this.crudeOilPrice.set(crudeOil);
+      var coMap = new Map();
+      searchArr[3] = coMap;
+      
     }
     if(this.searchForm.value.oilProd){
       
       var oilProd = filteredbyDate.map(data => data['oilProduction']);
       console.log("oilProd: ", oilProd);
       this.oilProd.set(oilProd);
+      var oilProdMap = new Map();
+      searchArr[4] = oilProdMap;
     }
+
+    this.searchData.set(searchArr);
+    console.log("searchData: ", this.searchData.toString);
   }
 
   validateDate(fYear: string, tYear: string, fMonth: string, tMonth: string): boolean {

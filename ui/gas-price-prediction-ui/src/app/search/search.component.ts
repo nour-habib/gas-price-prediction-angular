@@ -14,13 +14,19 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 })
 export class SearchComponent {
   dataService = inject(DataService);
-  filteredData = signal({});
+  dict = signal(new Map<String, Array<String>>);
+  dates = signal<String[]>([]);
+  cpi = signal<String[]>([]);
+  gasPrice = signal<String[]>([]);
+  crudeOilPrice = signal<String[]>([]);
+  oilProd = signal<String[]>([]);
   dataSet = new Array<Data>;
   months = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
   ];
   years = ["2016", "2017", "2018", "2019", "2020", "2021", "2022"];
   invalidDateMsg = signal('');
+  dataIsSet = signal(false);
 
   searchForm = new FormGroup({
     gasPrice: new FormControl(''),
@@ -95,42 +101,33 @@ export class SearchComponent {
 
       console.log("filteredByDate: ", filteredbyDate);
 
-
-    var dict = new Map();
-
     var dates = filteredbyDate.map(data => data['Date']);
-    console.log("dates: ", dates);
-
-    dict.set("dates", dates);
+    this.dates.set(dates);
+    console.log("new dates: ", dates);
     
     if(this.searchForm.value.cpi){
       
       var cpi = filteredbyDate.map(data => data['consumerPriceIndex']);
       console.log("cpi: ", cpi);
-      dict.set("cpi", cpi);
+      this.cpi.set(cpi);
     }
     if(this.searchForm.value.gasPrice){
       var gas = filteredbyDate.map(data => data['gasPrice']);
       console.log("gas: ", gas);
-      dict.set("gasPrice", gas);
+      this.gasPrice.set(gas);
     }
     if(this.searchForm.value.crudeOilPrice){
       
       var crudeOil = filteredbyDate.map(data => data['crudeOilPrice']);
       console.log("crudeOilPrice: ", crudeOil);
-      dict.set("crudeOilPrice", crudeOil);
+      this.crudeOilPrice.set(crudeOil);
     }
     if(this.searchForm.value.oilProd){
       
       var oilProd = filteredbyDate.map(data => data['oilProduction']);
       console.log("oilProd: ", oilProd);
-      dict.set("oilProd", oilProd);
+      this.oilProd.set(oilProd);
     }
-
-    console.log("dic: ", dict);
-
-
-
   }
 
   validateDate(fYear: string, tYear: string, fMonth: string, tMonth: string): boolean {
@@ -160,6 +157,13 @@ export class SearchComponent {
         this.dataSet = data;
         console.log("search component: dataSet: ", this.dataSet); 
     });
+  }
+
+  toggleData(){
+    // this.dataIsSet.set(!this.dataIsSet());
+    // if (this.dataIsSet()) {
+    //   this.isExpanded.set(true);
+    // }
   }
 
 

@@ -5,6 +5,11 @@ import { CalculatorComponent } from '../calculator/calculator.component';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
+type DataObj = {
+  date: string;
+  feature: string;
+  value: number;
+};
 
 @Component({
   selector: 'app-search',
@@ -17,13 +22,15 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 
 export class SearchComponent {
   dataService = inject(DataService);
-  dict = signal(new Map<String, Array<String>>);
-  dates = signal<String[]>([]);
-  cpi = signal<String[]>([]);
-  gasPrice = signal<String[]>([]);
-  crudeOilPrice = signal<String[]>([]);
-  oilProd = signal<String[]>([]);
-  searchData = signal<Map<String, []>[]>([]);
+  // dict = signal(new Map<String, Array<String>>)
+
+  cpi = signal(false);
+  gasPrice = signal(false);
+  crudeOilPrice = signal(false);
+  oilProd = signal(false);
+
+  //searchData = signal<Map<String, []>[]>([]);
+  searchData = signal<Data[]>([]);
   dataSet = new Array<Data>;
   months = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
@@ -98,62 +105,32 @@ export class SearchComponent {
     console.log("startDate: ", startDate);
     console.log("eendDate: ", endDate);
 
-    var filteredbyDate = this.dataSet.filter(a => {
+
+
+    var filteredbyDate: Array<Data> = this.dataSet.filter(a => {
     var date = new Date(a['Date']);
     return (date >= startDate && date <= endDate);
       });
 
       console.log("filteredByDate: ", filteredbyDate);
 
-    var dates = filteredbyDate.map(data => data['Date']);
-    this.dates.set(dates);
-    console.log("new dates: ", dates);
-
-    var datesObj = {"dates": dates};
-
-    var dateMap = new Map();
-    dateMap.set("dates", dates);
-  
-    var searchArr = [];
-    searchArr[0] = dateMap;
     
     if(this.searchForm.value.cpi){
-      
-      var cpi = filteredbyDate.map(data => data['consumerPriceIndex']);
-      console.log("cpi: ", cpi);
-      this.cpi.set(cpi);
-      var cpiMap = new Map();
-      cpiMap.set("cpi", cpi);
-      searchArr[1] = cpiMap;
+      this.cpi.set(true);
     }
     if(this.searchForm.value.gasPrice){
-      var gas = filteredbyDate.map(data => data['gasPrice']);
-      console.log("gas: ", gas);
-      this.gasPrice.set(gas);
-      var gasMap = new Map();
-      searchArr[2] = gasMap;
+      this.gasPrice.set(true);
    
     }
     if(this.searchForm.value.crudeOilPrice){
-      
-      var crudeOil = filteredbyDate.map(data => data['crudeOilPrice']);
-      console.log("crudeOilPrice: ", crudeOil);
-      this.crudeOilPrice.set(crudeOil);
-      var coMap = new Map();
-      searchArr[3] = coMap;
+      this.crudeOilPrice.set(true);
       
     }
     if(this.searchForm.value.oilProd){
-      
-      var oilProd = filteredbyDate.map(data => data['oilProduction']);
-      console.log("oilProd: ", oilProd);
-      this.oilProd.set(oilProd);
-      var oilProdMap = new Map();
-      searchArr[4] = oilProdMap;
+      this.oilProd.set(true);
     }
 
-    this.searchData.set(searchArr);
-    console.log("searchData: ", this.searchData.toString);
+    this.searchData.set(filteredbyDate);
   }
 
   validateDate(fYear: string, tYear: string, fMonth: string, tMonth: string): boolean {
@@ -176,6 +153,23 @@ export class SearchComponent {
       }
     }
       return true;
+  }
+
+  createDataObjs(arr: any){
+      for(var i = 0;i <arr.length;i++){
+          let ob = arr[i];
+          var newObj: DataObj = {
+              date: ob.date,
+              feature: '',
+              value: 0
+          }
+          if(this.searchForm.value.cpi){
+            newObj.feature = "cpi";
+            newObj.value = ob.cpi;
+          }
+
+          console.log("obj: ", newObj);
+      }
   }
 
   async getDataSet() {

@@ -39,6 +39,7 @@ export class SearchComponent {
   invalidDateMsg = signal('');
   dataIsSet = signal(false);
 
+
   searchForm = new FormGroup({
     gasPrice: new FormControl(''),
     cpi: new FormControl(''),
@@ -118,8 +119,6 @@ export class SearchComponent {
     filteredbyDate.sort((a,b) => {
         const ob1 = Date.parse(a['Date']);
         const ob2 = Date.parse(b['Date']);
-        // if(ob1 < ob2) return 1;
-        // if(ob1 > ob2) return -1;
         return ob1 - ob2;
     });
 
@@ -142,6 +141,7 @@ export class SearchComponent {
     }
 
     this.searchData.set(filteredbyDate);
+    this.dataIsSet.set(true);
   }
 
   validateDate(fYear: string, tYear: string, fMonth: string, tMonth: string): boolean {
@@ -173,11 +173,8 @@ export class SearchComponent {
     });
   }
 
-  toggleData(){
-    // this.dataIsSet.set(!this.dataIsSet());
-    // if (this.dataIsSet()) {
-    //   this.isExpanded.set(true);
-    // }
+  searchButtonClicked(){
+
   }
 
 

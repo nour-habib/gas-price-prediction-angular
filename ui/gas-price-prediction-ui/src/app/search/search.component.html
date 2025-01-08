@@ -93,14 +93,14 @@
 <span class="sideLabels">{{  invalidDateMsg() }}</span>
 
 <!--begin table-->
-<div>
-  <table class="table-auto">
+<div id="table" *ngIf="dataIsSet()">
+  <table class="table-auto border-collapse border border-slate-400">
     <thead>
       <tr>
         <th></th>
-        <th>Date</th>
-        <th>Features</th>
-        <th>Value</th>
+        <th class="border border-slate-300">Date</th>
+        <th class="border border-slate-300">Features</th>
+        <th class="border border-slate-300">Value</th>
       </tr>
     </thead>
     <tbody>
@@ -108,8 +108,8 @@
     {
       <tr>
         <td></td>
-        <td>{{ ob['Date'] }}</td>
-        <td>
+        <td class="border border-slate-300">{{ ob['Date'] }}</td>
+        <td class="border border-slate-300">
           <div>
             <div class="gas"><span *ngIf="gasPrice()">Gas Price</span></div>
             <div><span *ngIf="cpi()">CPI</span></div>
@@ -117,7 +117,7 @@
             <div><span *ngIf="oilProd()">Oil Production</span></div>
           </div>
         </td>
-        <td>
+        <td class="border border-slate-300">
           <div>
             <div class="gas"><span *ngIf="gasPrice()">{{ ob['gasPrice'] }}</span></div>
             <div><span *ngIf="cpi()">{{ ob['consumerPriceIndex'] }}</span></div>

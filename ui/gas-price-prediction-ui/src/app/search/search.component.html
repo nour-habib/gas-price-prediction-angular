@@ -97,7 +97,7 @@
   <table class="table-auto">
     <thead>
       <tr>
-        <th>Num</th>
+        <th></th>
         <th>Date</th>
         <th>Features</th>
         <th>Value</th>
@@ -107,11 +107,11 @@
     @for(ob of searchData(); track ob)
     {
       <tr>
-        <td>num</td>
+        <td></td>
         <td>{{ ob['Date'] }}</td>
         <td>
           <div>
-            <div><span *ngIf="gasPrice()">Gas Price</span></div>
+            <div class="gas"><span *ngIf="gasPrice()">Gas Price</span></div>
             <div><span *ngIf="cpi()">CPI</span></div>
             <div><span *ngIf="crudeOilPrice()">Crude Oil Price</span></div>
             <div><span *ngIf="oilProd()">Oil Production</span></div>
@@ -119,7 +119,7 @@
         </td>
         <td>
           <div>
-            <div><span *ngIf="gasPrice()">{{ ob['gasPrice'] }}</span></div>
+            <div class="gas"><span *ngIf="gasPrice()">{{ ob['gasPrice'] }}</span></div>
             <div><span *ngIf="cpi()">{{ ob['consumerPriceIndex'] }}</span></div>
             <div><span *ngIf="crudeOilPrice()">{{ ob['crudeOilPrice'] }}</span></div>
             <div><span *ngIf="oilProd()">{{ ob['oilProduction'] }}</span></div>

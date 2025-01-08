@@ -114,6 +114,17 @@ export class SearchComponent {
 
       console.log("filteredByDate: ", filteredbyDate);
 
+    //Sort by date
+    filteredbyDate.sort((a,b) => {
+        const ob1 = Date.parse(a['Date']);
+        const ob2 = Date.parse(b['Date']);
+        // if(ob1 < ob2) return 1;
+        // if(ob1 > ob2) return -1;
+        return ob1 - ob2;
+    });
+
+    console.log("sorted by date: ", filteredbyDate);
+
     
     if(this.searchForm.value.cpi){
       this.cpi.set(true);
@@ -153,23 +164,6 @@ export class SearchComponent {
       }
     }
       return true;
-  }
-
-  createDataObjs(arr: any){
-      for(var i = 0;i <arr.length;i++){
-          let ob = arr[i];
-          var newObj: DataObj = {
-              date: ob.date,
-              feature: '',
-              value: 0
-          }
-          if(this.searchForm.value.cpi){
-            newObj.feature = "cpi";
-            newObj.value = ob.cpi;
-          }
-
-          console.log("obj: ", newObj);
-      }
   }
 
   async getDataSet() {

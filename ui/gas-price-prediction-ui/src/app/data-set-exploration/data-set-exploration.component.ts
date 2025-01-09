@@ -1,4 +1,4 @@
-import { Component, inject, ViewChild } from '@angular/core';
+import { Component, inject, ViewChild, signal } from '@angular/core';
 import { RouterOutlet, RouterModule } from '@angular/router';
 import { DataService } from '../../service/data.service';
 import { Chart, LinearScale, CategoryScale } from 'chart.js';
@@ -27,7 +27,7 @@ export class DataSetExplorationComponent {
   crudeOilPrice: Array<number> = [];
   gasPrice: Array<number> = [];
   date: Array<string> = [];
-  correlationMatrix = new Array<any>();
+  correlationMatrix: Array<number> = [];
   gasPriceGraph: any = [];
   cpiGraph: any = [];
   oilProdGraph: any = [];
@@ -48,6 +48,9 @@ export class DataSetExplorationComponent {
     this.initializeCrudeOilGraph();
     //this.initializeMatrix();
     this.initializeBoxplot();
+
+    this.correlationMatrix = this.dataService.getMatrix();
+    console.log("matrix: ", this.correlationMatrix);
   }
 
   async getDataSet() {

@@ -40,7 +40,47 @@
     
   </div>
   <div class="hidden p-4 rounded-lg dark:bg-gray-800" id="styled-dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
-        <canvas width="40" height="20" id="matrix">{{  matrix }}</canvas>
+    <table class="table-auto">
+      <thead>
+        <tr>Crude Oil</tr>
+        <tr>Oil Production</tr>
+        <tr>Consumer Price Index</tr>
+        <tr>Gas Price</tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>{{ correlationMatrix[0] }}</td>
+          <td>{{ correlationMatrix[1] }}</td>
+          <td>{{ correlationMatrix[2] }}</td>
+          <td>{{ correlationMatrix[3] }}</td>
+        </tr>
+
+        <tr>
+          <td>{{ correlationMatrix[4] }}</td>
+          <td>{{ correlationMatrix[5] }}</td>
+          <td>{{ correlationMatrix[6] }}</td>
+          <td>{{ correlationMatrix[7] }}</td>
+        </tr>
+
+        <tr>
+          <td>{{ correlationMatrix[8] }}</td>
+          <td>{{ correlationMatrix[9] }}</td>
+          <td>{{ correlationMatrix[10] }}</td>
+          <td>{{ correlationMatrix[11] }}</td>
+        </tr>
+
+        <tr>
+          <td>{{ correlationMatrix[11] }}</td>
+          <td>{{ correlationMatrix[12] }}</td>
+          <td>{{ correlationMatrix[13] }}</td>
+          <td>{{ correlationMatrix[14] }}</td>
+        </tr>
+      </tbody>
+
+
+
+    </table>
   </div>
   <div class="hidden p-4 rounded-lg dark:bg-gray-800" id="styled-settings" role="tabpanel" aria-labelledby="settings-tab">
   

@@ -1,12 +1,41 @@
 mat-tab-group{
     padding-top:5%;
     padding-bottom: 5%;
+    border-style: solid;
+    border-width:1px 1px 1px 1px;
+    border-color: #333;
 }
 
-mat-grid-tile {
-    background: lightblue;
-  }
+// mat-grid-tile {
+    
+//   }
+
+.active-focus-label-text-color{
+    color:#fff;
+}
+
+mat-tab label  {
+    color: #7ad7f0;
+}
+
+canvas{
+    width:100%;
+    border-style: solid;
+    border-width:1px 1px 1px 1px;
+    border-color: #333;
+}
 
 #boxplot {
     background-color: yellow;
+}
+
+h1{
+    color:beige;
+    padding-left: 30px;
+   padding-top: 10px;
+   padding-bottom: 10px;
+   margin-top: 2%;
+   background-color: black;
+   width:100%;
+    
 }

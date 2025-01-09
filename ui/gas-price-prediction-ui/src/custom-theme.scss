@@ -2,6 +2,7 @@
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @use '@angular/material' as mat;
+
 @use '@angular/material' as mat2;
 // Plus imports for other components in your app.
 
@@ -72,4 +73,3 @@ $gas-price-prediction-ui-theme: mat2.define-light-theme((
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include mat2.all-component-themes($gas-price-prediction-ui-theme);
-

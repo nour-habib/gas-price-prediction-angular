@@ -10,12 +10,31 @@ import { MatGridListModule } from '@angular/material/grid-list';
 // import { ChartConfiguration } from 'chart.js/auto';
 import { Legend } from 'chart.js/auto';
 import { BoxPlotController, BoxAndWiskers, BoxPlotDataPoint } from '@sgratzl/chartjs-chart-boxplot';
+import ApexCharts from 'apexcharts';
+import {
+  ChartComponent,
+  ApexChart,
+  ApexPlotOptions,
+  ApexTitleSubtitle,
+  ApexXAxis,
+  ApexTooltip
+} from "ng-apexcharts";
+import { NgApexchartsModule } from "ng-apexcharts";
 
+export type ChartOptions = {
+  series: ApexAxisChartSeries;
+  chart: ApexChart;
+  title: ApexTitleSubtitle;
+  xaxis: ApexXAxis,
+  tooltip: ApexTooltip,
+  plotOptions: ApexPlotOptions;
+  colors: string[]
+};
 
 @Component({
   selector: 'app-data-set-exploration',
   standalone: true,
-  imports: [RouterOutlet, RouterModule, MatTabsModule, MatGridListModule],
+  imports: [RouterOutlet, RouterModule, MatTabsModule, MatGridListModule, NgApexchartsModule],
   templateUrl: './data-set-exploration.component.html',
   styleUrl: './data-set-exploration.component.scss'
 })
@@ -35,6 +54,9 @@ export class DataSetExplorationComponent {
   matrix: any = [];
   boxplot: any = [];
   title = 'Data Set Exploration';
+  @ViewChild("chart")
+  chart!: ChartComponent;
+  public co!: Partial<ChartOptions>;
 
   constructor() { }
 
@@ -188,60 +210,99 @@ export class DataSetExplorationComponent {
     });
   }
 
-  // initializeMatrix() {
-
-  //   const matrixData = this.dataService.getMatrix();
-
-  //   this.matrix = new Chart('matrix', {
-  //     type: 'matrix',
-  //     data: {
-  //       datasets: [{
-  //         label: 'Basic matrix',
-  //         data: [{x: 1, y: 1}, {x: 2, y: 1}, {x: 1, y: 2}, {x: 2, y: 2}],
-  //         borderWidth: 1,
-  //         borderColor: 'rgba(0,0,0,0.5)',
-  //         backgroundColor: 'rgba(200,200,0,0.3)',
-  //         // width: ({chart}) => (chart.chartArea || {}).width / 2 - 1,
-  //         // height: ({chart}) => (chart.chartArea || {}).height / 2 - 1,
-  //       }],
-  //     },
-  //     options: {
-  //       scales: {
-  //         x: {
-  //           display: false,
-  //           min: 0.5,
-  //           max: 2.5,
-  //           offset: false
-  //         },
-  //         y: {
-  //           display: false,
-  //           min: 0.5,
-  //           max: 2.5
-  //         }
-  //       }
-  //     }
-  //   });
-  // }
-
   randomValues(count: number, min:number, max:number) {
     const delta = max - min;
     return Array.from({length: count}).map(() => Math.random() * delta + min);
   }
 
   initializeBoxplot() {
-    Chart.register(BoxPlotController, BoxAndWiskers, LinearScale, CategoryScale);
-    
-
-    // this.boxplot = new Chart('boxplot', {
-    //   type: 'boxplot',
-    //   data: {
-    //     //datasets: this.gasPrice,
-    //   },
-    // })
+    console.log("initialize boxPlot");
+   this.co = {
+      series: [
+        {
+          name: 'box',
+          type: 'boxPlot',
+          data: [
+            {
+              x: new Date('2017-01-01').getTime(),
+              y: [54, 66, 69, 75, 88]
+            },
+            {
+              x: new Date('2018-01-01').getTime(),
+              y: [43, 65, 69, 76, 81]
+            },
+            {
+              x: new Date('2019-01-01').getTime(),
+              y: [31, 39, 45, 51, 59]
+            },
+            {
+              x: new Date('2020-01-01').getTime(),
+              y: [39, 46, 55, 65, 71]
+            },
+            {
+              x: new Date('2021-01-01').getTime(),
+              y: [29, 31, 35, 39, 44]
+            }
+          ]
+        },
+        {
+          name: 'outliers',
+          type: 'scatter',
+          data: [
+            {
+              x: new Date('2017-01-01').getTime(),
+              y: 32
+            },
+            {
+              x: new Date('2018-01-01').getTime(),
+              y: 25
+            },
+            {
+              x: new Date('2019-01-01').getTime(),
+              y: 64
+            },
+            {
+              x: new Date('2020-01-01').getTime(),
+              y: 27
+            },
+            {
+              x: new Date('2020-01-01').getTime(),
+              y: 78
+            },
+            {
+              x: new Date('2021-01-01').getTime(),
+              y: 15
+            }
+          ]
+        }
+      ],
+      chart: {
+        height: 350,
+        type: "boxPlot"
+      },
+      colors: ['#008FFB', '#FEB019'],
+title: {
+  text: 'BoxPlot - Scatter Chart',
+  align: 'left'
+},
+xaxis: {
+  //type: 'datetime',
+  // tooltip: {
+  //   formatter: function(val) {
+  //     return new Date(val).getFullYear()
+  //   }
+  // }
+},
+tooltip: {
+  shared: false,
+  intersect: true
+}
+    };
   
 
 
 
 
   }
+
 }

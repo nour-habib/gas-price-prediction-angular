@@ -35,7 +35,7 @@
               "src/custom-theme.scss",
               "src/styles.scss"
             ],
-            "scripts": ["node_modules/chart.js/dist/Chart.min.js"],
+            "scripts": ["node_modules/chart.js/dist/Chart.min.js",  "node_modules/apexcharts/dist/apexcharts.min.js"],
             "server": "src/main.server.ts",
             "prerender": true,
             "ssr": {

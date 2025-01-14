@@ -20,6 +20,7 @@ import {
   ApexTooltip
 } from "ng-apexcharts";
 import { NgApexchartsModule } from "ng-apexcharts";
+import { switchMap } from 'rxjs/operators';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -64,29 +65,39 @@ export class DataSetExplorationComponent {
   {
     console.log("dataSetExploration component: ngOnInit()");
     this.getDataSet();
-    this.initializeGasPriceGraph();
-    this.initializeCPIgraph();
-    this.initializeOilProdGraph();
-    this.initializeCrudeOilGraph();
-    //this.initializeMatrix();
-    this.initializeBoxplot();
+    setTimeout(() => this.initializeGasPriceGraph(), 3000);
+    //this.initializeGasPriceGraph();
+    //this.initializeCPIgraph();
+    setTimeout(() => this.initializeCPIgraph(), 3000);
+    setTimeout(() =>  this.initializeOilProdGraph(), 3000);
+    //this.initializeCrudeOilGraph();
+    setTimeout(() =>  this.initializeCrudeOilGraph(), 3000);
+    setTimeout(() =>  this.initializeBoxplot(), 3000);
 
     this.correlationMatrix = this.dataService.getMatrix();
     console.log("matrix: ", this.correlationMatrix);
   }
 
   async getDataSet() {
+    console.log("dataSet exploration: getDataSet()");
     (await this.dataService.getData()).subscribe((data) => {
         this.dataSet = data;
+        console.log("dataSet Exploration: ", this.dataSet);
         this.cpi = this.dataSet.map(data => data.consumerPriceIndex);
+        console.log("dataSet Exploration cpi: ", this.cpi);
         this.gasPrice = this.dataSet.map(data => data.gasPrice);
         this.oilProduction = this.dataSet.map(data => data.oilProduction);
         this.date = this.dataSet.map(data => data.Date);
     });
+    //   (await this.dataService.getData()).pipe(switchMap((data: any) => {
+    //     return this.dataSet = data;
+    // }));
+
   }
 
   initializeGasPriceGraph() {
-    //console.log("ggas: ", this.gasPrice);
+    console.log("init gas price");
+    console.log("ggas: ", this.gasPrice);
     this.date = this.dataSet.map(data => data.Date);
    // Array.from(Array(80).keys())
    console.log("this.date: ", this.date);
@@ -220,29 +231,29 @@ export class DataSetExplorationComponent {
    this.co = {
       series: [
         {
-          name: 'box',
+          name: 'Gas Price',
           type: 'boxPlot',
           data: [
             {
-              x: new Date('2017-01-01').getTime(),
-              y: [54, 66, 69, 75, 88]
-            },
-            {
-              x: new Date('2018-01-01').getTime(),
-              y: [43, 65, 69, 76, 81]
-            },
-            {
-              x: new Date('2019-01-01').getTime(),
-              y: [31, 39, 45, 51, 59]
-            },
-            {
-              x: new Date('2020-01-01').getTime(),
-              y: [39, 46, 55, 65, 71]
-            },
-            {
               x: new Date('2021-01-01').getTime(),
-              y: [29, 31, 35, 39, 44]
-            }
+              y: this.gasPrice
+            },
+            // {
+            //   x: new Date('2021-01-01').getTime(),
+            //   y: [43, 65, 69, 76, 81]
+            // },
+            // {
+            //   x: new Date('2021-01-01').getTime(),
+            //   y: [31, 39, 45, 51, 59]
+            // },
+            // {
+            //   x: new Date('2021-01-01').getTime(),
+            //   y: [39, 46, 55, 65, 71]
+            // },
+            // {
+            //   x: new Date('2021-01-01').getTime(),
+            //   y: [29, 31, 35, 39, 44]
+            // }
           ]
         },
         {
@@ -298,11 +309,6 @@ tooltip: {
   intersect: true
 }
     };
-  
-
-
-
-
   }
 
 }

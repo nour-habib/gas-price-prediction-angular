@@ -1,19 +1,26 @@
-// mat-card {
-//     width: 600px;
-//     height: 400px;
-// }
-
-mat-card {
-    width:80%;
-    height:90%;
+.train{
+    float:left;
+    width:50%;
 }
 
-// canvas 
-//     width: 300px;
-//     height: 300px;
-// }
+.test{
+    float:right;
+    width:50%;
+}
 
-// mat-grid-list {
-//     width:100%;
-//     height:100%;
-// }
+#trainDescription{
+    float:left;
+    width:50%;
+    padding: 30px 30px 30px 30px;
+}
+
+#testDescription{
+    float:right;
+    width:50%;
+    padding: 30px 30px 30px 30px;
+}
+
+
+
+
+

@@ -18,7 +18,7 @@ export class DataService {
   constructor() { }
 
   fetchData() {
-    fetch('dataAPI') // api for the get request
+    fetch(this.dataAPI) // api for the get request
     .then(response => response.json())
     .then(data => console.log(data));
   }

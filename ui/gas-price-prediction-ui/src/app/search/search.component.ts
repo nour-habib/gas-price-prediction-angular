@@ -56,7 +56,6 @@ export class SearchComponent {
   ngOnInit(): void{
     console.log("search component: ngOnInit()");
     this.getDataSet();
-    //this.dataService.fetchData();
   }
 
   search() {
@@ -172,11 +171,4 @@ export class SearchComponent {
         console.log("search component: dataSet: ", this.dataSet); 
     });
   }
-
-  searchButtonClicked(){
-
-  }
-
-
-
 }

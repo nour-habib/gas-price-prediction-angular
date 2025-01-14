@@ -68,7 +68,7 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {"proxyConfig": "proxy.conf.js"},
+          "options": {},
           "configurations": {
             "production": {
               "buildTarget": "gas-price-prediction-ui:build:production"

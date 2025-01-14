@@ -4,8 +4,12 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { provideHttpClient, withFetch } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withFetch } from '@angular/common/http';
+import { CacheInterceptor } from './http-cache-interceptor';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), provideClientHydration(), provideAnimationsAsync('noop'), provideAnimationsAsync(),provideHttpClient(withFetch())]
+  providers: [provideRouter(routes), provideClientHydration(), provideAnimationsAsync('noop'), provideAnimationsAsync(),provideHttpClient(withFetch()),
+    {provide: HTTP_INTERCEPTORS, useClass: CacheInterceptor, multi:true}
+  ]
 };
+  

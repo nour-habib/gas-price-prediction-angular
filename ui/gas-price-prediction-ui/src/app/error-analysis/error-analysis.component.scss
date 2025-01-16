@@ -1,11 +1,13 @@
 .train{
     float:left;
     width:50%;
+    padding: 10px 10px 10px 10px;
 }
 
 .test{
     float:right;
     width:50%;
+    padding: 10px 10px 10px 10px;
 }
 
 #trainDescription{
@@ -19,6 +21,20 @@
     width:50%;
     padding: 30px 30px 30px 30px;
 }
+
+#chart {
+    //max-width: 650px;
+    width:100%;
+    margin: 35px auto;
+  }
+
+  #testChart {
+   //max-width: 650px;
+    width: 100%;
+    margin: 35px auto;
+  }
+
+  
 
 
 

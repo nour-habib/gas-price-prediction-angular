@@ -8,9 +8,6 @@ import { Data } from '../../model/data.interface';
 import { MatGridListModule } from '@angular/material/grid-list';
 //import 'chartjs-chart-matrix';
 // import { ChartConfiguration } from 'chart.js/auto';
-import { Legend } from 'chart.js/auto';
-import { BoxPlotController, BoxAndWiskers, BoxPlotDataPoint } from '@sgratzl/chartjs-chart-boxplot';
-import ApexCharts from 'apexcharts';
 import {
   ChartComponent,
   ApexChart,
@@ -20,7 +17,6 @@ import {
   ApexTooltip
 } from "ng-apexcharts";
 import { NgApexchartsModule } from "ng-apexcharts";
-import { switchMap } from 'rxjs/operators';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;

@@ -22,23 +22,20 @@ type DataObj = {
 
 export class SearchComponent {
   dataService = inject(DataService);
-  // dict = signal(new Map<String, Array<String>>)
-
   cpi = signal(false);
   gasPrice = signal(false);
   crudeOilPrice = signal(false);
   oilProd = signal(false);
 
-  //searchData = signal<Map<String, []>[]>([]);
   searchData = signal<Data[]>([]);
   dataSet = new Array<Data>;
+  invalidDateMsg = signal('');
+  dataIsSet = signal(false);
+
   months = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
   ];
   years = ["2016", "2017", "2018", "2019", "2020", "2021", "2022"];
-  invalidDateMsg = signal('');
-  dataIsSet = signal(false);
-
 
   searchForm = new FormGroup({
     gasPrice: new FormControl(''),

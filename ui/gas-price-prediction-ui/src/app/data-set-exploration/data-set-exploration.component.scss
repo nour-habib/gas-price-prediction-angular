@@ -36,3 +36,8 @@ canvas{
 thead, tr, td{
     color:#fff;
 }
+
+#gasChart, #cpiChart, #oilProdChart, #crudeOilChart{
+    width:100%;
+    margin: 35px auto;
+}

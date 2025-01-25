@@ -1,31 +1,38 @@
 import { Component, inject, ViewChild, signal } from '@angular/core';
 import { RouterOutlet, RouterModule } from '@angular/router';
 import { DataService } from '../../service/data.service';
-import { Chart, LinearScale, CategoryScale } from 'chart.js';
-// import { Chart } from 'chart.js/dist';
 import { MatTabsModule } from '@angular/material/tabs'
 import { Data } from '../../model/data.interface';
 import { MatGridListModule } from '@angular/material/grid-list';
-//import 'chartjs-chart-matrix';
-// import { ChartConfiguration } from 'chart.js/auto';
 import {
   ChartComponent,
+  ApexAxisChartSeries,
   ApexChart,
-  ApexPlotOptions,
-  ApexTitleSubtitle,
   ApexXAxis,
-  ApexTooltip
+  ApexYAxis,
+  ApexDataLabels,
+  ApexTitleSubtitle,
+  ApexStroke,
+  ApexGrid,
+  NgApexchartsModule
 } from "ng-apexcharts";
-import { NgApexchartsModule } from "ng-apexcharts";
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
   chart: ApexChart;
+  xaxis: ApexXAxis;
+  dataLabels: ApexDataLabels;
+  grid: ApexGrid;
+  stroke: ApexStroke;
   title: ApexTitleSubtitle;
-  xaxis: ApexXAxis,
-  tooltip: ApexTooltip,
+  yaxis: ApexYAxis;
+};
+
+export type ChartOptions2 = {
+  series: ApexAxisChartSeries;
+  chart: ApexChart;
+  title: ApexTitleSubtitle;
   plotOptions: ApexPlotOptions;
-  colors: string[]
 };
 
 @Component({
@@ -48,12 +55,23 @@ export class DataSetExplorationComponent {
   cpiGraph: any = [];
   oilProdGraph: any = [];
   crudeOilGraph: any = [];
-  matrix: any = [];
-  boxplot: any = [];
   title = 'Data Set Exploration';
-  @ViewChild("chart")
-  chart!: ChartComponent;
-  public co!: Partial<ChartOptions>;
+  @ViewChild("chart") chart!: ChartComponent;
+  public co!: Partial<ChartOptions2>;
+
+  @ViewChild("gasChart") gasChart!: ChartComponent;
+  public gasOption!: Partial<ChartOptions>;
+
+  @ViewChild("cpiChart") cpiChart!: ChartComponent;
+  public cpiOption!: Partial<ChartOptions>;
+
+  @ViewChild("oilProdChart") oilProdChart!: ChartComponent;
+  public oilProdOption!: Partial<ChartOptions>;
+
+  @ViewChild("crudeOilChart") crudeOilChart!: ChartComponent;
+  public crudeOilOption!: Partial<ChartOptions>;
+
+  
 
   constructor() { }
 
@@ -62,16 +80,12 @@ export class DataSetExplorationComponent {
     console.log("dataSetExploration component: ngOnInit()");
     this.getDataSet();
     setTimeout(() => this.initializeGasPriceGraph(), 3000);
-    //this.initializeGasPriceGraph();
-    //this.initializeCPIgraph();
-    setTimeout(() => this.initializeCPIgraph(), 3000);
+    setTimeout(() => this.initializeCPIGraph(), 3000);
     setTimeout(() =>  this.initializeOilProdGraph(), 3000);
-    //this.initializeCrudeOilGraph();
     setTimeout(() =>  this.initializeCrudeOilGraph(), 3000);
     setTimeout(() =>  this.initializeBoxplot(), 3000);
 
     this.correlationMatrix = this.dataService.getMatrix();
-    console.log("matrix: ", this.correlationMatrix);
   }
 
   async getDataSet() {
@@ -83,6 +97,7 @@ export class DataSetExplorationComponent {
         console.log("dataSet Exploration cpi: ", this.cpi);
         this.gasPrice = this.dataSet.map(data => data.gasPrice);
         this.oilProduction = this.dataSet.map(data => data.oilProduction);
+        this.crudeOilPrice = this.dataSet.map(data => data.crudeOilPrice);
         this.date = this.dataSet.map(data => data.Date);
     });
     //   (await this.dataService.getData()).pipe(switchMap((data: any) => {
@@ -92,130 +107,295 @@ export class DataSetExplorationComponent {
   }
 
   initializeGasPriceGraph() {
-    console.log("init gas price");
-    console.log("ggas: ", this.gasPrice);
-    this.date = this.dataSet.map(data => data.Date);
-   // Array.from(Array(80).keys())
-   console.log("this.date: ", this.date);
-
-    this.gasPriceGraph = new Chart('gasPrice', {
-      type: 'line',
-      data: {
-        labels:Array.from(Array(80).keys()),
-        datasets: [
-          {
-            data: this.gasPrice,
-            borderColor: 'black',
-            label: 'Gas Price',
-            backgroundColor: 'blue',
-          }
-        ]
-      },
-      options: {
-        maintainAspectRatio: true,
-        responsive: true,
-        plugins: {
-          legend: {
-            position: 'right',
-          },
-          title: {
-            display: true,
-            text: 'Gas Price'
-          },
+    this.gasOption = {
+      series: [
+        {
+          name: "Training",
+          data: this.gasPrice,
+        },
+      ],
+      chart: {
+        height: 350,
+        type: "line",
+        zoom: {
+          enabled: true
         }
+      },
+      dataLabels: {
+        enabled: false
+      },
+      stroke: {
+        width: 3,
+        curve: "straight",
+        //dashArray: [2, 1],
+      },
+      title: {
+        text: "Gas Price (USA)",
+        align: "center"
+      },
+      grid: {
+        borderColor: "#f1f1f1",
+      },
+      xaxis: {
+        categories: this.date
+      },
+      yaxis: {
+        // min: 0,
+        // max: 2,
+        // //tickAmount: 0.001,
       }
-    });
+    };
+  
   }
 
-  initializeCPIgraph() {
-    this.cpiGraph = new Chart('cpi', {
-      type: 'scatter',
-      data: {
-        labels: this.dataSet.map(data => data.consumerPriceIndex),
-        datasets: [
-          {
-            data: this.gasPrice,
-            borderColor: 'yellow',
-            label: 'CPI',
-            backgroundColor: 'orange',
-          }
-        ]
-      },
-      options: {
-        maintainAspectRatio: true,
-        responsive: true,
-        plugins: {
-          legend: {
-            position: 'right',
-          },
-          title: {
-            display: true,
-            text: 'Consumer Price Index vs. Gas Price'
-          }
+  initializeCPIGraph(){
+    this.cpiOption = {
+      series: [
+        {
+          name: "CPI",
+          data: this.cpi,
+        },
+      ],
+      chart: {
+        height: 350,
+        type: "line",
+        zoom: {
+          enabled: true
         }
+      },
+      dataLabels: {
+        enabled: false
+      },
+      stroke: {
+        width: 3,
+        curve: "straight",
+        //dashArray: [2, 1],
+      },
+      title: {
+        text: "Consumer Price Index (USA)",
+        align: "center"
+      },
+      grid: {
+        borderColor: "#f1f1f1",
+      },
+      xaxis: {
+        categories: this.date
+      },
+      yaxis: {
+        // min: 0,
+        // max: 2,
+        // //tickAmount: 0.001,
       }
-    });
+    };
   }
 
-  initializeOilProdGraph() {
-    this.oilProdGraph = new Chart('oilProd', {
-      type: 'scatter',
-      data: {
-        labels: this.oilProduction,
-        datasets: [
-          {
-            data: this.gasPrice,
-            borderColor: 'yellow',
-            label: 'Oil Production',
-            backgroundColor: 'pink',
-          }
-        ]
-      },
-      options: {
-        maintainAspectRatio: true,
-        responsive: true,
-        plugins: {
-          legend: {
-            position: 'right',
-          },
-          title: {
-            display: true,
-            text: 'Oil Production vs. Gas Price'
-          }
+  initializeOilProdGraph(){
+    this.oilProdOption = {
+      series: [
+        {
+          name: "Oil Prod",
+          data: this.oilProduction,
+        },
+      ],
+      chart: {
+        height: 350,
+        type: "line",
+        zoom: {
+          enabled: true
         }
+      },
+      dataLabels: {
+        enabled: false
+      },
+      stroke: {
+        width: 3,
+        curve: "straight",
+        //dashArray: [2, 1],
+      },
+      title: {
+        text: "Oil Production (USA)",
+        align: "center"
+      },
+      grid: {
+        borderColor: "#f1f1f1",
+      },
+      xaxis: {
+        categories: this.date
+      },
+      yaxis: {
+        // min: 0,
+        // max: 2,
+        // //tickAmount: 0.001,
       }
-    });
+    };
   }
 
-  initializeCrudeOilGraph() {
-    this.crudeOilGraph = new Chart('crudeOil', {
-      type: 'scatter',
-      data: {
-        labels: this.dataSet.map(data => data.crudeOilPrice),
-        datasets: [
-          {
-            data: this.gasPrice,
-            borderColor: 'yellow',
-            label: 'Crude Oil Price',
-            backgroundColor: 'green',
-          }
-        ]
-      },
-      options: {
-        maintainAspectRatio: true,
-        responsive: true,
-        plugins: {
-          legend: {
-            position: 'right',
-          },
-          title: {
-            display: true,
-            text: 'Crude Oil Price vs. Gas Price'
-          }
+  initializeCrudeOilGraph(){
+    this.crudeOilOption = {
+      series: [
+        {
+          name: "Crude Oil",
+          data: this.crudeOilPrice,
+        },
+      ],
+      chart: {
+        height: 350,
+        type: "line",
+        zoom: {
+          enabled: true
         }
+      },
+      dataLabels: {
+        enabled: false
+      },
+      stroke: {
+        width: 3,
+        curve: "straight",
+        //dashArray: [2, 1],
+      },
+      title: {
+        text: "Crude Oil Price (USA)",
+        align: "center"
+      },
+      grid: {
+        borderColor: "#f1f1f1",
+      },
+      xaxis: {
+        categories: this.date
+      },
+      yaxis: {
+        // min: 0,
+        // max: 2,
+        // //tickAmount: 0.001,
       }
-    });
+    };
   }
+
+  // initializeGasPriceGraph() {
+  //   console.log("init gas price");
+  //   console.log("ggas: ", this.gasPrice);
+  //   this.date = this.dataSet.map(data => data.Date);
+  //  // Array.from(Array(80).keys())
+  //  console.log("this.date: ", this.date);
+
+  //   this.gasPriceGraph = new Chart('gasPrice', {
+  //     type: 'line',
+  //     data: {
+  //       labels:Array.from(Array(80).keys()),
+  //       datasets: [
+  //         {
+  //           data: this.gasPrice,
+  //           borderColor: 'black',
+  //           label: 'Gas Price',
+  //           backgroundColor: 'blue',
+  //         }
+  //       ]
+  //     },
+  //     options: {
+  //       maintainAspectRatio: true,
+  //       responsive: true,
+  //       plugins: {
+  //         legend: {
+  //           position: 'right',
+  //         },
+  //         title: {
+  //           display: true,
+  //           text: 'Gas Price'
+  //         },
+  //       }
+  //     }
+  //   });
+  // }
+
+  // initializeCPIgraph() {
+  //   this.cpiGraph = new Chart('cpi', {
+  //     type: 'scatter',
+  //     data: {
+  //       labels: this.dataSet.map(data => data.consumerPriceIndex),
+  //       datasets: [
+  //         {
+  //           data: this.gasPrice,
+  //           borderColor: 'yellow',
+  //           label: 'CPI',
+  //           backgroundColor: 'orange',
+  //         }
+  //       ]
+  //     },
+  //     options: {
+  //       maintainAspectRatio: true,
+  //       responsive: true,
+  //       plugins: {
+  //         legend: {
+  //           position: 'right',
+  //         },
+  //         title: {
+  //           display: true,
+  //           text: 'Consumer Price Index vs. Gas Price'
+  //         }
+  //       }
+  //     }
+  //   });
+  // }
+
+  // initializeOilProdGraph() {
+  //   this.oilProdGraph = new Chart('oilProd', {
+  //     type: 'scatter',
+  //     data: {
+  //       labels: this.oilProduction,
+  //       datasets: [
+  //         {
+  //           data: this.gasPrice,
+  //           borderColor: 'yellow',
+  //           label: 'Oil Production',
+  //           backgroundColor: 'pink',
+  //         }
+  //       ]
+  //     },
+  //     options: {
+  //       maintainAspectRatio: true,
+  //       responsive: true,
+  //       plugins: {
+  //         legend: {
+  //           position: 'right',
+  //         },
+  //         title: {
+  //           display: true,
+  //           text: 'Oil Production vs. Gas Price'
+  //         }
+  //       }
+  //     }
+  //   });
+  // }
+
+  // initializeCrudeOilGraph() {
+  //   this.crudeOilGraph = new Chart('crudeOil', {
+  //     type: 'scatter',
+  //     data: {
+  //       labels: this.dataSet.map(data => data.crudeOilPrice),
+  //       datasets: [
+  //         {
+  //           data: this.gasPrice,
+  //           borderColor: 'yellow',
+  //           label: 'Crude Oil Price',
+  //           backgroundColor: 'green',
+  //         }
+  //       ]
+  //     },
+  //     options: {
+  //       maintainAspectRatio: true,
+  //       responsive: true,
+  //       plugins: {
+  //         legend: {
+  //           position: 'right',
+  //         },
+  //         title: {
+  //           display: true,
+  //           text: 'Crude Oil Price vs. Gas Price'
+  //         }
+  //       }
+  //     }
+  //   });
+  // }
 
   randomValues(count: number, min:number, max:number) {
     const delta = max - min;
@@ -287,23 +467,23 @@ export class DataSetExplorationComponent {
         height: 350,
         type: "boxPlot"
       },
-      colors: ['#008FFB', '#FEB019'],
+      //colors: ['#008FFB', '#FEB019'],
 title: {
   text: 'BoxPlot - Scatter Chart',
   align: 'left'
 },
-xaxis: {
-  //type: 'datetime',
-  // tooltip: {
-  //   formatter: function(val) {
-  //     return new Date(val).getFullYear()
-  //   }
-  // }
-},
-tooltip: {
-  shared: false,
-  intersect: true
-}
+// xaxis: {
+//   //type: 'datetime',
+//   // tooltip: {
+//   //   formatter: function(val) {
+//   //     return new Date(val).getFullYear()
+//   //   }
+//   // }
+// },
+// tooltip: {
+//   shared: false,
+//   intersect: true
+// }
     };
   }
 

@@ -26,19 +26,64 @@
         <mat-grid-list cols="2" rowHeight="2:1">
 
           <mat-grid-tile>
-            <canvas width="40" height="20" id="gasPrice">{{  gasPriceGraph }}</canvas>
+            <div id="gasChart">
+               <apx-chart
+                [series]="gasOption.series!"
+                [chart]="gasOption.chart!"
+                [xaxis]="gasOption.xaxis!"
+                [dataLabels]="gasOption.dataLabels!"
+                [grid]="gasOption.grid!"
+                [stroke]="gasOption.stroke!"
+                [title]="gasOption.title!"
+                [yaxis]="gasOption.yaxis!"
+              ></apx-chart>
+            </div>
           </mat-grid-tile>
   
           <mat-grid-tile>
-            <canvas width="40" height="20" id="cpi">{{  cpiGraph }}</canvas>
+            <div id="cpiChart">
+              <apx-chart
+               [series]="cpiOption.series!"
+               [chart]="cpiOption.chart!"
+               [xaxis]="cpiOption.xaxis!"
+               [dataLabels]="cpiOption.dataLabels!"
+               [grid]="cpiOption.grid!"
+               [stroke]="cpiOption.stroke!"
+               [title]="cpiOption.title!"
+               [yaxis]="cpiOption.yaxis!"
+             ></apx-chart>
+           </div>
+
           </mat-grid-tile>
   
           <mat-grid-tile>
-            <canvas width="40" height="20" id="oilProd">{{  oilProdGraph }}</canvas>
+              <div id="oilProdChart">
+                <apx-chart
+                 [series]="oilProdOption.series!"
+                 [chart]="oilProdOption.chart!"
+                 [xaxis]="oilProdOption.xaxis!"
+                 [dataLabels]="oilProdOption.dataLabels!"
+                 [grid]="oilProdOption.grid!"
+                 [stroke]="oilProdOption.stroke!"
+                 [title]="oilProdOption.title!"
+                 [yaxis]="oilProdOption.yaxis!"
+               ></apx-chart>
+             </div>
           </mat-grid-tile>
   
           <mat-grid-tile>
-            <canvas width="40" height="20" id="crudeOil">{{  crudeOilGraph }}</canvas>
+            <div id="crudeOilChart">
+              <apx-chart
+               [series]="crudeOilOption.series!"
+               [chart]="crudeOilOption.chart!"
+               [xaxis]="crudeOilOption.xaxis!"
+               [dataLabels]="crudeOilOption.dataLabels!"
+               [grid]="crudeOilOption.grid!"
+               [stroke]="crudeOilOption.stroke!"
+               [title]="crudeOilOption.title!"
+               [yaxis]="crudeOilOption.yaxis!"
+             ></apx-chart>
+           </div>
           </mat-grid-tile>
   
         </mat-grid-list>
@@ -98,10 +143,8 @@
   <apx-chart
     [series]="co.series!"
     [chart]="co.chart!"
-    [xaxis]="co.xaxis!"
     [title]="co.title!"
-    [colors]="co.colors!"
-    [tooltip]="co.tooltip!"
+    [plotOptions]="co.plotOptions!"
   ></apx-chart>
 </div>
   

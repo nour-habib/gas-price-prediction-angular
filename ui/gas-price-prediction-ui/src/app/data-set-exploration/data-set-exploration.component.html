@@ -36,6 +36,7 @@
                 [stroke]="gasOption.stroke!"
                 [title]="gasOption.title!"
                 [yaxis]="gasOption.yaxis!"
+                [colors]="gasOption.colors!"
               ></apx-chart>
             </div>
           </mat-grid-tile>
@@ -139,14 +140,15 @@
 
   <div class="hidden p-4 rounded-lg dark:bg-gray-800" id="styled-settings" role="tabpanel" aria-labelledby="settings-tab">
     <p>Boxplot</p>
-    <div id="chart">
+    <!-- <div id="chart">
   <apx-chart
     [series]="co.series!"
     [chart]="co.chart!"
+    [xaxis]="co.xaxis!"
     [title]="co.title!"
-    [plotOptions]="co.plotOptions!"
+    [tooltip]="co.tooltip!"
   ></apx-chart>
-</div>
+</div> -->
   
   </div>
 </div>

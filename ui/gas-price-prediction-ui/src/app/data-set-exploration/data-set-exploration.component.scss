@@ -22,19 +22,16 @@ mat-tab label  {
     color: #7ad7f0;
 }
 
-canvas{
-    width:100%;
-    border-style: solid;
-    border-width:1px 1px 1px 1px;
-    border-color: #333;
-}
-
 #boxplot {
     background-color: yellow;
 }
 
 thead, tr, td{
     color:#fff;
+}
+
+tr:nth-child(even) {
+    background-color: lightcyan;
 }
 
 #gasChart, #cpiChart, #oilProdChart, #crudeOilChart{

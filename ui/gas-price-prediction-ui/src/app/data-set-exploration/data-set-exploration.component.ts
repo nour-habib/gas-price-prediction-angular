@@ -26,13 +26,15 @@ export type ChartOptions = {
   stroke: ApexStroke;
   title: ApexTitleSubtitle;
   yaxis: ApexYAxis;
+  colors: string[];
 };
 
 export type ChartOptions2 = {
   series: ApexAxisChartSeries;
   chart: ApexChart;
+  xaxis: ApexXAxis;
   title: ApexTitleSubtitle;
-  plotOptions: ApexPlotOptions;
+  tooltip: ApexTooltip;
 };
 
 @Component({
@@ -83,7 +85,7 @@ export class DataSetExplorationComponent {
     setTimeout(() => this.initializeCPIGraph(), 3000);
     setTimeout(() =>  this.initializeOilProdGraph(), 3000);
     setTimeout(() =>  this.initializeCrudeOilGraph(), 3000);
-    setTimeout(() =>  this.initializeBoxplot(), 3000);
+    //setTimeout(() =>  this.initializeBoxplot(), 3000);
 
     this.correlationMatrix = this.dataService.getMatrix();
   }
@@ -92,10 +94,18 @@ export class DataSetExplorationComponent {
     console.log("dataSet exploration: getDataSet()");
     (await this.dataService.getData()).subscribe((data) => {
         this.dataSet = data;
+
+        this.dataSet.sort((a,b) => {
+          const ob1 = Date.parse(a['Date']);
+          const ob2 = Date.parse(b['Date']);
+          return ob1 - ob2;
+      });
+
         console.log("dataSet Exploration: ", this.dataSet);
         this.cpi = this.dataSet.map(data => data.consumerPriceIndex);
         console.log("dataSet Exploration cpi: ", this.cpi);
         this.gasPrice = this.dataSet.map(data => data.gasPrice);
+        console.log("gas priccee: ", this.gasPrice);
         this.oilProduction = this.dataSet.map(data => data.oilProduction);
         this.crudeOilPrice = this.dataSet.map(data => data.crudeOilPrice);
         this.date = this.dataSet.map(data => data.Date);
@@ -127,14 +137,24 @@ export class DataSetExplorationComponent {
       stroke: {
         width: 3,
         curve: "straight",
+        colors: ["#45d6d4"]
         //dashArray: [2, 1],
       },
       title: {
         text: "Gas Price (USA)",
-        align: "center"
+        align: "center",
+        style: {
+          fontSize:  '14px',
+          fontWeight:  'bold',
+          fontFamily:  undefined,
+          color:  '#fff'
+        },
       },
       grid: {
-        borderColor: "#f1f1f1",
+        row: {
+          colors: ["#3d3d3b", "transparent"],
+          opacity: 0.5
+        }
       },
       xaxis: {
         categories: this.date
@@ -169,14 +189,25 @@ export class DataSetExplorationComponent {
       stroke: {
         width: 3,
         curve: "straight",
+        colors:["#fa8907"]
         //dashArray: [2, 1],
       },
       title: {
         text: "Consumer Price Index (USA)",
-        align: "center"
+        align: "center",
+        style: {
+          fontSize:  '14px',
+          fontWeight:  'bold',
+          fontFamily:  undefined,
+          color:  '#fff'
+        },
       },
       grid: {
-        borderColor: "#f1f1f1",
+        row: {
+          colors: ["#3d3d3b", "transparent"],
+          opacity: 0.5
+        }
+    
       },
       xaxis: {
         categories: this.date
@@ -185,7 +216,8 @@ export class DataSetExplorationComponent {
         // min: 0,
         // max: 2,
         // //tickAmount: 0.001,
-      }
+      },
+      colors: ["#FF1654"],
     };
   }
 
@@ -210,14 +242,24 @@ export class DataSetExplorationComponent {
       stroke: {
         width: 3,
         curve: "straight",
+        colors: ["#fa07c5"]
         //dashArray: [2, 1],
       },
       title: {
         text: "Oil Production (USA)",
-        align: "center"
+        align: "center",
+        style: {
+          fontSize:  '14px',
+          fontWeight:  'bold',
+          fontFamily:  undefined,
+          color:  '#fff'
+        },
       },
       grid: {
-        borderColor: "#f1f1f1",
+        row: {
+          colors: ["#3d3d3b", "transparent"],
+          opacity: 0.5
+        }
       },
       xaxis: {
         categories: this.date
@@ -255,10 +297,19 @@ export class DataSetExplorationComponent {
       },
       title: {
         text: "Crude Oil Price (USA)",
-        align: "center"
+        align: "center",
+        style: {
+          fontSize:  '14px',
+          fontWeight:  'bold',
+          fontFamily:  undefined,
+          color:  '#fff'
+        },
       },
       grid: {
-        borderColor: "#f1f1f1",
+        row: {
+          colors: ["#3d3d3b", "transparent"],
+          opacity: 0.5
+        }
       },
       xaxis: {
         categories: this.date
@@ -402,76 +453,76 @@ export class DataSetExplorationComponent {
     return Array.from({length: count}).map(() => Math.random() * delta + min);
   }
 
-  initializeBoxplot() {
-    console.log("initialize boxPlot");
-   this.co = {
-      series: [
-        {
-          name: 'Gas Price',
-          type: 'boxPlot',
-          data: [
-            {
-              x: new Date('2021-01-01').getTime(),
-              y: this.gasPrice
-            },
-            // {
-            //   x: new Date('2021-01-01').getTime(),
-            //   y: [43, 65, 69, 76, 81]
-            // },
-            // {
-            //   x: new Date('2021-01-01').getTime(),
-            //   y: [31, 39, 45, 51, 59]
-            // },
-            // {
-            //   x: new Date('2021-01-01').getTime(),
-            //   y: [39, 46, 55, 65, 71]
-            // },
-            // {
-            //   x: new Date('2021-01-01').getTime(),
-            //   y: [29, 31, 35, 39, 44]
-            // }
-          ]
-        },
-        {
-          name: 'outliers',
-          type: 'scatter',
-          data: [
-            {
-              x: new Date('2017-01-01').getTime(),
-              y: 32
-            },
-            {
-              x: new Date('2018-01-01').getTime(),
-              y: 25
-            },
-            {
-              x: new Date('2019-01-01').getTime(),
-              y: 64
-            },
-            {
-              x: new Date('2020-01-01').getTime(),
-              y: 27
-            },
-            {
-              x: new Date('2020-01-01').getTime(),
-              y: 78
-            },
-            {
-              x: new Date('2021-01-01').getTime(),
-              y: 15
-            }
-          ]
-        }
-      ],
-      chart: {
-        height: 350,
-        type: "boxPlot"
-      },
-      //colors: ['#008FFB', '#FEB019'],
-title: {
-  text: 'BoxPlot - Scatter Chart',
-  align: 'left'
-},
+  // initializeBoxplot() {
+  //   console.log("initialize boxPlot");
+  //  this.co = {
+  //     series: [
+  //       {
+  //         name: 'Gas Price',
+  //         type: 'boxPlot',
+  //         data: [
+  //           {
+  //             x: new Date('2021-01-01').getTime(),
+  //             y: this.gasPrice
+  //           },
+  //           // {
+  //           //   x: new Date('2021-01-01').getTime(),
+  //           //   y: [43, 65, 69, 76, 81]
+  //           // },
+  //           // {
+  //           //   x: new Date('2021-01-01').getTime(),
+  //           //   y: [31, 39, 45, 51, 59]
+  //           // },
+  //           // {
+  //           //   x: new Date('2021-01-01').getTime(),
+  //           //   y: [39, 46, 55, 65, 71]
+        //     // },
+        //     // {
+        //     //   x: new Date('2021-01-01').getTime(),
+        //     //   y: [29, 31, 35, 39, 44]
+        //     // }
+        //   ]
+        // },
+        // {
+        //   name: 'outliers',
+        //   type: 'scatter',
+        //   data: [
+        //     {
+        //       x: new Date('2017-01-01').getTime(),
+        //       y: 32
+        //     },
+        //     {
+        //       x: new Date('2018-01-01').getTime(),
+        //       y: 25
+        //     },
+        //     {
+        //       x: new Date('2019-01-01').getTime(),
+        //       y: 64
+        //     },
+        //     {
+        //       x: new Date('2020-01-01').getTime(),
+        //       y: 27
+        //     },
+        //     {
+//               x: new Date('2020-01-01').getTime(),
+//               y: 78
+//             },
+//             {
+//               x: new Date('2021-01-01').getTime(),
+//               y: 15
+//             }
+//           ]
+//         }
+//       ],
+//       chart: {
+//         height: 350,
+//         type: "boxPlot"
+//       },
+//       //colors: ['#008FFB', '#FEB019'],
+// title: {
+//   text: 'BoxPlot - Scatter Chart',
+//   align: 'left'
+// },
 // xaxis: {
 //   //type: 'datetime',
 //   // tooltip: {
@@ -484,7 +535,7 @@ title: {
 //   shared: false,
 //   intersect: true
 // }
-    };
-  }
+//     };
+//   }
 
 }

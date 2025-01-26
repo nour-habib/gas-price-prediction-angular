@@ -1,4 +1,4 @@
-import { Component, inject, signal, ViewEncapsulation } from '@angular/core';
+import { Component, inject, signal, ViewEncapsulation, ViewChild } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { DataService } from '../../service/data.service';
 import { ModelResults } from '../../model/model-results.interface';
@@ -6,11 +6,35 @@ import { Chart } from 'chart.js/auto';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
+import {
+  ChartComponent,
+  ApexAxisChartSeries,
+  ApexChart,
+  ApexXAxis,
+  ApexYAxis,
+  ApexDataLabels,
+  ApexTitleSubtitle,
+  ApexStroke,
+  ApexGrid,
+  NgApexchartsModule
+} from "ng-apexcharts";
+
+export type ChartOptions = {
+  series: ApexAxisChartSeries;
+  chart: ApexChart;
+  xaxis: ApexXAxis;
+  dataLabels: ApexDataLabels;
+  grid: ApexGrid;
+  stroke: ApexStroke;
+  title: ApexTitleSubtitle;
+  yaxis: ApexYAxis;
+  colors: string[];
+};
 
 @Component({
   selector: 'app-results',
   standalone: true,
-  imports: [RouterOutlet, RouterModule, MatGridListModule, CommonModule, MatCardModule],
+  imports: [RouterOutlet, RouterModule, MatGridListModule, CommonModule, MatCardModule, NgApexchartsModule],
   templateUrl: './results.component.html',
   styleUrl: './results.component.scss',
   encapsulation: ViewEncapsulation.None,
@@ -24,6 +48,9 @@ export class ResultsComponent {
   testingGraph: any = [];
   isClickedTraining = signal(false);
   isClickedTesting = signal(false);
+
+  @ViewChild("trainChart") trainChart!: ChartComponent;
+  public trainOption!: Partial<ChartOptions>;
 
 
   ngOnInit(): void {
@@ -51,6 +78,60 @@ export class ResultsComponent {
   }
 
   initializeTrainGraph() {
+    this.trainOption = {
+      series: [
+        {
+          name: "Training Results",
+          data: this.trainingResults,
+        },
+        {
+          name: "Training Results",
+          data: this.modelResults[0].training_y,
+        },
+      ],
+      chart: {
+        height: 350,
+        type: "line",
+        zoom: {
+          enabled: true
+        }
+      },
+      dataLabels: {
+        enabled: false
+      },
+      stroke: {
+        width: 3,
+        curve: "straight",
+        //dashArray: [2, 1],
+      },
+      title: {
+        text: "Crude Oil Price (USA)",
+        align: "center",
+        style: {
+          fontSize:  '14px',
+          fontWeight:  'bold',
+          fontFamily:  undefined,
+          color:  '#fff'
+        },
+      },
+      grid: {
+        row: {
+          colors: ["#3d3d3b", "transparent"],
+          opacity: 0.5
+        }
+      },
+      xaxis: {
+        categories: Array.from(Array(60).keys())
+      },
+      yaxis: {
+        // min: 0,
+        // max: 2,
+        // //tickAmount: 0.001,
+      }
+  };
+  }
+
+  initializeTrainGraph2() {
     this.trainingGraph = new Chart('trainingG', {
       type: 'line',
       data: {

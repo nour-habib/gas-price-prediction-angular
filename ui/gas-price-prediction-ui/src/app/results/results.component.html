@@ -2,7 +2,22 @@
 <div class="grid grid-cols-1 grid-rows-2 gap-4 content-center">
     <h2>Training Data Results</h2>
     <div class="content">
-       <div id="training"><canvas id="trainingG">{{  trainingGraph }}</canvas></div><!--close training-->
+       <div id="training">
+        <div id="trainChart">
+            <apx-chart
+             [series]="trainOption.series!"
+             [chart]="trainOption.chart!"
+             [xaxis]="trainOption.xaxis!"
+             [dataLabels]="trainOption.dataLabels!"
+             [grid]="trainOption.grid!"
+             [stroke]="trainOption.stroke!"
+             [title]="trainOption.title!"
+             [yaxis]="trainOption.yaxis!"
+             [colors]="trainOption.colors!"
+           ></apx-chart>
+         </div>
+
+       </div><!--close training-->
        <div class="paragraph">
             <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit,
             sed do eiusmod tempor incididunt ut labore et dolore magna 

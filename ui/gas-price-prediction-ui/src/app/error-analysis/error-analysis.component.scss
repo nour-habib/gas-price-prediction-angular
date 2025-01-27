@@ -1,19 +1,16 @@
-.train{
-    float:left;
-    width:50%;
-    padding: 10px 10px 10px 10px;
+
+#content{
+    width:100%;
+    padding-top:50%;
 }
 
-.test{
-    float:right;
-    width:50%;
-    padding: 10px 10px 10px 10px;
+#paragraphs{
+    width:100%;
 }
-
 #trainDescription{
     float:left;
     width:50%;
-    padding: 30px 30px 30px 30px;
+    padding: 30px 30px 30px 30px;  
 }
 
 #testDescription{
@@ -24,14 +21,16 @@
 
 #chart {
     //max-width: 650px;
-    width:100%;
-    margin: 35px auto;
+    width:50%;
+    //margin: 35px auto;
+    float:left;
   }
 
   #testChart {
    //max-width: 650px;
-    width: 100%;
-    margin: 35px auto;
+    width: 50%;
+    float:right;
+    //margin: 35px auto;
   }
 
   

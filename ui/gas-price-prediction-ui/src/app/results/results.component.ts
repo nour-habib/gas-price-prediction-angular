@@ -42,7 +42,7 @@ export type ChartOptions = {
 export class ResultsComponent {
   dataService = inject(DataService);
   modelResults = new Array<ModelResults>;
-  trainingResults = new Array<any>();
+  trainingResults = new Array<number>();
   testingResults = new Array<any>();
   trainingGraph: any = [];
   testingGraph: any = [];
@@ -52,12 +52,17 @@ export class ResultsComponent {
   @ViewChild("trainChart") trainChart!: ChartComponent;
   public trainOption!: Partial<ChartOptions>;
 
+  @ViewChild("testChart") testChart!: ChartComponent;
+  public testOption!: Partial<ChartOptions>;
+
 
   ngOnInit(): void {
     this.getAllResults();
     this.initializeTrainGraph();
     this.initializeTestGraph();
-    Chart.defaults.color = '#fff';
+    
+    console.log("trainingResults Max: ", Math.max(...this.trainingResults));
+    console.log("trainResult_Y Max: ", Math.max(... this.modelResults[0].training_y));
 }
 
   getAllResults() {
@@ -81,16 +86,16 @@ export class ResultsComponent {
     this.trainOption = {
       series: [
         {
-          name: "Training Results",
+          name: "Model Results",
           data: this.trainingResults,
         },
         {
-          name: "Training Results",
+          name: "Actual data",
           data: this.modelResults[0].training_y,
         },
       ],
       chart: {
-        height: 350,
+        //height: 350,
         type: "line",
         zoom: {
           enabled: true
@@ -102,10 +107,10 @@ export class ResultsComponent {
       stroke: {
         width: 3,
         curve: "straight",
-        //dashArray: [2, 1],
+        //dashArray: [8, 5],
       },
       title: {
-        text: "Crude Oil Price (USA)",
+        text: "Model Results Training Data",
         align: "center",
         style: {
           fontSize:  '14px',
@@ -128,107 +133,61 @@ export class ResultsComponent {
         // max: 2,
         // //tickAmount: 0.001,
       }
-  };
-  }
-
-  initializeTrainGraph2() {
-    this.trainingGraph = new Chart('trainingG', {
-      type: 'line',
-      data: {
-        labels: Array.from(Array(60).keys()),
-        datasets: [
-          {
-            data: this.trainingResults,
-            borderColor: 'white',
-            label:'Model Results',
-            backgroundColor: '	#68c4af',
-            borderDash: [1,1],
-            
-          },
-          {
-            data: this.modelResults[0].training_y,
-            borderColor: '#b497e7',
-            label: 'Actual Data ',
-            backgroundColor: '#b497e7',
-            showLine: false,
-          },
-        ]
-      },
-      options: {
-        maintainAspectRatio: true,
-        scales: {
-          x: {
-            grid: {
-              color: '#333',
-            },
-          },
-          y: {
-            grid: {
-              color: '#333',
-            },
-          },
-        },
-        responsive: true,
-        plugins: {
-          legend: {
-            position: 'right',
-          },
-          title: {
-            display: true,
-            text: 'Model Results on Training Data'
-          },
-        }
-      }
-    });
+   };
   }
 
   initializeTestGraph() {
-    this.testingGraph = new Chart('testingG', {
-      type: 'line',
-      data: {
-        labels: Array.from(Array(20).keys()),
-        datasets: [
-          {
-            data: this.testingResults,
-            borderColor: '#96ead7',
-            label: 'Model Results ',
-            backgroundColor: '#96ead7',
-            borderDash: [1,1],
-          },
-          {
-            data: this.modelResults[0].testing_y,
-            borderColor: '#b497e7',
-            label: 'Actual Data',
-            backgroundColor: '#b497e7',
-            showLine: false,
-          },
-        ]
-      },
-      options: {
-        maintainAspectRatio: true,
-        responsive: true,
-        scales: {
-          x: {
-            grid: {
-              color: '#333',
-            },
-          },
-          y: {
-            grid: {
-              color: '#333',
-            },
-          },
+    this.testOption = {
+      series: [
+        {
+          name: "Model Results",
+          data: this.testingResults,
         },
-        plugins: {
-          legend: {
-            position: 'right',
-          },
-          title: {
-            display: true,
-            text: 'Model Results on Test Data'
-          },
+        {
+          name: "Actual test data",
+          data: this.modelResults[0].testing_y,
+        },
+      ],
+      chart: {
+        //height: 350,
+        type: "line",
+        zoom: {
+          enabled: true
         }
+      },
+      dataLabels: {
+        enabled: false
+      },
+      stroke: {
+        width: 3,
+        curve: "straight",
+        //dashArray: [2, 1],
+      },
+      title: {
+        text: "Model Results Testing Data",
+        align: "center",
+        style: {
+          fontSize:  '14px',
+          fontWeight:  'bold',
+          fontFamily:  undefined,
+          color:  '#fff'
+        },
+      },
+      grid: {
+        row: {
+          colors: ["#3d3d3b", "transparent"],
+          opacity: 0.5
+        }
+      },
+      xaxis: {
+        categories: Array.from(Array(60).keys())
+      },
+      yaxis: {
+        // min: 0,
+        // max: 2,
+        // //tickAmount: 0.001,
       }
-    });
+   };
+      
   }
 }

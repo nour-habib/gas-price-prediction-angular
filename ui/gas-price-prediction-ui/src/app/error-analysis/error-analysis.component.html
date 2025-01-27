@@ -1,36 +1,33 @@
 <h1>Error Analysis</h1>
 <div id="content">
-    <div class="train">
-        <!-- <canvas id="train">{{  trainGraph }}></canvas> -->
-        <div id="chart">
-            <apx-chart
-              [series]="trainOps.series!"
-              [chart]="trainOps.chart!"
-              [xaxis]="trainOps.xaxis!"
-              [dataLabels]="trainOps.dataLabels!"
-              [grid]="trainOps.grid!"
-              [stroke]="trainOps.stroke!"
-              [title]="trainOps.title!"
-              [yaxis]="trainOps.yaxis!"
-            ></apx-chart>
-          </div>
-    </div>
+  <div id="chart">
+    <apx-chart
+      [series]="trainOps.series!"
+      [chart]="trainOps.chart!"
+      [xaxis]="trainOps.xaxis!"
+      [dataLabels]="trainOps.dataLabels!"
+      [grid]="trainOps.grid!"
+      [stroke]="trainOps.stroke!"
+      [title]="trainOps.title!"
+      [yaxis]="trainOps.yaxis!"
+    ></apx-chart>
+  </div>      
 
-    <div class="test">
-        <div id="testChart">
-            <apx-chart
-              [series]="testOps.series!"
-              [chart]="testOps.chart!"
-              [xaxis]="testOps.xaxis!"
-              [dataLabels]="testOps.dataLabels!"
-              [grid]="testOps.grid!"
-              [stroke]="testOps.stroke!"
-              [title]="testOps.title!"
-              [yaxis]="testOps.yaxis!"
-            ></apx-chart>
-          </div>
-    </div>
+  <div id="testChart">
+    <apx-chart
+      [series]="testOps.series!"
+      [chart]="testOps.chart!"
+      [xaxis]="testOps.xaxis!"
+      [dataLabels]="testOps.dataLabels!"
+      [grid]="testOps.grid!"
+      [stroke]="testOps.stroke!"
+      [title]="testOps.title!"
+      [yaxis]="testOps.yaxis!"
+    ></apx-chart>
+  </div> 
+</div>    
 
+<div id="paragraphs">
     <div id="trainDescription">
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et 
         dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip 

@@ -14,10 +14,6 @@ mat-tab-group{
     border-color: #333;
   }
 
-.active-focus-label-text-color{
-    color:#fff;
-}
-
 mat-tab label  {
     color: #7ad7f0;
 }
@@ -26,12 +22,35 @@ mat-tab label  {
     background-color: yellow;
 }
 
+#tableContainer{
+    width:60%;
+    height:50%;
+}
+
+table, th, td {
+    border: 1px solid;
+  }
+
+th{
+    background-color: #333;
+}
+
+table{
+    width:100%;
+    height:100%;
+    border-collapse: collapse;
+}
+
 thead, tr, td{
     color:#fff;
 }
 
 tr:nth-child(even) {
-    background-color: lightcyan;
+    background-color: #fab907;
+}
+
+tr:nth-child(odd){
+    background-color: #666;
 }
 
 #gasChart, #cpiChart, #oilProdChart, #crudeOilChart{

@@ -1,7 +1,7 @@
 
 h1 {
     padding: 0 1rem;
-    color: #7ad7f0;
+    color: #fab907;
 }
 
 h2 {padding: 1rem;}
@@ -31,11 +31,15 @@ mat-sidenav {
         align-items: center;
         gap: 1rem;
         padding:0.75rem;
-        color: #fff;
+        color: beige;
         font-weight:100;
     }
 
   }
+
+  .active-link{
+    color:#fab907 !important;
+}
 
 // Move the content down so that it won't be hidden by the toolbar
 mat-sidenav-content{
@@ -52,7 +56,7 @@ mat-toolbar{
 
 mat-icon{
     
-    color:#7ad7f0;
+    color:#fab907;
 }
 
 #gas{

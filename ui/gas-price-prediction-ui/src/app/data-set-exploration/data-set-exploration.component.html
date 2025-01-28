@@ -91,6 +91,7 @@
     
   </div>
   <div class="hidden p-4 rounded-lg dark:bg-gray-800" id="styled-dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
+    <div id="tableContainer">
      <table class="table-auto">
       <thead>
         <tr>
@@ -129,18 +130,19 @@
 
         <tr>
           <td>Gas Price</td>
-          <td>{{ correlationMatrix[11] }}</td>
           <td>{{ correlationMatrix[12] }}</td>
           <td>{{ correlationMatrix[13] }}</td>
           <td>{{ correlationMatrix[14] }}</td>
+          <td>{{ correlationMatrix[15] }}</td>
         </tr>
       </tbody>
     </table>
   </div>
+  <div>Description: A correlation matrix describes how much the variables in a dataset are related to another. Values closer to 1 imply high relation.</div>
+  </div>
 
   <div class="hidden p-4 rounded-lg dark:bg-gray-800" id="styled-settings" role="tabpanel" aria-labelledby="settings-tab">
-    <p>Boxplot</p>
-    <!-- <div id="chart">
+    <div id="chart">
   <apx-chart
     [series]="co.series!"
     [chart]="co.chart!"
@@ -148,7 +150,7 @@
     [title]="co.title!"
     [tooltip]="co.tooltip!"
   ></apx-chart>
-</div> -->
+</div>
   
   </div>
 </div>

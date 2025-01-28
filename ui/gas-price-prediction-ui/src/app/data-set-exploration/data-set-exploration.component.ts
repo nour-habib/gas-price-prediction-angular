@@ -85,7 +85,7 @@ export class DataSetExplorationComponent {
     setTimeout(() => this.initializeCPIGraph(), 3000);
     setTimeout(() =>  this.initializeOilProdGraph(), 3000);
     setTimeout(() =>  this.initializeCrudeOilGraph(), 3000);
-    //setTimeout(() =>  this.initializeBoxplot(), 3000);
+    setTimeout(() =>  this.initializeBoxplot(), 3000);
 
     this.correlationMatrix = this.dataService.getMatrix();
   }
@@ -453,89 +453,69 @@ export class DataSetExplorationComponent {
     return Array.from({length: count}).map(() => Math.random() * delta + min);
   }
 
-  // initializeBoxplot() {
-  //   console.log("initialize boxPlot");
-  //  this.co = {
-  //     series: [
-  //       {
-  //         name: 'Gas Price',
-  //         type: 'boxPlot',
-  //         data: [
-  //           {
-  //             x: new Date('2021-01-01').getTime(),
-  //             y: this.gasPrice
-  //           },
-  //           // {
-  //           //   x: new Date('2021-01-01').getTime(),
-  //           //   y: [43, 65, 69, 76, 81]
-  //           // },
-  //           // {
-  //           //   x: new Date('2021-01-01').getTime(),
-  //           //   y: [31, 39, 45, 51, 59]
-  //           // },
-  //           // {
-  //           //   x: new Date('2021-01-01').getTime(),
-  //           //   y: [39, 46, 55, 65, 71]
-        //     // },
-        //     // {
-        //     //   x: new Date('2021-01-01').getTime(),
-        //     //   y: [29, 31, 35, 39, 44]
-        //     // }
-        //   ]
-        // },
-        // {
-        //   name: 'outliers',
-        //   type: 'scatter',
-        //   data: [
-        //     {
-        //       x: new Date('2017-01-01').getTime(),
-        //       y: 32
-        //     },
-        //     {
-        //       x: new Date('2018-01-01').getTime(),
-        //       y: 25
-        //     },
-        //     {
-        //       x: new Date('2019-01-01').getTime(),
-        //       y: 64
-        //     },
-        //     {
-        //       x: new Date('2020-01-01').getTime(),
-        //       y: 27
-        //     },
-        //     {
-//               x: new Date('2020-01-01').getTime(),
-//               y: 78
-//             },
-//             {
-//               x: new Date('2021-01-01').getTime(),
-//               y: 15
-//             }
-//           ]
-//         }
-//       ],
-//       chart: {
-//         height: 350,
-//         type: "boxPlot"
-//       },
-//       //colors: ['#008FFB', '#FEB019'],
-// title: {
-//   text: 'BoxPlot - Scatter Chart',
-//   align: 'left'
-// },
-// xaxis: {
-//   //type: 'datetime',
-//   // tooltip: {
-//   //   formatter: function(val) {
-//   //     return new Date(val).getFullYear()
-//   //   }
-//   // }
-// },
-// tooltip: {
-//   shared: false,
-//   intersect: true
-// }
-//     };
-//   }
+  initializeBoxplot() {
+    console.log("initialize boxPlot");
+   this.co = {
+      series: [
+        {
+          name: 'Gas Price',
+          type: 'boxPlot',
+          data: [
+            {
+              x: 1,
+              y: this.gasPrice
+            },
+          ]
+        },
+        {
+          name: 'Outliers',
+          type: 'scatter',
+          data: [
+            {
+              x: 1,
+              y: 1.7801
+            },
+            {
+              x: 1,
+              y: 1.6514
+            },
+            {
+              x: 1,
+              y: 1.529
+            },
+            {
+              x: 1,
+              y: 1.4904
+            },
+            {
+              x: 1,
+              y: 1.4458
+            }
+          ]
+        }
+      ],
+      chart: {
+        height: 500,
+        type: "boxPlot"
+      },
+      //colors: ['#008FFB', '#FEB019'],
+title: {
+  text: 'BoxPlot - Gas Price',
+  align: 'center'
+},
+xaxis: {
+  //type: 'datetime',
+  // tooltip: {
+  //   formatter: function(val) {
+  //     return new Date(val).getFullYear()
+  //   }
+  // }
+},
+tooltip: {
+  shared: false,
+  intersect: true
+}
+    };
+  }
 
 }

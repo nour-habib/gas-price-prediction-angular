@@ -30,6 +30,7 @@ mat-tab label  {
     width:60%;
     height:50%;
     padding-left:100px;
+    padding-top: 20px;
 }
 
 table, th, td {
@@ -58,7 +59,13 @@ tr:nth-child(odd){
     background-color: #666;
 }
 
-#gasChart, #cpiChart, #oilProdChart, #crudeOilChart, #allChart{
+#gasChart, #cpiChart, #oilProdChart, #crudeOilChart{
     width:100%;
     margin: 35px auto;
+}
+
+#allChart{
+    width:50%;
+    padding-top:30px;
+    padding-left:20px;
 }

@@ -20,7 +20,7 @@
           id="settings-styled-tab" data-tabs-target="#styled-settings" type="button" role="tab" aria-controls="settings" aria-selected="false">Outliers</button>
       </li>
   </ul>
-</div>
+</div> <!--close first div-->
 <div id="default-styled-tab-content">
   <div class="hidden p-4 rounded-lg dark:bg-gray-800" id="styled-profile" role="tabpanel" aria-labelledby="profile-tab">
         <mat-grid-list cols="2" rowHeight="2:1">
@@ -88,9 +88,14 @@
           </mat-grid-tile>
   
         </mat-grid-list>
-    
-  </div>
+    </div>
+  </div><!--close section-->
+
   <div class="hidden p-4 rounded-lg dark:bg-gray-800" id="styled-dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
+    <div id="description"><p class="font-bold">Description:</p> A correlation matrix describes how much the variables in a dataset 
+      are related to another. Values closer to 1 imply high relation.
+  </div><!--close description-->
+
     <div id="tableContainer">
      <table class="table-auto">
       <thead>
@@ -137,9 +142,26 @@
         </tr>
       </tbody>
     </table>
-  </div>
-  <div>Description: A correlation matrix describes how much the variables in a dataset are related to another. Values closer to 1 imply high relation.</div>
-  </div>
+    </div><!--close table container-->
+
+    <div id="description"><p class="font-bold">Description:</p>From the chart above, observe that the correlation value between gas price and oil production is 0.9609.
+    When we graph the two variables togeeether, a linear relationship is shown.</div>
+
+    <div id="allChart">
+      <apx-chart
+       [series]="allVarsOption.series!"
+       [chart]="allVarsOption.chart!"
+       [xaxis]="allVarsOption.xaxis!"
+       [dataLabels]="allVarsOption.dataLabels!"
+       [grid]="allVarsOption.grid!"
+       [stroke]="allVarsOption.stroke!"
+       [title]="allVarsOption.title!"
+       [yaxis]="allVarsOption.yaxis!"
+     ></apx-chart>
+   </div>
+
+
+  </div><!--close section-->
 
   <div class="hidden p-4 rounded-lg dark:bg-gray-800" id="styled-settings" role="tabpanel" aria-labelledby="settings-tab">
     <div id="chart">
@@ -152,5 +174,4 @@
   ></apx-chart>
 </div>
   
-  </div>
-</div>
+</div><!--close section-->

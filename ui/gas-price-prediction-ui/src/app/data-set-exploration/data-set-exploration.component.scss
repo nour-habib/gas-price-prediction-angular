@@ -6,6 +6,10 @@ mat-tab-group{
     border-color: #333;
 }
 
+#description{
+    color:#999;
+}
+
 #chart {
     max-width: 650px;
     margin: 35px auto;
@@ -25,6 +29,7 @@ mat-tab label  {
 #tableContainer{
     width:60%;
     height:50%;
+    padding-left:100px;
 }
 
 table, th, td {
@@ -53,7 +58,7 @@ tr:nth-child(odd){
     background-color: #666;
 }
 
-#gasChart, #cpiChart, #oilProdChart, #crudeOilChart{
+#gasChart, #cpiChart, #oilProdChart, #crudeOilChart, #allChart{
     width:100%;
     margin: 35px auto;
 }

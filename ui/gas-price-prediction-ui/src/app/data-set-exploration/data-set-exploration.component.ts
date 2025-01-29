@@ -73,6 +73,9 @@ export class DataSetExplorationComponent {
   @ViewChild("crudeOilChart") crudeOilChart!: ChartComponent;
   public crudeOilOption!: Partial<ChartOptions>;
 
+  @ViewChild("allChart") allChart!: ChartComponent;
+  public allVarsOption!: Partial<ChartOptions>;
+
   
 
   constructor() { }
@@ -86,6 +89,7 @@ export class DataSetExplorationComponent {
     setTimeout(() =>  this.initializeOilProdGraph(), 3000);
     setTimeout(() =>  this.initializeCrudeOilGraph(), 3000);
     setTimeout(() =>  this.initializeBoxplot(), 3000);
+    setTimeout(() =>  this.initializeVariablesGraph(), 3000);
 
     this.correlationMatrix = this.dataService.getMatrix();
   }
@@ -515,6 +519,57 @@ tooltip: {
   shared: false,
   intersect: true
 }
+    };
+  }
+
+  initializeVariablesGraph(){
+    this.allVarsOption = {
+      series: [
+        {
+          name: "Gas Price",
+          data: this.gasPrice,
+        },
+      ],
+      chart: {
+        height: 350,
+        type: "line",
+        zoom: {
+          enabled: true
+        }
+      },
+      dataLabels: {
+        enabled: false
+      },
+      stroke: {
+        width: 3,
+        curve: "straight",
+        colors: ["#1f48a6"],
+        //dashArray: [2, 1],
+      },
+      title: {
+        text: "Oil Production & Gas Price",
+        align: "center",
+        style: {
+          fontSize:  '14px',
+          fontWeight:  'bold',
+          fontFamily:  undefined,
+          color:  '#fff'
+        },
+      },
+      grid: {
+        row: {
+          colors: ["#3d3d3b", "transparent"],
+          opacity: 0.5
+        }
+      },
+      xaxis: {
+        categories: this.crudeOilPrice
+      },
+      yaxis: {
+        // min: 0,
+        // max: 2,
+        // //tickAmount: 0.001,
+      }
     };
   }
 

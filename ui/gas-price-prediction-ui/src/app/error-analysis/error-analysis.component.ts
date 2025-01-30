@@ -95,7 +95,13 @@ export class ErrorAnalysisComponent {
       },
       title: {
         text: "Absolute Error (Training)",
-        align: "left"
+        align: "center",
+        style: {
+          fontSize:  '14px',
+          fontWeight:  'bold',
+          fontFamily:  undefined,
+          color:  '#fff'
+        },
       },
       grid: {
         borderColor: "#f1f1f1"
@@ -125,7 +131,7 @@ export class ErrorAnalysisComponent {
         }
       ],
       chart: {
-        //height: 350,
+        //  height: 350,
         type: "line",
         zoom: {
           enabled: true
@@ -141,7 +147,13 @@ export class ErrorAnalysisComponent {
       },
       title: {
         text: "Absolute Error (Testing)",
-        align: "left"
+        align: "center",
+        style: {
+          fontSize:  '14px',
+          fontWeight:  'bold',
+          fontFamily:  undefined,
+          color:  '#fff'
+        },
       },
       grid: {
         borderColor: "#f1f1f1"

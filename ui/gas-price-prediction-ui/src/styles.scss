@@ -8,24 +8,12 @@ body {
     background-color: black !important;
 }
 
-canvas{
-    background-color: #222;
-    width:100%;
-    border-style: solid;
-    border-width:1px 1px 1px 1px;
-    border-color: #333;
-}
-
 p{
     color: grey;
 }
 
-h1{
-    color:beige;
-    padding-left: 30px;
-   padding-top: 10px;
-   padding-bottom: 10px;
-   margin-top: 2%;
-   width:100%;
-    
+h2{
+    font-weight: 700 !important;
+    font-size: 18px !important;
+    color: #fff;
 }

@@ -58,8 +58,8 @@ export class ErrorAnalysisComponent {
     this.dataService.getModelResults().subscribe((data) => {
       //console.log("res: ", data);
       this.modelResults = data;
-      this.errorTrain = this.modelResults[0].training;
-      this.errorTest = this.modelResults[0].testing;
+      this.errorTrain = this.modelResults[0].errorTrain;
+      this.errorTest = this.modelResults[0].errorTest;
       this.train_y = this.modelResults[0].training_y;
       this.test_y = this.modelResults[0].training_y;
       //console.log("train_y: ",  this.train_y);  
@@ -70,8 +70,8 @@ export class ErrorAnalysisComponent {
     this.trainOps = {
       series: [
         {
-          name: "Training",
-          data: this.train_y,
+          name: "Test",
+          data: this.errorTest,
         },
         {
           name: "Training",
@@ -107,11 +107,11 @@ export class ErrorAnalysisComponent {
         borderColor: "#f1f1f1"
       },
       xaxis: {
-        categories: Array.from(Array(60).keys())
+        //categories: Array.from(Array(60).keys())
       },
       yaxis: {
         min: 0,
-        max: 2,
+        max: 0.5,
         //tickAmount: 0.001,
       }
     };

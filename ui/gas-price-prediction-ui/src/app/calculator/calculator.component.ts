@@ -38,6 +38,11 @@ export class CalculatorComponent {
      this.result.set((cpi*this.a) + (crudeOil*this.b) + (oilProd*this.c));
   }
 
+  clear(){
+    console.log("clear()");
+    this.equation.reset(this.equation.value);
+  }
+
 
 
 }

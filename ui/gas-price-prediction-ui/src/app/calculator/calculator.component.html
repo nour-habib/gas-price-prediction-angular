@@ -1,17 +1,30 @@
-<div>
+<h2>Calculator</h2>
+<div id="calc">
+    <div id="header">Calculator</div>
+    <div id="form">
+        <form [formGroup]="equation" (ngSubmit)="calculate()">
+        <input class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" id="cpi" type="text" placeholder="Consumer Price Index"   formControlName="cpi">
+        <input class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" id="oilProd" type="text" placeholder="Oil production"   formControlName="oilProd">
+        <input class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" id="crudeOil" type="text" placeholder="Crude oil price"   formControlName="crudeOilPrice">
+        <button id="submit" class="text-white bg-blue-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center" type="submit" [disabled]="!equation.valid">Get Gas Price</button>
+        <button id="clearButton"  class="text-white bg-blue-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center" type="reset" (click)="clear()">Clear</button>
+        </form>
+    
+    </div><!--close form div-->
+
+    <div id="result">
+        <div id="header">Answer</div>
+        <div id="result"><label *ngIf="result() > 0" >{{ result() }}</label></div>
+    </div><!--close result-->
+
+</div><!--close calc-->
+
+<div id="description">
     <p>Use this module to calculate gas price based on consumer price index, crude oil price and oil production.
-        
     </p>
 </div>
 
-<div id="calc">
-    <form [formGroup]="equation" (ngSubmit)="calculate()">
-    <label id="formula">Compute gas price</label>
-    <input class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" id="cpi" type="text" placeholder="CPI"   formControlName="cpi">
-    <input class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" id="oilProd" type="text" placeholder="Oil production"   formControlName="oilProd">
-    <input class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" id="crudeOil" type="text" placeholder="Crude oil price"   formControlName="crudeOilPrice">
-    <button class="text-white bg-blue-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center" type="submit" [disabled]="!equation.valid">Get Gas Price</button>
-    </form>
-
-    <label id="result" *ngIf="result() > 0" >{{ result() }}</label>
+<div id="adSpace">
+    <div id="ad1">Ad</div>
+    <div id="ad2">Ad</div>
 </div>

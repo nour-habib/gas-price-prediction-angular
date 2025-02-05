@@ -1,5 +1,21 @@
 form{
     color:fff;
+    margin-top: 40px;
+    margin-left: 27%;
+}
+#form{
+    width:100%;
+}
+
+#header{
+    width:100%;
+    height:30px;
+    background-color: #999;
+    border-radius: 7px;    
+    font-weight: 800;
+    text-align: center;
+    color:#000;
+    font-size: 17px;
 }
 
 #formula{
@@ -10,6 +26,8 @@ form{
 #result{
     color:#fff;
     font-size: xx-large;
+    margin-top: 50px;
+    text-align: center;
 }
 
 input{
@@ -20,8 +38,60 @@ input{
     padding: 50px 50px 50px 50px;
     border: solid;
     border-width: 1px;
-    border-color:#fff;
+    border-color:#333;
     width:30%;
     height:100%;
+    padding:0px 0px 10px 0px;
+    float:left;
+    margin:20px 20px 20px 20px;
+}
+
+
+#clearButton{
+    margin-left: 20px;
+}
+
+#submitButton{
+    float:left;
+}
+
+#description{
+    width:30%;
+    border: solid;
+    border-width: 1px;
+    border-color:#333;
+    float:left;
+    height:100%;
+    margin:20px 20px 20px 20px;
+    padding:30px 10px 10px 30px;
+
+}
+
+
+#adSpace{
+    width:30%;
+    height:100%;
+    float:right;
     padding:10px 10px 10px 10px;
+    color:#333;
+}
+
+#ad1{
+    border: solid;
+    border-width: 1px;
+    border-color: #999;
+    width:100%;
+    height:50%;
+}
+
+#ad2{
+    border: solid;
+    border-width: 1px;
+    border-color:#999;
+    width:100%;
+    height:50%;
+}
+
+button{
+    margin-top:10px;
 }

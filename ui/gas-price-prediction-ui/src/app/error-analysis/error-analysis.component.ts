@@ -45,13 +45,10 @@ export class ErrorAnalysisComponent {
   @ViewChild("chart") chart!: ChartComponent;
   public trainOps!: Partial<ChartOptions>;
 
-  @ViewChild("testChart") testChart!: ChartComponent;
-  public testOps!: Partial<ChartOptions>;
 
   ngOnInit(): void {
     this.getErrorResults();
     setTimeout(() => this.initializeTrainGraph(), 3000);
-    setTimeout(() => this.initializeTestGraph(), 3000);
   }
 
   getErrorResults() {
@@ -115,59 +112,5 @@ export class ErrorAnalysisComponent {
         //tickAmount: 0.001,
       }
     };
-
   }
-
-  initializeTestGraph() {
-    this.testOps = {
-      series: [
-        {
-          name: "Training",
-          data: this.test_y,
-        },
-        {
-          name: "Training",
-          data: this.errorTest
-        }
-      ],
-      chart: {
-        //  height: 350,
-        type: "line",
-        zoom: {
-          enabled: true
-        }
-      },
-      dataLabels: {
-        enabled: false
-      },
-      stroke: {
-        width: [2,2],
-        curve: "straight",
-        //dashArray: [2, 1],
-      },
-      title: {
-        text: "Absolute Error (Testing)",
-        align: "center",
-        style: {
-          fontSize:  '14px',
-          fontWeight:  'bold',
-          fontFamily:  undefined,
-          color:  '#fff'
-        },
-      },
-      grid: {
-        borderColor: "#f1f1f1"
-      },
-      xaxis: {
-        categories: Array.from(Array(60).keys())
-      },
-      yaxis: {
-        min: 0,
-        max: 2,
-        //tickAmount: 0.001,
-      }
-    };
-
-  }
-
 }

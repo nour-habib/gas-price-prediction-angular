@@ -108,7 +108,7 @@ export class ErrorAnalysisComponent {
       },
       yaxis: {
         min: 0,
-        max: 0.5,
+        max: 0.1,
         //tickAmount: 0.001,
       }
     };

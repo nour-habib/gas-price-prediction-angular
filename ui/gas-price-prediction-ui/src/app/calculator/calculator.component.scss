@@ -7,6 +7,11 @@ form{
     width:100%;
 }
 
+input{
+    //border-radius: 20px;
+    margin-top:20px;
+}
+
 h3{
     font-weight: 800;
     color:#fff;
@@ -55,10 +60,6 @@ ul,p{
     font-size: medium;
     text-align: left;
     margin-top: 50px;
-}
-
-input{
-    border-radius: 20px;
 }
 
 #calc{

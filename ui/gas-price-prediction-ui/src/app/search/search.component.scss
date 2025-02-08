@@ -5,7 +5,16 @@ form{
 #table{
     padding-left:10%;
     padding-top: 50px;
-    width: 60%;
+    width: 80%;
+}
+
+table, th, td{
+    border-collapse: collapse;
+    border: 1px solid;
+}
+
+th,  td{
+    padding: 10px 10px 10px 10px;
 }
 
 #search{
@@ -24,8 +33,20 @@ table{
     color:#fff;
 }
 
-.gas{
-    color:beige;
+.gasText{
+    color:#f757f5;
+}
+
+.cpiText{
+    color:#43e06d;
+}
+
+.crudeOilText{
+    color: #42bde3;
+}
+
+.oilText{
+    color:#e35d42;
 }
 
 // button{

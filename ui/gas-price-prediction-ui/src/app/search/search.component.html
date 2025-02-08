@@ -112,18 +112,18 @@
         <td class="border border-slate-300">{{ ob['Date'] }}</td>
         <td class="border border-slate-300">
           <div>
-            <div class="gas"><span *ngIf="gasPrice()">Gas Price</span></div>
-            <div><span *ngIf="cpi()">CPI</span></div>
-            <div><span *ngIf="crudeOilPrice()">Crude Oil Price</span></div>
-            <div><span *ngIf="oilProd()">Oil Production</span></div>
+            <div class="gasText"><span *ngIf="gasPrice()">Gas Price</span></div>
+            <div class="cpiText"><span *ngIf="cpi()">CPI</span></div>
+            <div class="crudeOilText"><span *ngIf="crudeOilPrice()">Crude Oil Price</span></div>
+            <div class="oilText"><span *ngIf="oilProd()">Oil Production</span></div>
           </div>
         </td>
         <td class="border border-slate-300">
           <div>
-            <div class="gas"><span *ngIf="gasPrice()">{{ ob['gasPrice'] }}</span></div>
-            <div><span *ngIf="cpi()">{{ ob['consumerPriceIndex'] }}</span></div>
-            <div><span *ngIf="crudeOilPrice()">{{ ob['crudeOilPrice'] }}</span></div>
-            <div><span *ngIf="oilProd()">{{ ob['oilProduction'] }}</span></div>
+            <div class="gasText"><span *ngIf="gasPrice()">{{ ob['gasPrice'] }}</span></div>
+            <div class="cpiText"><span *ngIf="cpi()">{{ ob['consumerPriceIndex'] }}</span></div>
+            <div class="crudeOilText"><span *ngIf="crudeOilPrice()">{{ ob['crudeOilPrice'] }}</span></div>
+            <div class="oilText"><span *ngIf="oilProd()">{{ ob['oilProduction'] }}</span></div>
         </div>
         </td>
       </tr>   

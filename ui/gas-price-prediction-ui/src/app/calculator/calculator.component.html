@@ -12,9 +12,11 @@
     
     </div><!--close form div-->
 
-    <div id="result">
+    <div id="resultContainer">
         <div id="header">Answer</div>
-        <div id="result"><label *ngIf="result() > 0" >{{ result() }}</label></div>
+        <div id="result"><label *ngIf="result() > 0" >{{ result().toFixed(2) }}</label></div>
+        <div id="resultExplanation"><label *ngIf="result() > 0" >
+            <h3>Explanation</h3><br>{{ resultExplanation() }}</label></div>
     </div><!--close result-->
 
 </div><!--close calc-->
@@ -30,14 +32,16 @@
     </p>
     <br>
     <h3>Example Calculation</h3>
+    <br>
     <p>Suppose we anticipate CPI, crude oil price and oil production values to be: </p>
         <ul>
             <li>$250</li>
             <li>$68</li>
-            <li>11800</li>
+            <li>11800 barrels</li>
         </ul>
 
-        Then the calculator gives a value of --fill in value--.
+      <p> Then the calculator gives a value of --fill in value--.</p>
+
 
     
 </div>

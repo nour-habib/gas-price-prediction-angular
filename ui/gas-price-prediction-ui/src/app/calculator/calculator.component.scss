@@ -1,10 +1,25 @@
 form{
     color:fff;
-    margin-top: 40px;
+    margin-top: 75px;
     margin-left: 27%;
 }
 #form{
     width:100%;
+}
+
+h3{
+    font-weight: 800;
+    color:#fff;
+    font-size:medium;
+}
+
+li{
+    margin-left: 25px;
+}
+
+ul,p{
+    color:#999;
+    list-style-type: disc;
 }
 
 #header{
@@ -23,11 +38,23 @@ form{
     font-size: xx-large;
 }
 
-#result{
+#resultContainer{
     color:#fff;
     font-size: xx-large;
-    margin-top: 50px;
+    margin-top: 100px;
+    margin-left: 30px;
+    margin-right: 30px;
     text-align: center;
+}
+
+#result{
+    margin-top: 20px;
+}
+
+#resultExplanation{
+    font-size: medium;
+    text-align: left;
+    margin-top: 50px;
 }
 
 input{
@@ -94,5 +121,5 @@ input{
 }
 
 button{
-    margin-top:10px;
+    margin-top:30px;
 }

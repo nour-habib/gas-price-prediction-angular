@@ -20,6 +20,7 @@ export class CalculatorComponent {
   b = 1;
   c = 1;
   result = signal(0);
+  resultExplanation = signal('');
   
   calculate() {
      
@@ -35,7 +36,13 @@ export class CalculatorComponent {
        oilProd = Number(this.equation.value.oilProd.valueOf());
      } 
 
-     this.result.set((cpi*this.a) + (crudeOil*this.b) + (oilProd*this.c));
+     let gasPriceResult = (cpi*this.a) + (crudeOil*this.b) + (oilProd*this.c);
+
+     this.result.set(gasPriceResult);
+     this.resultExplanation.set("When CPI = " + this.equation.value.cpi + ", "+
+                                  "crude oil price = " + this.equation.value.crudeOilPrice + ", " +
+                                "oil production = " + this.equation.value.oilProd + ", " + 
+                                 " the model predicts the price of gas to be " + "$" + gasPriceResult + ".00." );
   }
 
   clear(){

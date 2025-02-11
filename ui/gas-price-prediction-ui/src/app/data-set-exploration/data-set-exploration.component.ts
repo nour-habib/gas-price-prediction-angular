@@ -33,6 +33,7 @@ export type ChartOptions2 = {
   series: ApexAxisChartSeries;
   chart: ApexChart;
   xaxis: ApexXAxis;
+  yaxis: ApexYAxis;
   title: ApexTitleSubtitle;
   tooltip: ApexTooltip;
 };
@@ -145,7 +146,7 @@ export class DataSetExplorationComponent {
         //dashArray: [2, 1],
       },
       title: {
-        text: "Gas Price (USA)",
+        text: "Gas Price",
         align: "center",
         style: {
           fontSize:  '14px',
@@ -161,12 +162,25 @@ export class DataSetExplorationComponent {
         }
       },
       xaxis: {
-        categories: this.date
+        categories: this.date,
+        labels: {
+          show: true,
+          style: {
+              colors: '#999',
+              fontSize: '8px',
+              //cssClass: 'apexcharts-xaxis-label',
+          },
+        }
       },
       yaxis: {
-        // min: 0,
-        // max: 2,
-        // //tickAmount: 0.001,
+        labels: {
+          show: true,
+          style: {
+              colors: '#999',
+              fontSize: '8px',
+              //cssClass: 'apexcharts-xaxis-label',
+          },
+        }
       }
     };
   
@@ -214,12 +228,25 @@ export class DataSetExplorationComponent {
     
       },
       xaxis: {
-        categories: this.date
+        categories: this.date,
+        labels: {
+          show: true,
+          style: {
+              colors: '#999',
+              fontSize: '8px',
+              //cssClass: 'apexcharts-xaxis-label',
+          },
+        }
       },
       yaxis: {
-        // min: 0,
-        // max: 2,
-        // //tickAmount: 0.001,
+        labels: {
+          show: true,
+          style: {
+              colors: '#999',
+              fontSize: '8px',
+              //cssClass: 'apexcharts-xaxis-label',
+          },
+        }
       },
       colors: ["#FF1654"],
     };
@@ -229,7 +256,7 @@ export class DataSetExplorationComponent {
     this.oilProdOption = {
       series: [
         {
-          name: "Oil Prod",
+          name: "Oil production (barrels)",
           data: this.oilProduction,
         },
       ],
@@ -250,7 +277,7 @@ export class DataSetExplorationComponent {
         //dashArray: [2, 1],
       },
       title: {
-        text: "Oil Production (USA)",
+        text: "Oil Production",
         align: "center",
         style: {
           fontSize:  '14px',
@@ -266,12 +293,25 @@ export class DataSetExplorationComponent {
         }
       },
       xaxis: {
-        categories: this.date
+        categories: this.date,
+        labels: {
+          show: true,
+          style: {
+              colors: '#999',
+              fontSize: '8px',
+              //cssClass: 'apexcharts-xaxis-label',
+          },
+        }
       },
       yaxis: {
-        // min: 0,
-        // max: 2,
-        // //tickAmount: 0.001,
+        labels: {
+          show: true,
+          style: {
+              colors: '#999',
+              fontSize: '8px',
+              //cssClass: 'apexcharts-xaxis-label',
+          },
+        }
       }
     };
   }
@@ -300,7 +340,7 @@ export class DataSetExplorationComponent {
         //dashArray: [2, 1],
       },
       title: {
-        text: "Crude Oil Price (USA)",
+        text: "Crude Oil Price",
         align: "center",
         style: {
           fontSize:  '14px',
@@ -316,12 +356,25 @@ export class DataSetExplorationComponent {
         }
       },
       xaxis: {
-        categories: this.date
+        categories: this.date,
+        labels: {
+          show: true,
+          style: {
+              colors: '#999',
+              fontSize: '8px',
+              //cssClass: 'apexcharts-xaxis-label',
+          },
+        }
       },
       yaxis: {
-        // min: 0,
-        // max: 2,
-        // //tickAmount: 0.001,
+        labels: {
+          show: true,
+          style: {
+              colors: '#999',
+              fontSize: '8px',
+              //cssClass: 'apexcharts-xaxis-label',
+          },
+        }
       }
     };
   }
@@ -505,15 +558,33 @@ export class DataSetExplorationComponent {
       //colors: ['#008FFB', '#FEB019'],
 title: {
   text: 'BoxPlot - Gas Price',
-  align: 'center'
+  align: 'center',
+  style: {
+    fontSize:  '14px',
+    fontWeight:  'bold',
+    fontFamily:  undefined,
+    color:  '#fff'
+  },
 },
 xaxis: {
-  //type: 'datetime',
-  // tooltip: {
-  //   formatter: function(val) {
-  //     return new Date(val).getFullYear()
-  //   }
-  // }
+  labels: {
+    show: true,
+    style: {
+        colors: '#fff',
+        fontSize: '8px',
+        //cssClass: 'apexcharts-xaxis-label',
+    },
+  }
+},
+yaxis: {
+  labels: {
+    show: true,
+    style: {
+        colors: '#fff',
+        fontSize: '8px',
+        //cssClass: 'apexcharts-xaxis-label',
+    },
+  }
 },
 tooltip: {
   shared: false,
@@ -563,12 +634,25 @@ tooltip: {
         }
       },
       xaxis: {
-        categories: this.crudeOilPrice
+        categories: this.crudeOilPrice,
+        labels: {
+          show: true,
+          style: {
+              colors: '#999',
+              fontSize: '8px',
+              //cssClass: 'apexcharts-xaxis-label',
+          },
+        }
       },
       yaxis: {
-        // min: 0,
-        // max: 2,
-        // //tickAmount: 0.001,
+        labels: {
+          show: true,
+          style: {
+              colors: '#999',
+              fontSize: '8px',
+              //cssClass: 'apexcharts-xaxis-label',
+          },
+        }
       }
     };
   }

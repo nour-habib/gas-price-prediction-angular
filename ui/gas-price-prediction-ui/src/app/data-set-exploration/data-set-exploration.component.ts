@@ -54,10 +54,10 @@ export class DataSetExplorationComponent {
   gasPrice: Array<number> = [];
   date: Array<string> = [];
   correlationMatrix: Array<number> = [];
-  gasPriceGraph: any = [];
-  cpiGraph: any = [];
-  oilProdGraph: any = [];
-  crudeOilGraph: any = [];
+  //gasPriceGraph: any = [];
+  //cpiGraph: any = [];
+  //oilProdGraph: any = [];
+  //crudeOilGraph: any = [];
   title = 'Data Set Exploration';
   @ViewChild("chart") chart!: ChartComponent;
   public co!: Partial<ChartOptions2>;
@@ -77,13 +77,11 @@ export class DataSetExplorationComponent {
   @ViewChild("allChart") allChart!: ChartComponent;
   public allVarsOption!: Partial<ChartOptions>;
 
-  
 
   constructor() { }
 
   ngOnInit(): void
   {
-    console.log("dataSetExploration component: ngOnInit()");
     this.getDataSet();
     setTimeout(() => this.initializeGasPriceGraph(), 3000);
     setTimeout(() => this.initializeCPIGraph(), 3000);
@@ -211,7 +209,7 @@ export class DataSetExplorationComponent {
         //dashArray: [2, 1],
       },
       title: {
-        text: "Consumer Price Index (USA)",
+        text: "Consumer Price Index",
         align: "center",
         style: {
           fontSize:  '14px',
@@ -379,132 +377,6 @@ export class DataSetExplorationComponent {
     };
   }
 
-  // initializeGasPriceGraph() {
-  //   console.log("init gas price");
-  //   console.log("ggas: ", this.gasPrice);
-  //   this.date = this.dataSet.map(data => data.Date);
-  //  // Array.from(Array(80).keys())
-  //  console.log("this.date: ", this.date);
-
-  //   this.gasPriceGraph = new Chart('gasPrice', {
-  //     type: 'line',
-  //     data: {
-  //       labels:Array.from(Array(80).keys()),
-  //       datasets: [
-  //         {
-  //           data: this.gasPrice,
-  //           borderColor: 'black',
-  //           label: 'Gas Price',
-  //           backgroundColor: 'blue',
-  //         }
-  //       ]
-  //     },
-  //     options: {
-  //       maintainAspectRatio: true,
-  //       responsive: true,
-  //       plugins: {
-  //         legend: {
-  //           position: 'right',
-  //         },
-  //         title: {
-  //           display: true,
-  //           text: 'Gas Price'
-  //         },
-  //       }
-  //     }
-  //   });
-  // }
-
-  // initializeCPIgraph() {
-  //   this.cpiGraph = new Chart('cpi', {
-  //     type: 'scatter',
-  //     data: {
-  //       labels: this.dataSet.map(data => data.consumerPriceIndex),
-  //       datasets: [
-  //         {
-  //           data: this.gasPrice,
-  //           borderColor: 'yellow',
-  //           label: 'CPI',
-  //           backgroundColor: 'orange',
-  //         }
-  //       ]
-  //     },
-  //     options: {
-  //       maintainAspectRatio: true,
-  //       responsive: true,
-  //       plugins: {
-  //         legend: {
-  //           position: 'right',
-  //         },
-  //         title: {
-  //           display: true,
-  //           text: 'Consumer Price Index vs. Gas Price'
-  //         }
-  //       }
-  //     }
-  //   });
-  // }
-
-  // initializeOilProdGraph() {
-  //   this.oilProdGraph = new Chart('oilProd', {
-  //     type: 'scatter',
-  //     data: {
-  //       labels: this.oilProduction,
-  //       datasets: [
-  //         {
-  //           data: this.gasPrice,
-  //           borderColor: 'yellow',
-  //           label: 'Oil Production',
-  //           backgroundColor: 'pink',
-  //         }
-  //       ]
-  //     },
-  //     options: {
-  //       maintainAspectRatio: true,
-  //       responsive: true,
-  //       plugins: {
-  //         legend: {
-  //           position: 'right',
-  //         },
-  //         title: {
-  //           display: true,
-  //           text: 'Oil Production vs. Gas Price'
-  //         }
-  //       }
-  //     }
-  //   });
-  // }
-
-  // initializeCrudeOilGraph() {
-  //   this.crudeOilGraph = new Chart('crudeOil', {
-  //     type: 'scatter',
-  //     data: {
-  //       labels: this.dataSet.map(data => data.crudeOilPrice),
-  //       datasets: [
-  //         {
-  //           data: this.gasPrice,
-  //           borderColor: 'yellow',
-  //           label: 'Crude Oil Price',
-  //           backgroundColor: 'green',
-  //         }
-  //       ]
-  //     },
-  //     options: {
-  //       maintainAspectRatio: true,
-  //       responsive: true,
-  //       plugins: {
-  //         legend: {
-  //           position: 'right',
-  //         },
-  //         title: {
-  //           display: true,
-  //           text: 'Crude Oil Price vs. Gas Price'
-  //         }
-  //       }
-  //     }
-  //   });
-  // }
-
   randomValues(count: number, min:number, max:number) {
     const delta = max - min;
     return Array.from({length: count}).map(() => Math.random() * delta + min);
@@ -657,4 +529,4 @@ tooltip: {
     };
   }
 
-}
+} 

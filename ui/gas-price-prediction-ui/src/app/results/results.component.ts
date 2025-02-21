@@ -2,7 +2,6 @@ import { Component, inject, signal, ViewEncapsulation, ViewChild } from '@angula
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { DataService } from '../../service/data.service';
 import { ModelResults } from '../../model/model-results.interface';
-import { Chart } from 'chart.js/auto';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';

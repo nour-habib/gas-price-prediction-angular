@@ -1,6 +1,5 @@
 import { Component, inject, ViewChild } from '@angular/core';
 import { DataService } from '../../service/data.service';
-import { Chart } from 'chart.js/auto';
 import { ModelResults } from '../../model/model-results.interface';
 import {
   ChartComponent,
@@ -40,8 +39,8 @@ export class ErrorAnalysisComponent {
   errorTrain: Array<number> = [];
   train_y: Array<number> = [];
   test_y: Array<number> = [];
-  trainGraph: any = [];
-  testGraph: any = [];
+  // trainGraph: any = [];
+  // testGraph: any = [];
   @ViewChild("chart") chart!: ChartComponent;
   public trainOps!: Partial<ChartOptions>;
 

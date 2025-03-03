@@ -1,7 +1,7 @@
 <h2>Calculator</h2>
 <div id="calc">
     <div id="header">Calculator</div>
-    <div id="form">
+    <div id="form" class="zoom">
         <form [formGroup]="equation" (ngSubmit)="calculate()">
         <input class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" id="cpi" type="text" placeholder="Consumer Price Index"   formControlName="cpi">
         <input class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" id="oilProd" type="text" placeholder="Oil production"   formControlName="oilProd">

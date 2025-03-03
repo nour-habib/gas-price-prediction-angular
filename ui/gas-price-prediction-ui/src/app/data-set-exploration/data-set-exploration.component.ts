@@ -54,10 +54,7 @@ export class DataSetExplorationComponent {
   gasPrice: Array<number> = [];
   date: Array<string> = [];
   correlationMatrix: Array<number> = [];
-  //gasPriceGraph: any = [];
-  //cpiGraph: any = [];
-  //oilProdGraph: any = [];
-  //crudeOilGraph: any = [];
+ 
   title = 'Data Set Exploration';
   @ViewChild("chart") chart!: ChartComponent;
   public co!: Partial<ChartOptions2>;
@@ -128,7 +125,7 @@ export class DataSetExplorationComponent {
         },
       ],
       chart: {
-        height: 350,
+        height: 380,
         type: "line",
         zoom: {
           enabled: true
@@ -161,6 +158,16 @@ export class DataSetExplorationComponent {
       },
       xaxis: {
         categories: this.date,
+        title: {
+          text: "Date",
+          style: {
+            color: "#fff",
+            fontSize: '14px',
+            fontFamily: 'Helvetica, Arial, sans-serif',
+            fontWeight: 600,
+            cssClass: 'apexcharts-yaxis-title',
+        },
+        },
         labels: {
           show: true,
           style: {
@@ -178,7 +185,17 @@ export class DataSetExplorationComponent {
               fontSize: '8px',
               //cssClass: 'apexcharts-xaxis-label',
           },
-        }
+        },
+        title: {
+          text: "Gas Price",
+          style: {
+            color: '#fff',
+            fontSize: '14px',
+            fontFamily: 'Helvetica, Arial, sans-serif',
+            fontWeight: 600,
+            cssClass: 'apexcharts-yaxis-title',
+        },
+        },
       }
     };
   
@@ -193,7 +210,7 @@ export class DataSetExplorationComponent {
         },
       ],
       chart: {
-        height: 350,
+        height: 380,
         type: "line",
         zoom: {
           enabled: true
@@ -227,6 +244,16 @@ export class DataSetExplorationComponent {
       },
       xaxis: {
         categories: this.date,
+        title: {
+          text: "Date",
+          style: {
+            color: "#fff",
+            fontSize: '14px',
+            fontFamily: 'Helvetica, Arial, sans-serif',
+            fontWeight: 600,
+            cssClass: 'apexcharts-yaxis-title',
+        },
+        },
         labels: {
           show: true,
           style: {
@@ -237,6 +264,16 @@ export class DataSetExplorationComponent {
         }
       },
       yaxis: {
+        title: {
+          text: "CPI",
+          style: {
+            color: "#fff",
+            fontSize: '14px',
+            fontFamily: 'Helvetica, Arial, sans-serif',
+            fontWeight: 600,
+            cssClass: 'apexcharts-yaxis-title',
+        },
+        },
         labels: {
           show: true,
           style: {
@@ -259,7 +296,7 @@ export class DataSetExplorationComponent {
         },
       ],
       chart: {
-        height: 350,
+        height: 380,
         type: "line",
         zoom: {
           enabled: true
@@ -292,6 +329,16 @@ export class DataSetExplorationComponent {
       },
       xaxis: {
         categories: this.date,
+        title: {
+          text: "Date",
+          style: {
+            color:"#fff",
+            fontSize: '14px',
+            fontFamily: 'Helvetica, Arial, sans-serif',
+            fontWeight: 600,
+            cssClass: 'apexcharts-yaxis-title',
+        },
+        },
         labels: {
           show: true,
           style: {
@@ -302,6 +349,16 @@ export class DataSetExplorationComponent {
         }
       },
       yaxis: {
+        title: {
+          text: "Oil Production (barrels)",
+          style: {
+            color: "#fff",
+            fontSize: '12px',
+            fontFamily: 'Helvetica, Arial, sans-serif',
+            fontWeight: 600,
+            cssClass: 'apexcharts-yaxis-title',
+        },
+        },
         labels: {
           show: true,
           style: {
@@ -323,7 +380,7 @@ export class DataSetExplorationComponent {
         },
       ],
       chart: {
-        height: 350,
+        height: 380,
         type: "line",
         zoom: {
           enabled: true
@@ -355,6 +412,16 @@ export class DataSetExplorationComponent {
       },
       xaxis: {
         categories: this.date,
+        title: {
+          text: "Date",
+          style: {
+            color: "#fff",
+            fontSize: '14px',
+            fontFamily: 'Helvetica, Arial, sans-serif',
+            fontWeight: 600,
+            cssClass: 'apexcharts-yaxis-title',
+        },
+        },
         labels: {
           show: true,
           style: {
@@ -365,6 +432,16 @@ export class DataSetExplorationComponent {
         }
       },
       yaxis: {
+        title: {
+          text: "Crude Oil Price",
+          style: {
+            color: "#fff",
+            fontSize: '14px',
+            fontFamily: 'Helvetica, Arial, sans-serif',
+            fontWeight: 600,
+            cssClass: 'apexcharts-yaxis-title',
+        },
+        },
         labels: {
           show: true,
           style: {
@@ -474,9 +551,9 @@ tooltip: {
         },
       ],
       chart: {
-        height: 350,
+        height: 600,
         type: "line",
-        zoom: {
+        zoom: {   
           enabled: true
         }
       },
@@ -486,7 +563,7 @@ tooltip: {
       stroke: {
         width: 3,
         curve: "straight",
-        colors: ["#1f48a6"],
+        colors: ["#7adedc"],
         //dashArray: [2, 1],
       },
       title: {
@@ -502,11 +579,22 @@ tooltip: {
       grid: {
         row: {
           colors: ["#3d3d3b", "transparent"],
-          opacity: 0.5
+          opacity: 0.5,
         }
       },
       xaxis: {
         categories: this.crudeOilPrice,
+        stepSize: 20,
+        title: {
+          text: "Crude Oil Price",
+          style: {
+            color: "#fff",
+            fontSize: '12px',
+            fontFamily: 'Helvetica, Arial, sans-serif',
+            fontWeight: 600,
+            cssClass: 'apexcharts-yaxis-title',
+        },
+        },
         labels: {
           show: true,
           style: {
@@ -517,6 +605,16 @@ tooltip: {
         }
       },
       yaxis: {
+        title: {
+          text: "Gas Price",
+          style: {
+            color: "#fff",
+            fontSize: '12px',
+            fontFamily: 'Helvetica, Arial, sans-serif',
+            fontWeight: 600,
+            cssClass: 'apexcharts-yaxis-title',
+        },
+        },
         labels: {
           show: true,
           style: {

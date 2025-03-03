@@ -23,71 +23,60 @@
 </div> <!--close first div-->
 <div id="default-styled-tab-content">
   <div class="hidden p-4 rounded-lg dark:bg-gray-800" id="styled-profile" role="tabpanel" aria-labelledby="profile-tab">
-        <mat-grid-list cols="2" rowHeight="2:1">
-
-          <mat-grid-tile>
-            <div id="gasChart">
-               <apx-chart
-                [series]="gasOption.series!"
-                [chart]="gasOption.chart!"
-                [xaxis]="gasOption.xaxis!"
-                [dataLabels]="gasOption.dataLabels!"
-                [grid]="gasOption.grid!"
-                [stroke]="gasOption.stroke!"
-                [title]="gasOption.title!"
-                [yaxis]="gasOption.yaxis!"
-                [colors]="gasOption.colors!"
-              ></apx-chart>
-            </div>
-          </mat-grid-tile>
-  
-          <mat-grid-tile>
-            <div id="cpiChart">
-              <apx-chart
-               [series]="cpiOption.series!"
-               [chart]="cpiOption.chart!"
-               [xaxis]="cpiOption.xaxis!"
-               [dataLabels]="cpiOption.dataLabels!"
-               [grid]="cpiOption.grid!"
-               [stroke]="cpiOption.stroke!"
-               [title]="cpiOption.title!"
-               [yaxis]="cpiOption.yaxis!"
-             ></apx-chart>
-           </div>
-
-          </mat-grid-tile>
-  
-          <mat-grid-tile>
-              <div id="oilProdChart">
+           
+              <div id="gasChart">
                 <apx-chart
-                 [series]="oilProdOption.series!"
-                 [chart]="oilProdOption.chart!"
-                 [xaxis]="oilProdOption.xaxis!"
-                 [dataLabels]="oilProdOption.dataLabels!"
-                 [grid]="oilProdOption.grid!"
-                 [stroke]="oilProdOption.stroke!"
-                 [title]="oilProdOption.title!"
-                 [yaxis]="oilProdOption.yaxis!"
-               ></apx-chart>
-             </div>
-          </mat-grid-tile>
-  
-          <mat-grid-tile>
-            <div id="crudeOilChart">
+                  [series]="gasOption.series!"
+                  [chart]="gasOption.chart!"
+                  [xaxis]="gasOption.xaxis!"
+                  [dataLabels]="gasOption.dataLabels!"
+                  [grid]="gasOption.grid!"
+                  [stroke]="gasOption.stroke!"
+                  [title]="gasOption.title!"
+                  [yaxis]="gasOption.yaxis!"
+                  [colors]="gasOption.colors!"
+                ></apx-chart>
+              </div><!--close gasChart-->
+              
+              <div id="cpiChart">
+                <apx-chart
+                [series]="cpiOption.series!"
+                [chart]="cpiOption.chart!"
+                [xaxis]="cpiOption.xaxis!"
+                [dataLabels]="cpiOption.dataLabels!"
+                [grid]="cpiOption.grid!"
+                [stroke]="cpiOption.stroke!"
+                [title]="cpiOption.title!"
+                [yaxis]="cpiOption.yaxis!"
+              ></apx-chart>
+            </div><!--close cpiChart-->
+
+            <div id="oilProdChart">
               <apx-chart
-               [series]="crudeOilOption.series!"
-               [chart]="crudeOilOption.chart!"
-               [xaxis]="crudeOilOption.xaxis!"
-               [dataLabels]="crudeOilOption.dataLabels!"
-               [grid]="crudeOilOption.grid!"
-               [stroke]="crudeOilOption.stroke!"
-               [title]="crudeOilOption.title!"
-               [yaxis]="crudeOilOption.yaxis!"
+               [series]="oilProdOption.series!"
+               [chart]="oilProdOption.chart!"
+               [xaxis]="oilProdOption.xaxis!"
+               [dataLabels]="oilProdOption.dataLabels!"
+               [grid]="oilProdOption.grid!"
+               [stroke]="oilProdOption.stroke!"
+               [title]="oilProdOption.title!"
+               [yaxis]="oilProdOption.yaxis!"
              ></apx-chart>
-           </div>
-          </mat-grid-tile>
-  
-        </mat-grid-list>
+           </div><!--close oilProd-->
+
+           <div id="crudeOilChart">
+            <apx-chart
+             [series]="crudeOilOption.series!"
+             [chart]="crudeOilOption.chart!"
+             [xaxis]="crudeOilOption.xaxis!"
+             [dataLabels]="crudeOilOption.dataLabels!"
+             [grid]="crudeOilOption.grid!"
+             [stroke]="crudeOilOption.stroke!"
+             [title]="crudeOilOption.title!"
+             [yaxis]="crudeOilOption.yaxis!"
+           ></apx-chart>
+            </div><!--crudeOilChart-->
+    
   </div><!--close section hidden p4-->
 
   <div class="hidden p-4 rounded-lg dark:bg-gray-800" id="styled-dashboard" role="tabpanel" aria-labelledby="dashboard-tab">

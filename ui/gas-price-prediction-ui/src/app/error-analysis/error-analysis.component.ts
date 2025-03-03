@@ -103,12 +103,24 @@ export class ErrorAnalysisComponent {
         borderColor: "#f1f1f1"
       },
       xaxis: {
-        //categories: Array.from(Array(60).keys())
+        labels: {
+          show: true,
+          style: {
+              colors: '#999',
+              fontSize: '8px',
+              //cssClass: 'apexcharts-xaxis-label',
+          },
+        },
       },
       yaxis: {
-        min: 0,
-        max: 0.1,
-        //tickAmount: 0.001,
+        labels: {
+          show: true,
+          style: {
+              colors: '#999',
+              fontSize: '8px',
+              //cssClass: 'apexcharts-xaxis-label',
+          },
+        }
       }
     };
   }

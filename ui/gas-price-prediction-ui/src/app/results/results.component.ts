@@ -125,12 +125,25 @@ export class ResultsComponent {
         }
       },
       xaxis: {
-        categories: Array.from(Array(60).keys())
+        categories: Array.from(Array(60).keys()),
+        labels: {
+          show: true,
+          style: {
+              colors: '#999',
+              fontSize: '8px',
+              //cssClass: 'apexcharts-xaxis-label',
+          },
+        }
       },
       yaxis: {
-        // min: 0,
-        // max: 2,
-        // //tickAmount: 0.001,
+        labels: {
+          show: true,
+          style: {
+              colors: '#999',
+              fontSize: '8px',
+              //cssClass: 'apexcharts-xaxis-label',
+          },
+        } 
       }
    };
   }
@@ -179,12 +192,25 @@ export class ResultsComponent {
         }
       },
       xaxis: {
-        categories: Array.from(Array(60).keys())
+        categories: Array.from(Array(60).keys()),
+        labels: {
+          show: true,
+          style: {
+              colors: '#999',
+              fontSize: '8px',
+              //cssClass: 'apexcharts-xaxis-label',
+          },
+        },
       },
       yaxis: {
-        // min: 0,
-        // max: 2,
-        // //tickAmount: 0.001,
+        labels: {
+          show: true,
+          style: {
+              colors: '#999',
+              fontSize: '8px',
+              //cssClass: 'apexcharts-xaxis-label',
+          },
+        }
       }
    };
       

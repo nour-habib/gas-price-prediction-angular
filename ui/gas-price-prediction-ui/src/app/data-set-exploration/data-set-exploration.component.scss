@@ -1,3 +1,29 @@
+@media screen and (max-width: 768px)
+{
+    #gasChart, #cpiChart, #oilProdChart, #crudeOilChart{
+        width:100%;
+    }
+    #charts{
+        display:inline-block;
+        width:100%;
+    }
+}
+
+@media screen and (min-width: 768px)
+{
+    #oilProdChart,#gasChart{
+        float: left;
+     }
+     
+     #crudeOilChart,#cpiChart{
+         float:right;
+     }
+
+     #gasChart, #cpiChart, #oilProdChart, #crudeOilChart{
+        width:50%;
+    }
+}
+
 #description{
     color:#999;
 }
@@ -16,10 +42,6 @@
 
 mat-tab label  {
     color: #7ad7f0;
-}
-
-#boxplot {
-    background-color: yellow;
 }
 
 #tableContainer{
@@ -55,38 +77,9 @@ tr:nth-child(odd){
     background-color: #666;
 }
 
-#gasChart, #cpiChart, #oilProdChart, #crudeOilChart{
-    width:50%;
-    //height: 80%;
-   // margin: 35px auto;
-   // padding: 20px 20px 20px 20px;
-}
-
 
 #allChart{
     width: 80%;
     padding-top:30px;
     padding-left:20px;
-}
-
-#firstTwo, #secondTwo{
-   //height: 100%;
-    width:100%;
-
-}
-
-#gasChart{  
-    float: left;
-}
-
-#cpiChart{
-    float: right;
-}
-
-#oilProdChart{
-   float: left;
-}
-
-#crudeOilChart{
-    float:right;
 }

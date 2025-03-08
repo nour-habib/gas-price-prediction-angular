@@ -1,3 +1,41 @@
+@media screen and (max-width: 768px)
+{
+    #calc{
+        width: 100%;
+        display:inline-block;
+        margin-right: 0px;
+        margin-left: 0px;
+    }
+    
+    #description{
+        width:100%;
+    }
+
+    #adSpace{
+        display:none;
+    }
+
+}
+
+@media screen and (min-width: 768px)
+{
+    #calc{
+        width:30%;
+    }
+    #description{
+        width:30%;
+    }
+
+    #adSpace{
+        width: 30%;
+        height:100%;
+    }
+
+    #ad1, #ad2{
+        height: 50%;
+    }
+}
+
 form{
     color:fff;
     margin-top: 75px;
@@ -67,7 +105,6 @@ ul,p{
     border: solid;
     border-width: 1px;
     border-color:#333;
-    width:30%;
     height:100%;
     padding:0px 0px 10px 0px;
     float:left;
@@ -84,7 +121,6 @@ ul,p{
 }
 
 #description{
-    width:30%;
     border: solid;
     border-width: 1px;
     border-color:#333;
@@ -95,30 +131,32 @@ ul,p{
 
 }
 
-
 #adSpace{
-    width:30%;
-    height:100%;
-    float:right;
+    border-width: 1px;
+    border-color: #999;
     padding:10px 10px 10px 10px;
     color:#333;
     margin-top: 60px;
+    width:30%;
+    height:100%;
+    float:right;
+    //background-color: yellow;
 }
 
 #ad1{
+    width:100%;
+    height: 50%;
     border: solid;
     border-width: 1px;
     border-color: #999;
-    width:100%;
-    height:50%;
 }
 
 #ad2{
+    width:100%;
+    height: 50%;
     border: solid;
     border-width: 1px;
     border-color:#999;
-    width:100%;
-    height:50%;
 }
 
 button{

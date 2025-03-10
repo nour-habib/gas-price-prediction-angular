@@ -2,6 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ModelResults } from '../model/model-results.interface';
 import { Data } from '../model/data.interface';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -17,13 +18,8 @@ export class DataService {
 
   constructor() { }
 
-  fetchData() {
-    fetch(this.dataAPI) // api for the get request
-    .then(response => response.json())
-    .then(data => console.log(data));
-  }
 
-  async getData() {
+  getData() : Observable<any> {
     const headers = new HttpHeaders().set('content-type', 'application/json')
     .set('Access-Control-Allow-Origin', '*');
 
@@ -31,6 +27,7 @@ export class DataService {
       `${this.dataAPI}`,
       {'headers':headers}
     );
+    
   }
 
   getCPI() {

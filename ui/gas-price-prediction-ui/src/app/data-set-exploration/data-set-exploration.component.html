@@ -81,7 +81,7 @@
   </div><!--close section hidden p4-->
 
   <div class="hidden p-4 rounded-lg dark:bg-gray-800" id="styled-dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
-    <div id="description"><p class="font-bold">Description:</p> A correlation matrix describes how much the variables in a dataset 
+  <div id="description" class="detailBox"><p class="font-bold">Description:</p> A correlation matrix describes how much the variables in a dataset 
       are related to another. Values closer to 1 imply high relation.
   </div><!--close description-->
 
@@ -133,7 +133,7 @@
     </table>
     </div><!--close table container-->
 
-    <div id="description"><p class="font-bold">Description:</p>From the chart above, observe that the correlation value between gas price and oil production is 0.9609.
+    <div id="description" class="detailBox"><p class="font-bold">Description:</p>From the chart above, observe that the correlation value between gas price and oil production is 0.9609.
     When we graph the two variables togeeether, a linear relationship is shown.</div><!--close description-->
 
     <div id="allChart">
@@ -148,14 +148,13 @@
        [yaxis]="allVarsOption.yaxis!"
      ></apx-chart>
    </div>
-
-
   </div><!--close section-->
 
   <div class="hidden p-4 rounded-lg dark:bg-gray-800" id="styled-settings" role="tabpanel" aria-labelledby="settings-tab">
-    <div id="description"><p class="font-bold">Description:</p> The following boxplot provides additional information about the spread of the gas price data set including
+    <div id="description" class="detailBox"><p class="font-bold">Description:</p> The following boxplot provides additional information about the spread of the gas price data set including
       the minimum, median and maximum as well as outliers which come in handy in our error analysis.
   </div><!--close description-->
+  <div id="boxplot">
     <div id="chart">
   <apx-chart
     [series]="co.series!"
@@ -165,7 +164,8 @@
     [title]="co.title!"
     [tooltip]="co.tooltip!"
   ></apx-chart>
-</div>
+  </div><!--close chart-->
+</div><!--close boxplot-->
   
 </div><!--close section-->
 </div><!--close default tab div-->

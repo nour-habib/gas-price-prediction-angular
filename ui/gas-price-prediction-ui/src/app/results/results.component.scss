@@ -10,7 +10,6 @@
 
 #trainChart, #testChart{
     width:50%;
-    //margin: 35px auto;s
 }
 
 #trainChart{
@@ -28,14 +27,19 @@
 
 #testDescription{
     float:right;
-    width:50%;
+    width:45%;
     padding: 30px 30px 30px 30px;
+    margin-left: 10px;
+    margin-right:10px
+    
 }
 
 #trainDescription{
     float:left;
-    width:50%;
+    width:45%;
     padding: 30px 30px 30px 30px;
+    margin-left: 40px;
+    margin-right:10px
 }
 
 

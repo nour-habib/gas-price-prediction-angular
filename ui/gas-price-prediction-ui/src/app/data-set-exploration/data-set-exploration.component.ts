@@ -16,6 +16,7 @@ import {
   ApexGrid,
   NgApexchartsModule
 } from "ng-apexcharts";
+import { Observable } from 'rxjs';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -87,14 +88,21 @@ export class DataSetExplorationComponent {
     setTimeout(() =>  this.initializeBoxplot(), 3000);
     setTimeout(() =>  this.initializeVariablesGraph(), 3000);
 
+    // this.initializeGasPriceGraph();
+    // this.initializeCPIGraph();
+    // this.initializeOilProdGraph();
+    // this.initializeCrudeOilGraph();
+    // this.initializeBoxplot();
+    // this.initializeVariablesGraph();
+
+
     this.correlationMatrix = this.dataService.getMatrix();
   }
 
-  async getDataSet() {
-    console.log("dataSet exploration: getDataSet()");
-    (await this.dataService.getData()).subscribe((data) => {
-        this.dataSet = data;
 
+  getDataSet() {
+      this.dataService.getData().subscribe((data) => {
+        this.dataSet = data;
         this.dataSet.sort((a,b) => {
           const ob1 = Date.parse(a['Date']);
           const ob2 = Date.parse(b['Date']);
@@ -110,11 +118,35 @@ export class DataSetExplorationComponent {
         this.crudeOilPrice = this.dataSet.map(data => data.crudeOilPrice);
         this.date = this.dataSet.map(data => data.Date);
     });
-    //   (await this.dataService.getData()).pipe(switchMap((data: any) => {
-    //     return this.dataSet = data;
-    // }));
 
-  }
+    
+ }
+
+  // async getDataSet() {
+  //   console.log("dataSet exploration: getDataSet()");
+  //   (await this.dataService.getData()).subscribe((data) => {
+  //       this.dataSet = data;
+
+  //       this.dataSet.sort((a,b) => {
+  //         const ob1 = Date.parse(a['Date']);
+  //         const ob2 = Date.parse(b['Date']);
+  //         return ob1 - ob2;
+  //     });
+
+  //       console.log("dataSet Exploration: ", this.dataSet);
+  //       this.cpi = this.dataSet.map(data => data.consumerPriceIndex);
+  //       console.log("dataSet Exploration cpi: ", this.cpi);
+  //       this.gasPrice = this.dataSet.map(data => data.gasPrice);
+  //       console.log("gas priccee: ", this.gasPrice);
+  //       this.oilProduction = this.dataSet.map(data => data.oilProduction);
+  //       this.crudeOilPrice = this.dataSet.map(data => data.crudeOilPrice);
+  //       this.date = this.dataSet.map(data => data.Date);
+  //   });
+  //   //   (await this.dataService.getData()).pipe(switchMap((data: any) => {
+  //   //     return this.dataSet = data;
+  //   // }));
+
+  // }
 
   initializeGasPriceGraph() {
     this.gasOption = {
@@ -454,11 +486,6 @@ export class DataSetExplorationComponent {
     };
   }
 
-  randomValues(count: number, min:number, max:number) {
-    const delta = max - min;
-    return Array.from({length: count}).map(() => Math.random() * delta + min);
-  }
-
   initializeBoxplot() {
     console.log("initialize boxPlot");
    this.co = {
@@ -501,7 +528,7 @@ export class DataSetExplorationComponent {
         }
       ],
       chart: {
-        height: 500,
+        height: 400,
         type: "boxPlot"
       },
       //colors: ['#008FFB', '#FEB019'],
@@ -551,7 +578,7 @@ tooltip: {
         },
       ],
       chart: {
-        height: 600,
+        height: 400,
         type: "line",
         zoom: {   
           enabled: true
@@ -567,7 +594,7 @@ tooltip: {
         //dashArray: [2, 1],
       },
       title: {
-        text: "Oil Production & Gas Price",
+        text: "Crude Oil Price & Gas Price",
         align: "center",
         style: {
           fontSize:  '14px',

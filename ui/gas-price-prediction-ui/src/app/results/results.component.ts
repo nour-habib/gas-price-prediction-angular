@@ -94,7 +94,7 @@ export class ResultsComponent {
         },
       ],
       chart: {
-        //height: 350,
+        height: 350,
         type: "line",
         zoom: {
           enabled: true
@@ -161,7 +161,7 @@ export class ResultsComponent {
         },
       ],
       chart: {
-        //height: 350,
+        height: 350,
         type: "line",
         zoom: {
           enabled: true

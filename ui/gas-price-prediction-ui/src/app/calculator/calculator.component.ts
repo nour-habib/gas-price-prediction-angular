@@ -1,6 +1,8 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, inject } from '@angular/core';
 import {ReactiveFormsModule, FormControl, FormGroup} from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { DataService } from '../../service/data.service';
+import { Data } from '../../model/data.interface';
 
 @Component({
   selector: 'app-calculator',
@@ -10,6 +12,8 @@ import { CommonModule } from '@angular/common';
   styleUrl: './calculator.component.scss'
 })
 export class CalculatorComponent {
+  dataService = inject(DataService);
+  dataSet = new Array<Data>;
   equation = new FormGroup({
     cpi: new FormControl(''),
     oilProd: new FormControl(''),

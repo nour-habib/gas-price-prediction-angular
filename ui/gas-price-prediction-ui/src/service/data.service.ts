@@ -25,9 +25,9 @@ export class DataService {
 
     return this.http.get<Data[]>(
       `${this.dataAPI}`,
-      {'headers':headers}
+      {'headers':headers
+      }
     );
-    
   }
 
   getCPI() {

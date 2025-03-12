@@ -8,8 +8,7 @@ import { HTTP_INTERCEPTORS, provideHttpClient, withFetch } from '@angular/common
 import { CacheInterceptor } from './http-cache-interceptor';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), provideClientHydration(), provideAnimationsAsync('noop'), provideAnimationsAsync(),provideHttpClient(withFetch()),
-    {provide: HTTP_INTERCEPTORS, useClass: CacheInterceptor, multi:true}
+  providers: [provideRouter(routes), provideClientHydration(), provideAnimationsAsync('noop'), provideAnimationsAsync(),provideHttpClient(withFetch())
   ]
 };
   

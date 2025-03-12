@@ -117,36 +117,8 @@ export class DataSetExplorationComponent {
         this.oilProduction = this.dataSet.map(data => data.oilProduction);
         this.crudeOilPrice = this.dataSet.map(data => data.crudeOilPrice);
         this.date = this.dataSet.map(data => data.Date);
-    });
-
-    
+    });  
  }
-
-  // async getDataSet() {
-  //   console.log("dataSet exploration: getDataSet()");
-  //   (await this.dataService.getData()).subscribe((data) => {
-  //       this.dataSet = data;
-
-  //       this.dataSet.sort((a,b) => {
-  //         const ob1 = Date.parse(a['Date']);
-  //         const ob2 = Date.parse(b['Date']);
-  //         return ob1 - ob2;
-  //     });
-
-  //       console.log("dataSet Exploration: ", this.dataSet);
-  //       this.cpi = this.dataSet.map(data => data.consumerPriceIndex);
-  //       console.log("dataSet Exploration cpi: ", this.cpi);
-  //       this.gasPrice = this.dataSet.map(data => data.gasPrice);
-  //       console.log("gas priccee: ", this.gasPrice);
-  //       this.oilProduction = this.dataSet.map(data => data.oilProduction);
-  //       this.crudeOilPrice = this.dataSet.map(data => data.crudeOilPrice);
-  //       this.date = this.dataSet.map(data => data.Date);
-  //   });
-  //   //   (await this.dataService.getData()).pipe(switchMap((data: any) => {
-  //   //     return this.dataSet = data;
-  //   // }));
-
-  // }
 
   initializeGasPriceGraph() {
     this.gasOption = {

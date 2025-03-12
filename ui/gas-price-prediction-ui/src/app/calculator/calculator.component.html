@@ -1,7 +1,6 @@
 <h2>Calculator</h2>
 <div id="3colBox">
 <div id="calc">
-    <div id="header">Calculator</div>
     <div id="form" class="zoom">
         <form [formGroup]="equation" (ngSubmit)="calculate()">
         <input class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" id="cpi" type="text" placeholder="Consumer Price Index"   formControlName="cpi">
@@ -14,7 +13,6 @@
     </div><!--close form div-->
 
     <div id="resultContainer">
-        <div id="header">Answer</div>
         <div id="result"><label *ngIf="result() > 0" >{{ result().toFixed(2) }}</label></div>
         <div id="resultExplanation"><label *ngIf="result() > 0" >
             <h3>Explanation</h3><br>{{ resultExplanation() }}</label></div>

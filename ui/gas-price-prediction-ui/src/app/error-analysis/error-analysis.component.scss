@@ -1,3 +1,37 @@
+@media screen and (max-width: 768px)
+{
+    #content{
+        display:inline-block;
+    }
+
+    #chart{
+        width:100%;
+    }
+
+    #trainDescription{
+        width:100%;
+    }
+
+
+
+
+}
+
+@media screen and (min-width: 768px){
+    #content{
+        width:100%;
+    }
+
+    #chart {
+        width:50%;
+        float:left;
+      }
+
+    #trainDescription{
+    float:left;
+    width:50%;
+    }
+}
 
 #content{
     width:100%;
@@ -8,32 +42,12 @@
     width:100%;
     color:#999; 
 }
+
 #trainDescription{
     float:left;
-    width:50%;
     padding: 30px 30px 30px 30px; 
     
 }
-
-#testDescription{
-    float:right;
-    width:50%;
-    padding: 30px 30px 30px 30px;
-}
-
-#chart {
-    //max-width: 650px;
-    width:50%;
-    //margin: 35px auto;
-    float:left;
-  }
-
-  #testChart {
-   //max-width: 650px;
-    width: 50%;
-    float:right;
-    //margin: 35px auto;
-  }
 
   
 

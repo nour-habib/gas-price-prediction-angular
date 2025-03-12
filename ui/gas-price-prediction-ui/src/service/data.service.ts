@@ -30,6 +30,18 @@ export class DataService {
     );
   }
 
+  // getData() : Observable<any> {
+  //   const li = 'https://proxy.cors.sh/<http://localhost:3000/data>';
+  //   const headers = new HttpHeaders().set('content-type', 'application/json')
+  //   .set('Access-Control-Allow-Origin', '*');
+
+  //   return this.http.get<Data[]>(
+  //     `${li}`,
+  //     {'headers':headers
+  //     }
+  //   );
+  // }
+
   getCPI() {
     const url = this.dataAPI + `/cpi`;
   

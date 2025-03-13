@@ -1,7 +1,17 @@
 
-h1 {
+// h1 {
+//     padding: 0 1rem;
+//     color:  #4285F4;
+//     font-size: 10px;
+//     font-weight: 100;
+
+// }
+
+#titleText{
     padding: 0 1rem;
     color:  #4285F4;
+    font-size: 15px;
+    font-weight: 300;
 }
 
 h2 {padding: 1rem;}
@@ -15,7 +25,6 @@ mat-toolbar{
 
 mat-sidenav-container {
     height:100%;
-    
 }
 
 // Move the content down so that it won't be hidden by the toolbar
@@ -70,4 +79,6 @@ mat-icon{
 
 mat-sidenav-container{
     background-color: #333;
+    //z-index: 1;
 }
+ 

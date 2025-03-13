@@ -117,14 +117,17 @@ ul,p{
 }
 
 #calc{
-    padding: 50px 50px 50px 50px;
+   // padding: 50px 50px 50px 50px;
     border: solid;
     border-width: 1px;
     border-color:#333;
     height:100%;
-    padding:0px 0px 10px 0px;
+   // padding:0px 0px 10px 0px;
     float:left;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    display:flex;
+    justify-content: center;
+    align-content: center;
 }
 
 

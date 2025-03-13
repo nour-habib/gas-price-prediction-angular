@@ -1,6 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+// @tailwind base;
+// @tailwind components;
+// @tailwind utilities;
 
 html, body { height: 100%;}
 body { 
@@ -15,11 +15,12 @@ p{
 }
 
 h2{
-    font-weight: 700 !important;
-    font-size: 20px !important;
+    font-weight: 500 !important;
+    font-size: 14px !important;
     color: #fff;
     // margin-top: 20px;
     // margin-left: 25px;
+    
 }
 
 h2{

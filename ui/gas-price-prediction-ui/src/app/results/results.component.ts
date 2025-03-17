@@ -58,7 +58,7 @@ export class ResultsComponent {
   ngOnInit(): void {
     this.getAllResults();
     this.initializeTrainGraph();
-    this.initializeTestGraph();
+    //this.initializeTestGraph();
     
     console.log("trainingResults Max: ", Math.max(...this.trainingResults));
     console.log("trainResult_Y Max: ", Math.max(... this.modelResults[0].training_y));

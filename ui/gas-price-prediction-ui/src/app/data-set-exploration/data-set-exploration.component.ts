@@ -1,9 +1,10 @@
 import { Component, inject, ViewChild, signal } from '@angular/core';
-import { RouterOutlet, RouterModule } from '@angular/router';
+import { RouterOutlet, RouterModule, ActivatedRoute } from '@angular/router';
 import { DataService } from '../../service/data.service';
 import { MatTabsModule } from '@angular/material/tabs'
 import { Data } from '../../model/data.interface';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { Router } from '@angular/router';
 import {
   ChartComponent,
   ApexAxisChartSeries,
@@ -17,6 +18,7 @@ import {
   NgApexchartsModule
 } from "ng-apexcharts";
 import { Observable } from 'rxjs';
+import { CommonModule } from '@angular/common';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -42,13 +44,13 @@ export type ChartOptions2 = {
 @Component({
   selector: 'app-data-set-exploration',
   standalone: true,
-  imports: [RouterOutlet, RouterModule, MatTabsModule, MatGridListModule, NgApexchartsModule],
+  imports: [RouterOutlet, RouterModule, MatTabsModule, MatGridListModule, NgApexchartsModule,CommonModule],
   templateUrl: './data-set-exploration.component.html',
   styleUrl: './data-set-exploration.component.scss'
 })
 export class DataSetExplorationComponent {
   dataService = inject(DataService);
-  dataSet = new Array<Data>;
+  dataSet: Data[] = [];
   cpi: Array<number> = [];
   oilProduction: Array<number> = [];
   crudeOilPrice: Array<number> = [];
@@ -75,34 +77,34 @@ export class DataSetExplorationComponent {
   @ViewChild("allChart") allChart!: ChartComponent;
   public allVarsOption!: Partial<ChartOptions>;
 
+  constructor(private activatedRoute: ActivatedRoute) {
+    console.log("dataset comp: constructor()");
 
-  constructor() { }
+   }
 
   ngOnInit(): void
   {
+    console.log("ngOnInit()");
     this.getDataSet();
-    setTimeout(() => this.initializeGasPriceGraph(), 3000);
-    setTimeout(() => this.initializeCPIGraph(), 3000);
-    setTimeout(() =>  this.initializeOilProdGraph(), 3000);
-    setTimeout(() =>  this.initializeCrudeOilGraph(), 3000);
-    setTimeout(() =>  this.initializeBoxplot(), 3000);
-    setTimeout(() =>  this.initializeVariablesGraph(), 3000);
-
     // this.initializeGasPriceGraph();
     // this.initializeCPIGraph();
     // this.initializeOilProdGraph();
     // this.initializeCrudeOilGraph();
     // this.initializeBoxplot();
     // this.initializeVariablesGraph();
-
-
     this.correlationMatrix = this.dataService.getMatrix();
   }
 
 
   getDataSet() {
-      this.dataService.getData().subscribe((data) => {
-        this.dataSet = data;
+    console.log("getDataSet()");
+
+      this.activatedRoute.data.subscribe((data) => {
+        console.log("data type: ", typeof(data));
+        this.dataSet = data[0];
+       
+       console.log("thi.dataset: ", typeof(this.dataSet));
+        console.log("activated ruote: data: " , data);
         this.dataSet.sort((a,b) => {
           const ob1 = Date.parse(a['Date']);
           const ob2 = Date.parse(b['Date']);
@@ -117,10 +119,18 @@ export class DataSetExplorationComponent {
         this.oilProduction = this.dataSet.map(data => data.oilProduction);
         this.crudeOilPrice = this.dataSet.map(data => data.crudeOilPrice);
         this.date = this.dataSet.map(data => data.Date);
+
+        this.initializeGasPriceGraph();
+        this.initializeCPIGraph();
+        this.initializeOilProdGraph();
+        this.initializeCrudeOilGraph();
+        this.initializeBoxplot();
+        this.initializeVariablesGraph();
     });  
  }
 
   initializeGasPriceGraph() {
+    console.log("initializeGasPrice");
     this.gasOption = {
       series: [
         {
@@ -133,6 +143,11 @@ export class DataSetExplorationComponent {
         type: "line",
         zoom: {
           enabled: true
+        },
+        toolbar: {
+          tools:{
+            download: true
+          }
         }
       },
       dataLabels: {

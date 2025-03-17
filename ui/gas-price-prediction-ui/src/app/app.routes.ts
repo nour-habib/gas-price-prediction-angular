@@ -5,6 +5,7 @@ import { ErrorAnalysisComponent } from './error-analysis/error-analysis.componen
 import { ModelComponent } from './model/model.component';
 import { SearchComponent } from './search/search.component';
 import { MainComponent } from './main/main.component';
+import { dataResolver } from './data.resolver';
 
 export const routes: Routes = [
     {
@@ -23,6 +24,7 @@ export const routes: Routes = [
     {
         path: 'dataSetExploration',
         component: DataSetExplorationComponent,
+        resolve: [dataResolver],
     },
     {
         path: 'model',

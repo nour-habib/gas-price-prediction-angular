@@ -19,15 +19,19 @@ export class DataService {
   constructor() { }
 
 
-  getData() : Observable<any> {
-    const headers = new HttpHeaders().set('content-type', 'application/json')
-    .set('Access-Control-Allow-Origin', '*');
-
+  getData(): Observable<Data[]> {
+  
     return this.http.get<Data[]>(
       `${this.dataAPI}`,
-      {'headers':headers
-      }
     );
+    // const headers = new HttpHeaders().set('content-type', 'application/json')
+    // .set('Access-Control-Allow-Origin', '*');
+
+    // return this.http.get<Data[]>(
+    //   `${this.dataAPI}`,
+    //   {'headers':headers
+    //   }
+    // );
   }
 
   // getData() : Observable<any> {

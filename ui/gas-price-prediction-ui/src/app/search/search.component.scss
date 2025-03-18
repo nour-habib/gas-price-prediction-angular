@@ -3,13 +3,35 @@ form{
     padding-top: 100px;
 }
 
-// input{
-//     //margin: 10px 10px 10px 10px  !important;
-// }
+button{
+    background-color: #43e8d8;
+    font-weight: 600;
+}
 
-//div{
-    // margin: 20px 20px 20px 20px !important;
-// }
+button:hover{
+    background-color: #fff;
+    color:#43e8d8;
+    outline: #43e8d8;
+}
+
+button::selection{
+    outline:none;
+}
+
+select{
+    background-color: #43e8d8;
+    font-weight: 600;
+}
+
+select:hover{
+    background-color: #fff;
+    color:#43e8d8;
+    outline: #43e8d8;
+}
+
+select::selection{
+    outline:none;
+}
 
 
 #table{
@@ -60,9 +82,3 @@ table{
 .oilText{
     color:#e35d42;
 }
-
-// button{
-//     padding-left: 50px;
-//     padding-right: 50px;
-// }
-

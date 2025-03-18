@@ -1,4 +1,4 @@
-import { Component, inject, ViewChild, signal } from '@angular/core';
+import { Component, inject, ViewChild,ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
 import { RouterOutlet, RouterModule, ActivatedRoute } from '@angular/router';
 import { DataService } from '../../service/data.service';
 import { MatTabsModule } from '@angular/material/tabs'
@@ -43,6 +43,7 @@ export type ChartOptions2 = {
 
 @Component({
   selector: 'app-data-set-exploration',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [RouterOutlet, RouterModule, MatTabsModule, MatGridListModule, NgApexchartsModule,CommonModule],
   templateUrl: './data-set-exploration.component.html',
@@ -51,7 +52,7 @@ export type ChartOptions2 = {
 export class DataSetExplorationComponent {
   dataService = inject(DataService);
   dataSet: Data[] = [];
-  cpi: Array<number> = [];
+  cpi: Array<number> = [];  
   oilProduction: Array<number> = [];
   crudeOilPrice: Array<number> = [];
   gasPrice: Array<number> = [];
@@ -77,7 +78,7 @@ export class DataSetExplorationComponent {
   @ViewChild("allChart") allChart!: ChartComponent;
   public allVarsOption!: Partial<ChartOptions>;
 
-  constructor(private activatedRoute: ActivatedRoute) {
+  constructor(private activatedRoute: ActivatedRoute, private changeDetectorRef: ChangeDetectorRef) {
     console.log("dataset comp: constructor()");
 
    }
@@ -86,12 +87,13 @@ export class DataSetExplorationComponent {
   {
     console.log("ngOnInit()");
     this.getDataSet();
-    // this.initializeGasPriceGraph();
-    // this.initializeCPIGraph();
-    // this.initializeOilProdGraph();
-    // this.initializeCrudeOilGraph();
-    // this.initializeBoxplot();
-    // this.initializeVariablesGraph();
+    console.log("outer dataset value of first element: ", this.dataSet[0]);
+    this.initializeGasPriceGraph();
+    this.initializeCPIGraph();
+    this.initializeOilProdGraph();
+    this.initializeCrudeOilGraph();
+    this.initializeBoxplot();
+    this.initializeVariablesGraph();
     this.correlationMatrix = this.dataService.getMatrix();
   }
 
@@ -100,32 +102,37 @@ export class DataSetExplorationComponent {
     console.log("getDataSet()");
 
       this.activatedRoute.data.subscribe((data) => {
-        console.log("data type: ", typeof(data));
-        this.dataSet = data[0];
-       
-       console.log("thi.dataset: ", typeof(this.dataSet));
-        console.log("activated ruote: data: " , data);
+        console.log("data size: " , data[0].length);
+
+       this.dataSet = data[0];
+       this.changeDetectorRef.markForCheck();
+        console.log("dataset first element: ", this.dataSet[0]);
+        
+        
         this.dataSet.sort((a,b) => {
           const ob1 = Date.parse(a['Date']);
           const ob2 = Date.parse(b['Date']);
           return ob1 - ob2;
       });
 
-        console.log("dataSet Exploration: ", this.dataSet);
+       // console.log("dataSet Exploration: ", this.dataSet);
         this.cpi = this.dataSet.map(data => data.consumerPriceIndex);
-        console.log("dataSet Exploration cpi: ", this.cpi);
+        //console.log("dataSet Exploration cpi: ", this.cpi);
         this.gasPrice = this.dataSet.map(data => data.gasPrice);
-        console.log("gas priccee: ", this.gasPrice);
+        //console.log("gas priccee: ", this.gasPrice);
         this.oilProduction = this.dataSet.map(data => data.oilProduction);
         this.crudeOilPrice = this.dataSet.map(data => data.crudeOilPrice);
         this.date = this.dataSet.map(data => data.Date);
 
-        this.initializeGasPriceGraph();
-        this.initializeCPIGraph();
-        this.initializeOilProdGraph();
-        this.initializeCrudeOilGraph();
-        this.initializeBoxplot();
-        this.initializeVariablesGraph();
+        //this.changeDetectorRef.detectChanges();
+
+
+        // this.initializeGasPriceGraph();
+        // this.initializeCPIGraph();
+        // this.initializeOilProdGraph();
+        // this.initializeCrudeOilGraph();
+        // this.initializeBoxplot();
+        // this.initializeVariablesGraph();
     });  
  }
 
@@ -166,7 +173,7 @@ export class DataSetExplorationComponent {
           fontSize:  '14px',
           fontWeight:  'bold',
           fontFamily:  undefined,
-          color:  '#fff'
+          color:  '#43e8d8'
         },
       },
       grid: {
@@ -251,7 +258,7 @@ export class DataSetExplorationComponent {
           fontSize:  '14px',
           fontWeight:  'bold',
           fontFamily:  undefined,
-          color:  '#fff'
+          color:  '#43e8d8'
         },
       },
       grid: {
@@ -337,7 +344,7 @@ export class DataSetExplorationComponent {
           fontSize:  '14px',
           fontWeight:  'bold',
           fontFamily:  undefined,
-          color:  '#fff'
+          color:  '#43e8d8'
         },
       },
       grid: {
@@ -420,7 +427,7 @@ export class DataSetExplorationComponent {
           fontSize:  '14px',
           fontWeight:  'bold',
           fontFamily:  undefined,
-          color:  '#fff'
+          color:  '#43e8d8'
         },
       },
       grid: {
@@ -526,7 +533,7 @@ title: {
     fontSize:  '14px',
     fontWeight:  'bold',
     fontFamily:  undefined,
-    color:  '#fff'
+    color:  '#43e8d8#fff'
   },
 },
 xaxis: {

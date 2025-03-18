@@ -1,9 +1,9 @@
 <h2>Search Data</h2>
 <form [formGroup]="searchForm" (ngSubmit)="search()">
   <!--Feature Drop Down Menu-->
-  <button id="dropdownCheckboxButton" name="dropdownCheckboxButton" data-dropdown-toggle="dropdownDefaultCheckbox" class="text-white bg-blue-700
-   hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 
-   text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" 
+  <button id="dropdownCheckboxButton" name="dropdownCheckboxButton" data-dropdown-toggle="dropdownDefaultCheckbox" class="text-white 
+    font-medium rounded-lg text-sm px-5 py-2.5 
+   text-center inline-flex items-center" 
    type="button">Select <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
       <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
       </svg>
@@ -13,13 +13,13 @@
           <ul class="p-3 space-y-3 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownCheckboxButton">
             <li>
               <div class="flex items-center">
-                <input formControlName="gasPrice" id="gasPrice" name="dropDown" type="checkbox" value="Gas Price" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                <input formControlName="gasPrice" id="gasPrice" name="dropDown" type="checkbox" value="Gas Price" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                 <label for="gasPrice" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Gas Price</label>
               </div>
             </li>
             <li>
               <div class="flex items-center">
-                <input formControlName="cpi" id="cpi" name="dropDown" type="checkbox" value="cpi" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                <input formControlName="cpi" id="cpi" name="dropDown" type="checkbox" value="cpi" class="w-4 h-4 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                 <label for="cpi" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Consumer Price Index</label>
               </div>
             </li>
@@ -40,8 +40,8 @@
 
     <span class="sideLabels">From</span>
 
-  <select id="selectFromMonth" name="selectFromMonth" formControlName="fromMonth" class="text-white bg-blue-700
-  hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 
+  <select id="selectFromMonth" name="selectFromMonth" formControlName="fromMonth" class="text-white
+  font-medium rounded-lg text-sm px-5 py-2.5 
   text-center inline-flex items-center">
           <option value="" selected disabled>Month</option>
             @for(item of months; track item)
@@ -51,9 +51,9 @@
   </select>
 
     <!--Year drop down menu-->
-    <select id="selectFromYear" name="selectFromYear" formControlName="fromYear" class="text-white bg-blue-700
-  hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 
-  text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+    <select id="selectFromYear" name="selectFromYear" formControlName="fromYear" class="text-white
+ font-medium rounded-lg text-sm px-5 py-2.5 
+  text-center inline-flex items-center">
             <option value="" selected disabled>Year</option>
               @for(year of years; track year)
               {
@@ -64,9 +64,9 @@
   <span class="sideLabels">To</span>
 
   <!--Months Drop Down Menu-->
-  <select id="selectToMonth" name="selectToMonth" formControlName="toMonth" class="text-white bg-blue-700
-  hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 
-  text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+  <select id="selectToMonth" name="selectToMonth" formControlName="toMonth" class="text-white
+ font-medium rounded-lg text-sm px-5 py-2.5 
+  text-center inline-flex items-center">
           <option value="" selected disabled>Month</option>
             @for(item of months; track item)
             {
@@ -75,9 +75,9 @@
   </select>
 
     <!--Year drop down menu-->
-    <select id="selectToYear" name="selectToYear" formControlName="toYear" class="text-white bg-blue-700
-  hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 
-  text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+    <select id="selectToYear" name="selectToYear" formControlName="toYear" class="text-white
+   font-medium rounded-lg text-sm px-5 py-2.5 
+  text-center inline-flex items-center">
       <option value="" selected disabled>Year</option>
         @for(year of years; track year)
         {
@@ -86,7 +86,7 @@
     </select>
 
 
-  <button type="submit" id="search" name="search" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
+  <button type="submit" id="search" name="search" class="text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center">Search</button>
 
 
 </form>

@@ -23,6 +23,7 @@ export const routes: Routes = [
 
     {
         path: 'dataSetExploration',
+        runGuardsAndResolvers: "always",
         component: DataSetExplorationComponent,
         resolve: [dataResolver],
     },

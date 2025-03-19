@@ -21,4 +21,5 @@ import { FooterComponent } from './footer/footer.component';
 })
 export class AppComponent {
   title = 'gas-price-prediction-ui';
+  //console.log("window size: ", window.innerWidth);
 }

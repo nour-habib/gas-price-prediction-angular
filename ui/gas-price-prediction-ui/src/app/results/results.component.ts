@@ -57,8 +57,15 @@ export class ResultsComponent {
 
   ngOnInit(): void {
     this.getAllResults();
-    this.initializeTrainGraph();
-    //this.initializeTestGraph();
+
+    setTimeout(()=>{                        
+      this.initializeTrainGraph();
+  }, 3000);
+
+  setTimeout(()=>{                        
+    this.initializeTestGraph();
+}, 3000);
+
     
     console.log("trainingResults Max: ", Math.max(...this.trainingResults));
     console.log("trainResult_Y Max: ", Math.max(... this.modelResults[0].training_y));
@@ -71,14 +78,6 @@ export class ResultsComponent {
       this.trainingResults = this.modelResults[0].training;
       this.testingResults = this.modelResults[0].testing;
     });
-  }
-
-  toggleExpandedTraining() {
-    this.isClickedTraining.set(!this.isClickedTraining);
-  }
-
-  toggleExpandedTesting() {
-    this.isClickedTesting.set(!this.isClickedTesting);
   }
 
   initializeTrainGraph() {
@@ -115,7 +114,7 @@ export class ResultsComponent {
           fontSize:  '14px',
           fontWeight:  'bold',
           fontFamily:  undefined,
-          color:  '#fff'
+          color:  '#43e8d8'
         },
       },
       grid: {
@@ -173,6 +172,7 @@ export class ResultsComponent {
       stroke: {
         width: 3,
         curve: "straight",
+        colors: ["#ffe700","#f000ff"],
         //dashArray: [2, 1],
       },
       title: {
@@ -182,7 +182,7 @@ export class ResultsComponent {
           fontSize:  '14px',
           fontWeight:  'bold',
           fontFamily:  undefined,
-          color:  '#fff'
+          color:  '#43e8d8'
         },
       },
       grid: {

@@ -1,5 +1,5 @@
 import { Component, inject, signal, ViewEncapsulation, ViewChild } from '@angular/core';
-import { RouterModule, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, RouterModule, RouterOutlet } from '@angular/router';
 import { DataService } from '../../service/data.service';
 import { ModelResults } from '../../model/model-results.interface';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -54,26 +54,22 @@ export class ResultsComponent {
   @ViewChild("testChart") testChart!: ChartComponent;
   public testOption!: Partial<ChartOptions>;
 
+  constructor(private activatedRoute: ActivatedRoute){}
+
 
   ngOnInit(): void {
     this.getAllResults();
-
-    setTimeout(()=>{                        
-      this.initializeTrainGraph();
-  }, 3000);
-
-  setTimeout(()=>{                        
+    this.initializeTrainGraph();
     this.initializeTestGraph();
-}, 3000);
-
     
     console.log("trainingResults Max: ", Math.max(...this.trainingResults));
     console.log("trainResult_Y Max: ", Math.max(... this.modelResults[0].training_y));
 }
 
   getAllResults() {
-    this.dataService.getModelResults().subscribe((results) => {
-      this.modelResults = results;
+    this.activatedRoute.data.subscribe((results) => {
+      console.log("results: ", results );
+      this.modelResults = results[0];
       console.log("modelResults: ", this.modelResults);
       this.trainingResults = this.modelResults[0].training;
       this.testingResults = this.modelResults[0].testing;

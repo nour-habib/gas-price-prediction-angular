@@ -6,6 +6,7 @@ import { ModelComponent } from './model/model.component';
 import { SearchComponent } from './search/search.component';
 import { MainComponent } from './main/main.component';
 import { dataResolver } from './data.resolver';
+import { modelResultsResolver } from './model-results.resolver';
 
 export const routes: Routes = [
     {
@@ -19,6 +20,7 @@ export const routes: Routes = [
     {
         path: 'results',
         component: ResultsComponent,
+        resolve: [modelResultsResolver],
     },
 
     {

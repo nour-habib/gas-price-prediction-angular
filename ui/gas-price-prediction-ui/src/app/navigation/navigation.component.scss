@@ -9,11 +9,15 @@
     color: 	#43e8d8;
     font-size: 16px;
     font-weight: 300;
-    font-family: 'myFirstFont','Arial', 'Helvetica';
+    font-family: 'myFirstFont','Helvetica Neue','Arial';
     margin-left: 20px;
+    text-shadow: rgba(244, 241, 241, 0.9) 0px 0px 39px;
 }
 
-h2 {padding: 1rem;}
+h2 {
+    padding: 1rem;
+
+}
 
 mat-toolbar{
     position:fixed;

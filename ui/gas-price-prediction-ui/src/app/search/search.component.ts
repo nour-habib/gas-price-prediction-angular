@@ -1,9 +1,13 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, inject, signal } from '@angular/core';
 import { DataService } from '../../service/data.service';
 import { Data } from '@angular/router';
 import { CalculatorComponent } from '../calculator/calculator.component';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ApexGrid, ColumnConfiguration } from 'apex-grid';
+import { css, html, LitElement } from "lit";
+import { customElement, state } from "lit/decorators.js";
+ApexGrid.register();
 
 type DataObj = {
   date: string;
@@ -16,11 +20,13 @@ type DataObj = {
   standalone: true,
   imports: [CalculatorComponent, CommonModule, ReactiveFormsModule],
   templateUrl: './search.component.html',
-  styleUrl: './search.component.scss'
+  styleUrl: './search.component.scss',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 
 
 export class SearchComponent {
+  
   dataService = inject(DataService);
   cpi = signal(false);
   gasPrice = signal(false);
@@ -48,11 +54,21 @@ export class SearchComponent {
     toYear: new FormControl(''),
   });
 
+
+  protected data!: Data[];
+  protected columns!: ColumnConfiguration<Data>[];
+
+
+
   constructor(){}
 
   ngOnInit(): void{
     console.log("search component: ngOnInit()");
     this.getDataSet();
+
+
+    this.initializeTable();
+    
   }
 
   search() {
@@ -137,6 +153,19 @@ export class SearchComponent {
     }
 
     this.searchData.set(filteredbyDate);
+    this.data = filteredbyDate;
+    this.columns = [
+      { key: "date", headerText: "Date" },
+      {
+        key: "features",
+        headerText: "Features",
+        type: "string",
+        //cellTemplate: this.format,
+      },
+      { key: "value", type: "number", headerText: "Value" },
+      
+    ];
+  
     this.dataIsSet.set(true);
   }
 
@@ -168,4 +197,25 @@ export class SearchComponent {
         console.log("search component: dataSet: ", this.dataSet); 
     });
   }
+
+  initializeTable(){
+
+  //    protected columns: ColumnConfiguration<Data>[] = [
+  //   { key: "date", headerText: "Date" },
+  //   {
+  //     key: "features",
+  //     headerText: "Features",
+  //     type: "string",
+  //     //cellTemplate: this.format,
+  //   },
+  //   { key: "value", type: "number", headerText: "Value" },
+    
+  // ];
+
+
+
+  }
+
 }
+
+

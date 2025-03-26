@@ -1,1 +1,24 @@
-<p>model works!</p>
+<h2>Polynomial Regression Model</h2>
+
+<div id="content">
+    <div id="firstBox" class="detailBox">
+        <p>
+            The polynomial regression model used in this experiment has the following form, 
+            <br>
+            y = beta_0 + beta_1<i>x</i> + beta_2<i>x^2</i> + ... + beta_n<i>x^n</i> + &#8714;,
+            <br>
+            which is linear in the unknown parameters beta_<i>i</i>. This model is a type of regression that 
+            can be viewed in a least squares sense where the sum of the squared residuals is minimized.
+        </p>
+        <br>
+    </div><!--close first box-->
+    <div id="secondBox" class="detailBox">
+        <p>
+            The <i>Matlab</i> function used to create the model is <i>polyfit</i> which accepts an <i>n</i> x <i>p</i> array
+            of indendepent variables, (where <i>n</i> is the number of data points and <i>p</i> is the dimension of the
+            variable space), dependent variablees as a <i>n</i> x 1 column or row vector and the model terms in the form of
+            a string containing specific terms or, in our case, an integer <i>k</i> designating the highest degree in the objective
+            function. I tested in models of degree <i>k</i>=1, 2, 3, 4, but the only the results for <i>k</i>=<i>2, 3</i> are shown.
+        </p>
+    </div><!--close second box-->
+</div><!--close content-->

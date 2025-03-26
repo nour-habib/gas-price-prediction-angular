@@ -20,9 +20,18 @@ export class DataService {
 
 
   getData(): Observable<Data[]> {
-  
+    const url = this.dataAPI;
+    
     return this.http.get<Data[]>(
-      `${this.dataAPI}`,
+      `${url}`,
+    );
+  }
+
+  getModelResults(): Observable<ModelResults[]>{
+    const url = this.modelURL;
+  
+    return this.http.get<ModelResults[]>(
+      `${url}`,
     );
   }
 
@@ -54,14 +63,6 @@ export class DataService {
     const url = this.dataAPI + `/gasPrice`;
   
     return this.http.get(
-      `${url}`,
-    );
-  }
-
-  getModelResults(): Observable<ModelResults[]>{
-    const url = this.modelURL;
-  
-    return this.http.get<ModelResults[]>(
       `${url}`,
     );
   }

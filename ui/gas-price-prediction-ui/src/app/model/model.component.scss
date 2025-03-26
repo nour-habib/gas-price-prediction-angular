@@ -1,0 +1,42 @@
+
+@media screen and (max-width: 768px)
+{
+    #content{
+        width:100%;
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+}
+
+@media screen and (min-width: 768px)
+{
+    #content{
+        width: 60%;
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+
+}
+
+p{
+    color:white;
+}
+
+#content{
+    margin-top: 100px;
+
+}
+
+#firstBox{
+    margin-top: 50px;
+    padding: 30px 30px 30px 30px;
+    color: #fff;
+    text-align:justify;
+}
+
+#secondBox{
+    margin-top: 50px;
+    padding: 30px 30px 30px 30px;
+    color: #fff;
+    text-align:justify;
+}

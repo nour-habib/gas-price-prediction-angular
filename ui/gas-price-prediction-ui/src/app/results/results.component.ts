@@ -102,6 +102,7 @@ export class ResultsComponent {
         width: 3,
         curve: "straight",
         //dashArray: [8, 5],
+        colors: ["#ffe700","#f000ff"],
       },
       title: {
         text: "Model Results Training Data",

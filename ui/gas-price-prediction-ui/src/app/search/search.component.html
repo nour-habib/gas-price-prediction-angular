@@ -133,8 +133,12 @@
     </tbody>  
 </table>
 
-<apex-grid [columns]="columns" [data]="data">
-</apex-grid>
+<div id="grid" *ngIf="dataIsSet()">
+  <apex-grid [columns]="columns" [data]="this.searchData()">
+  </apex-grid>
+
+</div>
+
 
 </div>
 

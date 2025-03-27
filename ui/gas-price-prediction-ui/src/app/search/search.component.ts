@@ -5,8 +5,6 @@ import { CalculatorComponent } from '../calculator/calculator.component';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ApexGrid, ColumnConfiguration } from 'apex-grid';
-import { css, html, LitElement } from "lit";
-import { customElement, state } from "lit/decorators.js";
 ApexGrid.register();
 
 type DataObj = {
@@ -38,6 +36,10 @@ export class SearchComponent {
   invalidDateMsg = signal('');
   dataIsSet = signal(false);
 
+  //gridData = computed(() => this.gridData() );
+
+ columns: ColumnConfiguration<Data>[] = [];
+
   months = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
   ];
@@ -53,10 +55,6 @@ export class SearchComponent {
     toMonth: new FormControl(''),
     toYear: new FormControl(''),
   });
-
-
-  protected data!: Data[];
-  protected columns!: ColumnConfiguration<Data>[];
 
 
 
@@ -153,7 +151,11 @@ export class SearchComponent {
     }
 
     this.searchData.set(filteredbyDate);
-    this.data = filteredbyDate;
+
+    //this.gridData.set(filteredbyDate);
+
+    //this.gridData = filteredbyDate;
+    
     this.columns = [
       { key: "date", headerText: "Date" },
       {

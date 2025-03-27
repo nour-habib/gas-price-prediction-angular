@@ -5,6 +5,7 @@ import { CalculatorComponent } from '../calculator/calculator.component';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ApexGrid, ColumnConfiguration } from 'apex-grid';
+import { gridStateContext } from 'apex-grid/dist/src/controllers/state';
 ApexGrid.register();
 
 type DataObj = {
@@ -63,8 +64,6 @@ export class SearchComponent {
   ngOnInit(): void{
     console.log("search component: ngOnInit()");
     this.getDataSet();
-
-
     this.initializeTable();
     
   }
@@ -103,18 +102,18 @@ export class SearchComponent {
     var indexF = this.months.findIndex((element) => element==fMonth);
     var indexT = this.months.findIndex((element) => element==tMonth);
     
-    console.log("indexF: ", indexF);
-    console.log("indexT: ", indexT);
+    // console.log("indexF: ", indexF);
+    // console.log("indexT: ", indexT);
 
-    console.log("fyear: ", Number(fyear));
-    console.log("tyear: ", Number(tyear));
+    // console.log("fyear: ", Number(fyear));
+    // console.log("tyear: ", Number(tyear));
 
 
     var startDate = new Date(Number(fyear), indexF+1);
     var endDate = new Date(Number(tyear), indexT+1);
 
-    console.log("startDate: ", startDate);
-    console.log("eendDate: ", endDate);
+    // console.log("startDate: ", startDate);
+    // console.log("eendDate: ", endDate);
 
 
 
@@ -134,39 +133,43 @@ export class SearchComponent {
 
     console.log("sorted by date: ", filteredbyDate);
 
-    
     if(this.searchForm.value.cpi){
       this.cpi.set(true);
     }
+
     if(this.searchForm.value.gasPrice){
       this.gasPrice.set(true);
    
     }
+
     if(this.searchForm.value.crudeOilPrice){
       this.crudeOilPrice.set(true);
       
     }
+
     if(this.searchForm.value.oilProd){
       this.oilProd.set(true);
     }
-
     this.searchData.set(filteredbyDate);
 
-    //this.gridData.set(filteredbyDate);
-
-    //this.gridData = filteredbyDate;
-    
     this.columns = [
-      { key: "date", headerText: "Date" },
+      { key: "Date", headerText: "Date" },
+      // {
+      //   key: "features",
+      //   headerText: "Features",
+      //   type: "string",
+      //   //cellTemplate: this.format,
+      // },
       {
-        key: "features",
-        headerText: "Features",
-        type: "string",
-        //cellTemplate: this.format,
+        key:"gasPrice", type: "string", headerText: "Gas Price"
       },
-      { key: "value", type: "number", headerText: "Value" },
       
     ];
+
+  
+
+   
+    
   
     this.dataIsSet.set(true);
   }
@@ -193,6 +196,15 @@ export class SearchComponent {
       return true;
   }
 
+
+  buildColumns(){
+    if(this.gasPrice())
+    {
+
+    }
+
+  }
+
   async getDataSet() {
     (await this.dataService.getData()).subscribe((data) => {
         this.dataSet = data;
@@ -213,9 +225,6 @@ export class SearchComponent {
   //   { key: "value", type: "number", headerText: "Value" },
     
   // ];
-
-
-
   }
 
 }

@@ -18,6 +18,7 @@ export type ChartOptions = {
   series: ApexAxisChartSeries;
   chart: ApexChart;
   xaxis: ApexXAxis;
+  legend: ApexLegend;
   dataLabels: ApexDataLabels;
   grid: ApexGrid;
   stroke: ApexStroke;
@@ -39,8 +40,6 @@ export class ErrorAnalysisComponent {
   errorTrain: Array<number> = [];
   train_y: Array<number> = [];
   test_y: Array<number> = [];
-  // trainGraph: any = [];
-  // testGraph: any = [];
   @ViewChild("chart") chart!: ChartComponent;
   public trainOps!: Partial<ChartOptions>;
 
@@ -68,6 +67,7 @@ export class ErrorAnalysisComponent {
         {
           name: "Test",
           data: this.errorTest,
+          
         },
         {
           name: "Training",
@@ -88,6 +88,18 @@ export class ErrorAnalysisComponent {
         width: [2,2],
         curve: "straight",
         //dashArray: [2, 1],
+        colors: ["#43e8d8","#efbbff"]
+      },
+      legend: {
+        show: true,
+        markers: {
+          fillColors: ["#43e8d8","#efbbff"]
+        },
+        customLegendItems: ["Test", "Training"],
+        labels: {
+          colors: ["#43e8d8","#efbbff"],
+        
+      },
       },
       title: {
         text: "Absolute Error (Training)",

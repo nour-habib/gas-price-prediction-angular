@@ -53,15 +53,31 @@ select::selection{
 
 
 #table{
-    padding-left:10%;
     padding-top: 50px;
     width: 80%;
+    margin-bottom: 50px;
+    margin-left:50px;
+}
+
+table{
+    width:100%;
+}
+
+tr:nth-child(even) {
+    background-color: #43e8d8;
+    color:#000;
+}
+
+tr:nth-child(odd){
+    background-color: beige;
+    color: #000;
 }
 
 table, th, td{
     border-collapse: collapse;
     border: 1px solid;
 }
+
 
 th,  td{
     padding: 10px 10px 10px 10px;
@@ -81,10 +97,6 @@ label{
     margin-right: 15px;
 }
 
-table{
-    color:#fff;
-}
-
 .gasText{
     color:#f757f5;
 }
@@ -101,6 +113,8 @@ table{
     color:#e35d42;
 }
 
+
 apex-grid{
+    display:none;
     background-color: #fff;
 }

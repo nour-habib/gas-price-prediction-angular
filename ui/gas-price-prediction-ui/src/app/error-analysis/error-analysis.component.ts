@@ -93,7 +93,7 @@ export class ErrorAnalysisComponent {
       legend: {
         show: true,
         markers: {
-          fillColors: ["#43e8d8","#efbbff"]
+          fillColors: ["#43e8d8","#efbbff"  ]
         },
         customLegendItems: ["Test", "Training"],
         labels: {

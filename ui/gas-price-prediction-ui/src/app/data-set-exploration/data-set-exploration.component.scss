@@ -63,6 +63,21 @@
     }
 }
 
+//To fix
+// a:active{
+//     color: #43e8d8 !important;
+// }
+
+// a:visited{
+//     color: #43e8d8 !important;
+// }
+// ::selection{
+//     color: #43e8d8 !important;
+// }
+// button:active{
+//     color: #43e8d8 !important;
+// }
+
 li{
     text-decoration: none;
 }
@@ -114,7 +129,7 @@ tr{
 }
 
 tr:nth-child(even) {
-    background-color: #43e8d8;;
+    background-color: #43e8d8;
 }
 
 tr:nth-child(odd){

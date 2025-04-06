@@ -69,13 +69,13 @@ tr:nth-child(even) {
 }
 
 tr:nth-child(odd){
-    background-color: beige;
+    background-color: #fff;
     color: #000;
 }
 
 table, th, td{
     border-collapse: collapse;
-    border: 1px solid;
+    //border: 1px solid #333;
 }
 
 

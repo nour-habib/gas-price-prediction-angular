@@ -15,6 +15,7 @@ import {
   ApexTitleSubtitle,
   ApexStroke,
   ApexGrid,
+  ApexLegend,
   NgApexchartsModule
 } from "ng-apexcharts";
 
@@ -28,6 +29,7 @@ export type ChartOptions = {
   title: ApexTitleSubtitle;
   yaxis: ApexYAxis;
   colors: string[];
+  legend: ApexLegend;
 };
 
 @Component({
@@ -97,6 +99,17 @@ export class ResultsComponent {
       },
       dataLabels: {
         enabled: false
+      },
+      legend: {
+        show: true,
+        markers: {
+          fillColors: ["#ffe700","#f000ff"  ]
+        },
+        customLegendItems: ["Test", "Training"],
+        labels: {
+          colors: ["#ffe700","f000ff"],
+        
+      },
       },
       stroke: {
         width: 3,

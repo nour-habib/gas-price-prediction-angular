@@ -3,16 +3,7 @@ import { DataService } from '../../service/data.service';
 import { Data } from '@angular/router';
 import { CalculatorComponent } from '../calculator/calculator.component';
 import { CommonModule } from '@angular/common';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ApexGrid, ColumnConfiguration } from 'apex-grid';
-import { gridStateContext } from 'apex-grid/dist/src/controllers/state';
-ApexGrid.register();
-
-type DataObj = {
-  date: string;
-  feature: string;
-  value: number;
-};
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-search',
@@ -22,7 +13,6 @@ type DataObj = {
   styleUrl: './search.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-
 
 export class SearchComponent {
   
@@ -36,10 +26,6 @@ export class SearchComponent {
   dataSet = new Array<Data>;
   invalidDateMsg = signal('');
   dataIsSet = signal(false);
-
-  //gridData = computed(() => this.gridData() );
-
- columns: ColumnConfiguration<Data>[] = [];
 
   months = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
@@ -57,15 +43,10 @@ export class SearchComponent {
     toYear: new FormControl(''),
   });
 
-
-
   constructor(){}
 
   ngOnInit(): void{
-    console.log("search component: ngOnInit()");
     this.getDataSet();
-    this.initializeTable();
-    
   }
 
   search() {
@@ -101,28 +82,14 @@ export class SearchComponent {
     //Filter by date first
     var indexF = this.months.findIndex((element) => element==fMonth);
     var indexT = this.months.findIndex((element) => element==tMonth);
-    
-    // console.log("indexF: ", indexF);
-    // console.log("indexT: ", indexT);
-
-    // console.log("fyear: ", Number(fyear));
-    // console.log("tyear: ", Number(tyear));
-
 
     var startDate = new Date(Number(fyear), indexF+1);
     var endDate = new Date(Number(tyear), indexT+1);
-
-    // console.log("startDate: ", startDate);
-    // console.log("eendDate: ", endDate);
-
-
 
     var filteredbyDate: Array<Data> = this.dataSet.filter(a => {
     var date = new Date(a['Date']);
     return (date >= startDate && date <= endDate);
       });
-
-      console.log("filteredByDate: ", filteredbyDate);
 
     //Sort by date
     filteredbyDate.sort((a,b) => {
@@ -130,8 +97,6 @@ export class SearchComponent {
         const ob2 = Date.parse(b['Date']);
         return ob1 - ob2;
     });
-
-    console.log("sorted by date: ", filteredbyDate);
 
     if(this.searchForm.value.cpi){
       this.cpi.set(true);
@@ -151,26 +116,6 @@ export class SearchComponent {
       this.oilProd.set(true);
     }
     this.searchData.set(filteredbyDate);
-
-    this.columns = [
-      { key: "Date", headerText: "Date" },
-      // {
-      //   key: "features",
-      //   headerText: "Features",
-      //   type: "string",
-      //   //cellTemplate: this.format,
-      // },
-      {
-        key:"gasPrice", type: "string", headerText: "Gas Price"
-      },
-      
-    ];
-
-  
-
-   
-    
-  
     this.dataIsSet.set(true);
   }
 
@@ -186,8 +131,6 @@ export class SearchComponent {
     {
       let indexF = this.months.findIndex((element) => element==fMonth);
       let indexT = this.months.findIndex((element) => element==tMonth);
-      console.log("indexF: ", indexF);
-      console.log("indexT: ", indexT);
       if(indexF > indexT)
       {
         return false;
@@ -196,37 +139,11 @@ export class SearchComponent {
       return true;
   }
 
-
-  buildColumns(){
-    if(this.gasPrice())
-    {
-
-    }
-
-  }
-
   async getDataSet() {
     (await this.dataService.getData()).subscribe((data) => {
-        this.dataSet = data;
-        console.log("search component: dataSet: ", this.dataSet); 
+        this.dataSet = data; 
     });
   }
-
-  initializeTable(){
-
-  //    protected columns: ColumnConfiguration<Data>[] = [
-  //   { key: "date", headerText: "Date" },
-  //   {
-  //     key: "features",
-  //     headerText: "Features",
-  //     type: "string",
-  //     //cellTemplate: this.format,
-  //   },
-  //   { key: "value", type: "number", headerText: "Value" },
-    
-  // ];
-  }
-
 }
 
 

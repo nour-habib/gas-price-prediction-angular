@@ -9,14 +9,13 @@
         <button id="submit" class="text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center" type="submit" [disabled]="!equation.valid">Get Gas Price</button>
         <button id="clearButton"  class="text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center" type="reset" (click)="clear()">Clear</button>
         </form>
-    
     </div><!--close form div-->
 
     <div id="resultContainer">
         <div id="result"><label *ngIf="result() > 0" >${{ result().toFixed(2) }}</label></div>
         <div id="resultExplanation"><label *ngIf="result() >= 0" >
             <h3>Explanation</h3><br>{{ resultExplanation() }}</label></div>
-    </div><!--close result-->
+    </div><!--close resuslt-->
 
 </div><!--close calc-->
 
@@ -40,14 +39,11 @@
         </ul>
 
       <p> Then the calculator gives a value of --fill in value--.</p>
-
-
-    
-</div>
+</div><!--close description-->
 
 <div id="adSpace">
     <div id="ad1">Ad</div>
     <div id="ad2">Ad</div>
-</div>
+</div><!--close adSpace-->
 
 </div><!--close 3colbox-->

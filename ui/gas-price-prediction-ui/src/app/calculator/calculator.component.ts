@@ -28,7 +28,7 @@ export class CalculatorComponent {
   
   calculate() {
      
-     console.warn(this.equation.value);
+     //console.warn(this.equation.value);
      var cpi: number = 0;
      var crudeOil: number = 0;
      var oilProd: number = 0;
@@ -44,17 +44,17 @@ export class CalculatorComponent {
 
      this.result.set(gasPriceResult);
      this.resultExplanation.set("Model coefficients not yet entered");
+     
+     //Uncomment the following when coefficients are entered.
+
     //  this.resultExplanation.set("When CPI = " + this.equation.value.cpi + ", "+
     //                               "crude oil price = " + this.equation.value.crudeOilPrice + ", " +
     //                             "oil production = " + this.equation.value.oilProd + ", " + 
     //                              " the model predicts the price of gas to be " + "$" + gasPriceResult + ".00." );
   }
 
-  clear(){
-    console.log("clear()");
+  clear() {
     this.equation.reset(this.equation.value);
   }
-
-
 
 }

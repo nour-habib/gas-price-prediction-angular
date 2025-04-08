@@ -4,7 +4,6 @@ import { DataService } from '../../service/data.service';
 import { MatTabsModule } from '@angular/material/tabs'
 import { Data } from '../../model/data.interface';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { Router } from '@angular/router';
 import {
   ChartComponent,
   ApexAxisChartSeries,
@@ -17,7 +16,6 @@ import {
   ApexGrid,
   NgApexchartsModule
 } from "ng-apexcharts";
-import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
 
 export type ChartOptions = {
@@ -78,16 +76,11 @@ export class DataSetExplorationComponent {
   @ViewChild("allChart") allChart!: ChartComponent;
   public allVarsOption!: Partial<ChartOptions>;
 
-  constructor(private activatedRoute: ActivatedRoute, private changeDetectorRef: ChangeDetectorRef) {
-    console.log("dataset comp: constructor()");
-
-   }
+  constructor(private activatedRoute: ActivatedRoute, private changeDetectorRef: ChangeDetectorRef) {}
 
   ngOnInit(): void
   {
-    console.log("ngOnInit()");
     this.getDataSet();
-    console.log("outer dataset value of first element: ", this.dataSet[0]);
     this.initializeGasPriceGraph();
     this.initializeCPIGraph();
     this.initializeOilProdGraph();
@@ -99,15 +92,10 @@ export class DataSetExplorationComponent {
 
 
   getDataSet() {
-    console.log("getDataSet()");
-
       this.activatedRoute.data.subscribe((data) => {
-        console.log("data size: " , data[0].length);
 
        this.dataSet = data[0];
        this.changeDetectorRef.markForCheck();
-        console.log("dataset first element: ", this.dataSet[0]);
-        
         
         this.dataSet.sort((a,b) => {
           const ob1 = Date.parse(a['Date']);
@@ -115,29 +103,17 @@ export class DataSetExplorationComponent {
           return ob1 - ob2;
       });
 
-       // console.log("dataSet Exploration: ", this.dataSet);
         this.cpi = this.dataSet.map(data => data.consumerPriceIndex);
-        //console.log("dataSet Exploration cpi: ", this.cpi);
         this.gasPrice = this.dataSet.map(data => data.gasPrice);
-        //console.log("gas priccee: ", this.gasPrice);
         this.oilProduction = this.dataSet.map(data => data.oilProduction);
         this.crudeOilPrice = this.dataSet.map(data => data.crudeOilPrice);
         this.date = this.dataSet.map(data => data.Date);
 
         //this.changeDetectorRef.detectChanges();
-
-
-        // this.initializeGasPriceGraph();
-        // this.initializeCPIGraph();
-        // this.initializeOilProdGraph();
-        // this.initializeCrudeOilGraph();
-        // this.initializeBoxplot();
-        // this.initializeVariablesGraph();
     });  
  }
 
   initializeGasPriceGraph() {
-    console.log("initializeGasPrice");
     this.gasOption = {
       series: [
         {
@@ -481,7 +457,6 @@ export class DataSetExplorationComponent {
   }
 
   initializeBoxplot() {
-    console.log("initialize boxPlot");
    this.co = {
       series: [
         {

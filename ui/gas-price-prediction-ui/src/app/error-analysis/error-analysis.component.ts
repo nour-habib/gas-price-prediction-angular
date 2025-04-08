@@ -40,6 +40,7 @@ export class ErrorAnalysisComponent {
   errorTrain: Array<number> = [];
   train_y: Array<number> = [];
   test_y: Array<number> = [];
+
   @ViewChild("chart") chart!: ChartComponent;
   public trainOps!: Partial<ChartOptions>;
 
@@ -51,13 +52,11 @@ export class ErrorAnalysisComponent {
 
   getErrorResults() {
     this.dataService.getModelResults().subscribe((data) => {
-      //console.log("res: ", data);
       this.modelResults = data;
       this.errorTrain = this.modelResults[0].errorTrain;
       this.errorTest = this.modelResults[0].errorTest;
       this.train_y = this.modelResults[0].training_y;
       this.test_y = this.modelResults[0].training_y;
-      //console.log("train_y: ",  this.train_y);  
     });
   }
   

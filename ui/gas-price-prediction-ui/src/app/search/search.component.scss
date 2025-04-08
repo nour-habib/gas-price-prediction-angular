@@ -51,16 +51,18 @@ select::selection{
     outline:none;
 }
 
-
 #table{
     padding-top: 50px;
     width: 80%;
     margin-bottom: 50px;
     margin-left:50px;
+    border-radius: 20px;
 }
 
 table{
     width:100%;
+    border: 1px solid black;
+    border-radius: 20px;
 }
 
 tr:nth-child(even) {
@@ -77,7 +79,6 @@ table, th, td{
     border-collapse: collapse;
     //border: 1px solid #333;
 }
-
 
 th,  td{
     padding: 10px 10px 10px 10px;

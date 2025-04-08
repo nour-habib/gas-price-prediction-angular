@@ -20,10 +20,10 @@ export class CalculatorComponent {
     crudeOilPrice: new FormControl(''),
 
   });
-  a = 1;
-  b = 1;
-  c = 1;
-  result = signal(0);
+  a = 0;
+  b = 0;
+  c = 0;
+  result = signal(-1);
   resultExplanation = signal('');
   
   calculate() {
@@ -43,10 +43,11 @@ export class CalculatorComponent {
      let gasPriceResult = (cpi*this.a) + (crudeOil*this.b) + (oilProd*this.c);
 
      this.result.set(gasPriceResult);
-     this.resultExplanation.set("When CPI = " + this.equation.value.cpi + ", "+
-                                  "crude oil price = " + this.equation.value.crudeOilPrice + ", " +
-                                "oil production = " + this.equation.value.oilProd + ", " + 
-                                 " the model predicts the price of gas to be " + "$" + gasPriceResult + ".00." );
+     this.resultExplanation.set("Model coefficients not yet entered");
+    //  this.resultExplanation.set("When CPI = " + this.equation.value.cpi + ", "+
+    //                               "crude oil price = " + this.equation.value.crudeOilPrice + ", " +
+    //                             "oil production = " + this.equation.value.oilProd + ", " + 
+    //                              " the model predicts the price of gas to be " + "$" + gasPriceResult + ".00." );
   }
 
   clear(){

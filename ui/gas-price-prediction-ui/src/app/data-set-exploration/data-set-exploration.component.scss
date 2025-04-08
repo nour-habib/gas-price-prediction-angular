@@ -63,21 +63,6 @@
     }
 }
 
-//To fix
-// a:active{
-//     color: #43e8d8 !important;
-// }
-
-// a:visited{
-//     color: #43e8d8 !important;
-// }
-// ::selection{
-//     color: #43e8d8 !important;
-// }
-// button:active{
-//     color: #43e8d8 !important;
-// }
-
 li{
     text-decoration: none;
 }
@@ -111,7 +96,7 @@ mat-tab label  {
 }
 
 table, th, td {
-    border: 1px solid;
+    border: 1px solid white;
   }
 
 table{
@@ -126,6 +111,7 @@ thead, tr, td{
 
 tr{
     padding: 30px 30px 30px 30px;
+    text-align: center;
 }
 
 tr:nth-child(even) {

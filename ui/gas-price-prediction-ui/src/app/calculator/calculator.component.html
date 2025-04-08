@@ -14,7 +14,7 @@
 
     <div id="resultContainer">
         <div id="result"><label *ngIf="result() > 0" >${{ result().toFixed(2) }}</label></div>
-        <div id="resultExplanation"><label *ngIf="result() > 0" >
+        <div id="resultExplanation"><label *ngIf="result() >= 0" >
             <h3>Explanation</h3><br>{{ resultExplanation() }}</label></div>
     </div><!--close result-->
 

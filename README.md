@@ -12,3 +12,4 @@ Some screenshots:
 <img src="https://github.com/nour-habib/gas-price-prediction-angular/blob/main/search.png" width="500"></img>
 
 
+<small>This project, or any part of this project may not be used in any portfolio, personal or professional.</small>
